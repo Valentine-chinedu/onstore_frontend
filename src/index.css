@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.crl-div {
+		@apply flex items-center justify-center;
+	}
+
+	.crl-div2 {
+		@apply absolute lg:relative flex flex-col w-full items-center top-16 z-40;
+	}
+
+	.crl-h {
+		@apply italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8;
+	}
+
+	.crl-link {
+		@apply border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700;
+	}
+
+	.crl-img {
+		@apply h-52 lg:h-96 object-cover lg:object-none;
+	}
+}

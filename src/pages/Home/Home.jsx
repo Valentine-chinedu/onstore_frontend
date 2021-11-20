@@ -24,79 +24,59 @@ const Home = () => {
 					infiniteLoop={true}
 					dynamicHeight={true}
 				>
-					<div className='lg:flex lg:items-center lg:justify-center'>
+					<div className='crl-div'>
 						{/* carousel display for large screens. hidden in sm and medium screens */}
-						<div className='hidden lg:block flex-col w-full items-center top-16 z-40'>
-							<h2 className='italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8'>
-								Welcome to onStore
-							</h2>
+						<div className='crl-div2'>
+							<h2 className='crl-h'>Welcome to onStore</h2>
 
-							<Link
-								to='/home/products'
-								className='border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700'
-							>
+							<Link to='/home/products' className='crl-link'>
 								SHOP NOW
 							</Link>
 						</div>
 						<img
-							className='h-52 lg:h-96 object-cover lg:object-none'
+							className='crl-img'
 							src='/images/Shirts/Shirts_Clothing_Blue.jpg'
 							alt=''
 						/>
 					</div>
-					<div className='lg:flex lg:items-center lg:justify-center'>
-						<div className='hidden lg:block flex-col w-full items-center top-16 z-40'>
-							<h2 className='italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8'>
-								100% Quality Wears
-							</h2>
+					<div className='crl-div'>
+						<div className='crl-div2'>
+							<h2 className='crl-h'>100% Quality Wears</h2>
 
-							<Link
-								to='/home/products'
-								className='border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700'
-							>
+							<Link to='/home/products' className='crl-link'>
 								SHOP NOW
 							</Link>
 						</div>
 						<img
-							className='h-52 lg:h-96 object-cover lg:object-none'
+							className='crl-img'
 							src='/images/shoes/Classic_Sneakers_Grey.jpg'
 							alt=''
 						/>
 					</div>
-					<div className='lg:flex lg:items-center lg:justify-center'>
-						<div className='hidden lg:block flex-col w-full items-center top-16 z-40'>
-							<h2 className='italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8'>
-								Beauty Redefined
-							</h2>
+					<div className='crl-div'>
+						<div className='crl-div2'>
+							<h2 className='crl-h'>Beauty Redefined</h2>
 
-							<Link
-								to='/home/products'
-								className='border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700'
-							>
+							<Link to='/home/products' className='crl-link'>
 								SHOP NOW
 							</Link>
 						</div>
 						<img
-							className='h-52 lg:h-96 object-cover lg:object-none'
+							className='crl-img'
 							src='/images/Watches/Men_Military_Quartz_Brown.jpg'
 							alt=''
 						/>
 					</div>
-					<div className='lg:flex lg:items-center lg:justify-center'>
-						<div className='hidden lg:block flex-col w-full items-center top-16 z-40'>
-							<h2 className='italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8'>
-								Elegant and Stylish
-							</h2>
+					<div className='crl-div'>
+						<div className='crl-div2'>
+							<h2 className='crl-h'>Elegant and Stylish</h2>
 
-							<Link
-								to='/home/products'
-								className='border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700'
-							>
+							<Link to='/home/products' className='crl-link'>
 								SHOP NOW
 							</Link>
 						</div>
 						<img
-							className='h-52 lg:h-96 object-cover lg:object-none'
+							className='crl-img'
 							src='/images/Pants/Suit_Material_Trousers.jpg'
 							alt=''
 						/>
@@ -104,19 +84,6 @@ const Home = () => {
 				</Carousel>
 			</div>
 
-			{/* carousel display for sm and medium screens. hidden in large screens */}
-			<div className='absolute lg:hidden flex flex-col w-full items-center top-16 z-40'>
-				<h2 className='italic mb-4 font-semibold text-xl lg:text-4xl text-orange-500 lg:mb-8'>
-					Welcome to onStore
-				</h2>
-
-				<Link
-					to='/home/products'
-					className='border-4 text-white text-lg lg:text-2xl bg-orange-500 border-orange-700 py-1 px-4 rounded-3xl hover:bg-orange-700'
-				>
-					SHOP NOW
-				</Link>
-			</div>
 			<div className=' md:container md:mx-auto py-12 pl-4 border-b lg:flex lg:items-center'>
 				<div className='flex mb-12 lg:mb-0'>
 					<div className='mr-4'>

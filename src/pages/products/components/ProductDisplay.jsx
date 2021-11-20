@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductContext } from '../contextprovider/ProductContext';
+import { ProductContext } from '../../../contextprovider/ProductContext';
 
 const ProductDisplay = ({ product }) => {
 	const { handleAddToCart } = useContext(ProductContext);

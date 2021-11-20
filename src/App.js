@@ -1,34 +1,27 @@
-import React from "react";
-import { Switch, Route, Redirect, useLocation } from "react-router-dom";
+import React from 'react';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
-import {
-	Products,
-	ProductDetails,
-	Navbar,
-	Footer,
-	Home,
-	Cart,
-	Checkout,
-} from "./components";
+import { Navbar, Footer } from './components';
+import { Cart, Checkout, Home, ProductDetails, Products } from './pages';
 
 const App = () => {
 	const { pathname } = useLocation();
 	return (
-		<div className="h-full w-full">
-			{pathname !== "/cart" && pathname !== "/checkout" && <Navbar />}
+		<div className='h-full w-full'>
+			{pathname !== '/cart' && pathname !== '/checkout' && <Navbar />}
 
 			<Switch>
-				<Route exact path="/home/products" component={Products} />
+				<Route exact path='/home/products' component={Products} />
 
-				<Route path="/home/product/:id" component={ProductDetails} />
+				<Route path='/home/product/:id' component={ProductDetails} />
 
-				<Route path="/cart/" component={Cart} />
+				<Route path='/cart/' component={Cart} />
 
-				<Route path="/checkout/" component={Checkout} />
+				<Route path='/checkout/' component={Checkout} />
 
-				<Route exact path="/home" component={Home} />
+				<Route exact path='/home' component={Home} />
 
-				<Redirect from="/" to="/home" />
+				<Redirect from='/' to='/home' />
 			</Switch>
 
 			<Footer />
