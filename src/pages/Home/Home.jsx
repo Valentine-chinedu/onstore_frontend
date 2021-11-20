@@ -2,12 +2,13 @@ import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
-import { FiThumbsUp, FiBox, FiArrowRightCircle } from 'react-icons/fi';
+import { FiThumbsUp, FiBox } from 'react-icons/fi';
 import { IoBagOutline } from 'react-icons/io5';
 import { BsArrowCounterclockwise } from 'react-icons/bs';
 import Accordion from './components/Accordion';
 import AskedQuestion from './components/AskedQuestion';
 import MailingForm from './components/MailingForm';
+import TopSeller from './components/TopSeller';
 
 const Home = () => {
 	return (
@@ -146,75 +147,7 @@ const Home = () => {
 					</div>
 				</div>
 			</div>
-			<div className='md:container md:mx-auto flex justify-center items-center mt-8 mb-4'>
-				<div className='  p-3 mr-2 w-12 bg-gray-100 rounded-full'>
-					<FiArrowRightCircle size={24} />
-				</div>
-				<div className=''>
-					<h3 className='font-bold text-sm tracking-wider'>TOP SELLING</h3>
-				</div>
-			</div>
-			<div className='md:container md:mx-auto flex lg:justify-center lg:items-center h-96 overflow-x-scroll pl-4 lg:overflow-hidden mb-4 lg:mb-32'>
-				<div className=' h-full flex'>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
-						<div className='relative'>
-							<img
-								className='h-80 lg:h-96'
-								s
-								src='/images/Pants/Black_Cargo_Pant.jpg'
-								alt='pants'
-							/>
-							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
-									PANTS
-								</h3>
-							</Link>
-						</div>
-					</div>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
-						<div className='relative'>
-							<img
-								className='h-80 lg:h-96'
-								src='/images/Shirts/Shirts_Clothing_Blue.jpg'
-								alt='shirts'
-							/>
-							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
-									SHIRTS
-								</h3>
-							</Link>
-						</div>
-					</div>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
-						<div className='relative'>
-							<img
-								className='h-80 lg:h-96'
-								src='/images/shoes/Men_Sneakers_WhiteBlack.jpg'
-								alt='shoes'
-							/>
-							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
-									SHOES
-								</h3>
-							</Link>
-						</div>
-					</div>
-					<div className='h-full w-64 lg:w-72'>
-						<div className='relative'>
-							<img
-								className='h-80 lg:h-96'
-								src='/images/Watches/Business_Quartz_Watch.jpg'
-								alt='wristwatch'
-							/>
-							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
-									WRISTWATCH
-								</h3>
-							</Link>
-						</div>
-					</div>
-				</div>
-			</div>
+			<TopSeller />
 			<div className='md:container md:mx-auto pb-12 lg:flex lg:items-center lg:justify-center'>
 				<div className='flex flex-col justify-center items-center border mx-4 py-16 lg:w-3/5'>
 					<div className='flex font-normal tracking-wider italic lg:mb-4 lg:text-2xl'>
