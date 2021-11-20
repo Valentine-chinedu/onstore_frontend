@@ -12,7 +12,7 @@ function MailingForm() {
 	return (
 		<div className=''>
 			<div className='md:container md:mx-auto pb-1 lg:flex lg:items-center lg:justify-center'>
-				<div className='flex flex-col justify-center items-center border mx-4 py-16 lg:w-3/5'>
+				<div className='flex flex-col justify-center items-center border-2 mx-4 py-16 lg:py-32 lg:w-4/5'>
 					<div className='flex font-normal tracking-wider italic lg:mb-4 lg:text-2xl'>
 						<p className='mr-1 lg:mr-2'>Get your</p>
 						<p className='text-red-500'>10% off!</p>

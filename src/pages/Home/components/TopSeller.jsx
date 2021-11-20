@@ -24,7 +24,7 @@ const TopSeller = () => {
 								alt='pants'
 							/>
 							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
+								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200 -translate-y-1/2 -translate-x-1/2  transform left-1/2 top-40 lg:top-1/2 '>
 									PANTS
 								</h3>
 							</Link>
@@ -38,7 +38,7 @@ const TopSeller = () => {
 								alt='shirts'
 							/>
 							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
+								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200 -translate-y-1/2 -translate-x-1/2  transform left-1/2 top-1/2'>
 									SHIRTS
 								</h3>
 							</Link>
@@ -52,7 +52,7 @@ const TopSeller = () => {
 								alt='shoes'
 							/>
 							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 lg:left-20 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
+								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200 -translate-y-1/2 -translate-x-1/2  transform left-1/2 top-1/2'>
 									SHOES
 								</h3>
 							</Link>
@@ -66,7 +66,7 @@ const TopSeller = () => {
 								alt='wristwatch'
 							/>
 							<Link to='/home/products'>
-								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold top-36 lg:top-44 left-16 bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200'>
+								<h3 className='absolute tracking-wider text-xs lg:text-sm font-bold bg-white px-8 py-2 lg:py-4 rounded-3xl hover:bg-gray-200 -translate-y-1/2 -translate-x-1/2  transform left-1/2 top-1/2'>
 									WRISTWATCH
 								</h3>
 							</Link>
