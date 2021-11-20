@@ -78,7 +78,7 @@ const Home = () => {
 			<TopSeller />
 			<MailingForm />
 
-			<div className='md:container md:mx-auto lg:flex lg:px-40 lg:py-16'>
+			<div className='md:container md:mx-auto lg:flex lg: lg:py-16'>
 				<AskedQuestion />
 				<Accordion />
 			</div>
