@@ -15,7 +15,7 @@ const TopSeller = () => {
 			</div>
 			<div className='md:container md:mx-auto flex lg:justify-center lg:items-center h-96 overflow-x-scroll pl-4 lg:overflow-hidden mb-4 lg:mb-32'>
 				<div className=' h-full flex'>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
+					<div className='flex h-full w-64 lg:w-auto mr-4 lg:mr-8'>
 						<div className='relative'>
 							<img
 								className='h-80 lg:h-96'
@@ -30,7 +30,7 @@ const TopSeller = () => {
 							</Link>
 						</div>
 					</div>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
+					<div className='h-full w-64 lg:w-auto mr-4 lg:mr-8'>
 						<div className='relative'>
 							<img
 								className='h-80 lg:h-96'
@@ -44,7 +44,7 @@ const TopSeller = () => {
 							</Link>
 						</div>
 					</div>
-					<div className='h-full w-64 lg:w-72 mr-4 lg:mr-8'>
+					<div className='h-full w-64 lg:w-auto mr-4 lg:mr-8'>
 						<div className='relative'>
 							<img
 								className='h-80 lg:h-96'
@@ -58,7 +58,7 @@ const TopSeller = () => {
 							</Link>
 						</div>
 					</div>
-					<div className='h-full w-64 lg:w-72'>
+					<div className='h-full w-64 lg:w-auto'>
 						<div className='relative'>
 							<img
 								className='h-80 lg:h-96'
