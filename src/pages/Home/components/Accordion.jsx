@@ -40,10 +40,10 @@ const Accordion = () => {
 		},
 	];
 	return (
-		<div className='pb-4'>
+		<div>
 			{accordions.map((accordion) => (
 				<div
-					className='border rounded-md mx-4 pt-5 pl-6 pr-4 mb-4'
+					className='border-2 rounded-md mx-4 pt-5 pl-6 pr-4 mb-4'
 					key={accordion._id}
 				>
 					<DropDown accordion={accordion} />
