@@ -11,9 +11,9 @@ import Carousels from './components/Carousels';
 
 const Home = () => {
 	return (
-		<div className='bg-gray-50 relative space-y-20 pb-20'>
+		<div className='bg-gray-50 space-y-32 pb-20'>
 			<Carousels />
-			<div className=' md:container md:mx-auto pl-4 lg:flex lg:items-center'>
+			<div className=' md:container md:mx-auto pl-4 lg:flex lg:items-center pt-40'>
 				<div className='flex mb-12 lg:mb-0'>
 					<div className='mr-4'>
 						<div>

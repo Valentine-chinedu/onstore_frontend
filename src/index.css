@@ -4,11 +4,11 @@
 
 @layer components {
 	.crl-div {
-		@apply flex items-center justify-center;
+		@apply flex relative items-center justify-center h-96;
 	}
 
 	.crl-div2 {
-		@apply absolute lg:relative flex flex-col w-full items-center top-16 z-40;
+		@apply absolute lg:relative flex flex-col w-full items-center top-40 lg:top-16 z-40;
 	}
 
 	.crl-h {
@@ -20,6 +20,6 @@
 	}
 
 	.crl-img {
-		@apply h-52 lg:h-96 object-cover lg:object-none;
+		@apply h-96 lg:h-96 object-cover lg:object-none;
 	}
 }
