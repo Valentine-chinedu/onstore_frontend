@@ -67,7 +67,7 @@ const Footer = () => {
 				</div>
 				<div>
 					<div className='ml-4 mt-10 mb-6'>
-						<h4 className='mb-2 font-medium text-sm lg:text-lg text-gray-50 lg:mb-10'>
+						<h4 className='mb-4 font-medium text-sm lg:text-lg text-gray-50 lg:mb-10'>
 							NEWSLETTER
 						</h4>
 
@@ -78,7 +78,7 @@ const Footer = () => {
 										{errors.email.message}
 									</p>
 								)}
-								<div className='bg-gray-100 w-80 relative rounded-3xl border pl-6 h-12 items-center flex'>
+								<div className='bg-gray-100 w-72 md:w-80 relative rounded-3xl border pl-6 h-12 items-center flex'>
 									<h2 className='mr-3 text-gray-400 text-2xl'>@</h2>
 									<input
 										className='bg-gray-100 placeholder-gray-400 focus:outline-none w-48'
@@ -94,7 +94,7 @@ const Footer = () => {
 										})}
 									/>
 									<button
-										className=' left-72 absolute bg-orange-700 p-3 rounded-full hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50'
+										className='left-64 md:left-72 absolute bg-orange-700 p-3 rounded-full hover:bg-orange-800 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50'
 										type='submit'
 									>
 										<AiOutlineSend size={24} color='white' />
