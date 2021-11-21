@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const TopSeller = () => {
 	return (
-		<div className='space-y-10'>
+		<div className='space-y-10 mx-4 lg:mx-0'>
 			<div className='md:container md:mx-auto flex justify-center items-center'>
 				<div className='  p-3 mr-2 w-12 bg-gray-100 rounded-full'>
 					<FiArrowRightCircle size={24} />

@@ -24,7 +24,7 @@ const Header = () => {
 		<nav className=' pb-2 px-2 lg:px-8 md:px-4 sticky top-0 z-50 bg-gray-50 overflow-hidden border-b-2'>
 			<div className=' flex items-center justify-between h-16 lg:h-20 z-50'>
 				<div className='flex'>
-					<div className='relative flex items-center mr-4 ml-2 lg:mr-0 lg:ml-0 lg:hidden'>
+					<div className='relative flex items-center md:mr-4 md:ml-2 lg:mr-0 lg:ml-0 lg:hidden'>
 						<button
 							onClick={() => {
 								setOpen(true);
@@ -75,9 +75,9 @@ const Header = () => {
 					</div>
 				</div>
 
-				<form className='flex border-gray-400 border h-9 lg:h-11 rounded-full w-52 md:w-64 lg:w-72'>
+				<form className='flex border-gray-400 border h-7 md:h-9 lg:h-11 rounded-full w-52 md:w-64 lg:w-72'>
 					<div className='flex justify-between items-center'>
-						<button typ='submit' className='focus:outline-none ml-2 mr-4'>
+						<button type='submit' className='focus:outline-none ml-2 mr-4'>
 							<GoSearch className='text-gray-500 text-sm lg:text-lg' />
 						</button>
 						<input
@@ -88,7 +88,7 @@ const Header = () => {
 						/>
 					</div>
 				</form>
-				<div className='flex relative justify-around items-center h-10 mr-2 lg:mr-0'>
+				<div className='flex relative justify-around items-center h-10 md:mr-2 lg:mr-0'>
 					<Link to='/cart'>
 						<AiOutlineShoppingCart size={28} />
 					</Link>
