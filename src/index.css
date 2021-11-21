@@ -22,4 +22,8 @@
 	.crl-img {
 		@apply h-96 lg:h-96 object-cover lg:object-none;
 	}
+
+	.nav-btn {
+		@apply mb-2 lg:mb-0 lg:mr-4 text-sm lg:text-base font-semibold p-2 focus:outline-none hover:bg-gray-300;
+	}
 }
