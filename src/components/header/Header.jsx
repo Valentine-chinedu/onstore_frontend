@@ -62,7 +62,7 @@ const Header = () => {
 								: 'transition-height duration-500 ease-in-out w-0 overflow-hidden lg:transition-none'
 						}`}
 					>
-						<div className='flex flex-col lg:flex-row items-start ml-4 '>
+						<div className='flex flex-col lg:flex-row items-start ml-4 overflow-hidden'>
 							<button onClick={handleClickToHome} className='nav-btn'>
 								Home
 							</button>
@@ -75,7 +75,7 @@ const Header = () => {
 					</div>
 				</div>
 
-				<form className='flex border-gray-400 border h-9 lg:h-11  rounded-full w-52 lg:w-72'>
+				<form className='flex border-gray-400 border h-9 lg:h-11 rounded-full w-52 md:w-64 lg:w-72'>
 					<div className='flex justify-between items-center'>
 						<button typ='submit' className='focus:outline-none ml-2 mr-4'>
 							<GoSearch className='text-gray-500 text-sm lg:text-lg' />
@@ -93,7 +93,7 @@ const Header = () => {
 						<AiOutlineShoppingCart size={28} />
 					</Link>
 					{cart.total_unique_items > 0 ? (
-						<div className='absolute top-0 right-0 text-xs font-bold text-white tracking-tighter rounded-full bg-red-700 px-1.5'>
+						<div className='absolute top-0 right-0 text-xs font-bold text-white tracking-tighter rounded-full bg-orange-700 px-1.5'>
 							{cart.total_unique_items}
 						</div>
 					) : (
