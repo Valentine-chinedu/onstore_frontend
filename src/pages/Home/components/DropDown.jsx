@@ -6,8 +6,8 @@ const DropDown = ({ accordion }) => {
 	// const toggleTrueFalse = () => setIsOpen(!isOpen);
 
 	return (
-		<div className='transition-height duration-700 ease-in-out h-12 md:h-8 lg:h-12 mb-4 overflow-hidden hover:h-36'>
-			<div className='flex items-center mb-5 lg:mt-3'>
+		<div className='transition-height duration-500 ease-in-out h-12 md:h-8 lg:h-12 mb-4 overflow-hidden hover:h-36'>
+			<div className='flex items-center mb-4 lg:mt-3 pt-2'>
 				<div className='mr-3'>
 					<FiMessageCircle size={24} className='text-orange-700' />
 				</div>
