@@ -12,8 +12,8 @@ const Footer = () => {
 	};
 
 	return (
-		<div className=' bg-gray-900 w-screen'>
-			<div className='flex flex-col md:flex-row pl-8 lg:justify-evenly lg:py-10 w-full border-b mb-8 md:space-x-12 lg:space-x-0'>
+		<div className=' bg-gray-900'>
+			<div className='flex flex-col md:flex-row pl-8 md:pl-0 md:justify-evenly md:items-center md:py-10 w-full border-b mb-8 md:space-x-4'>
 				<div className='flex ml-4 pt-10'>
 					<div className='mr-24'>
 						<h2 className='mb-10 font-medium text-gray-50 lg:text-lg text-sm'>
@@ -65,7 +65,7 @@ const Footer = () => {
 						</ul>
 					</div>
 				</div>
-				<div>
+				<div className='h-full md:flex flex-col justify-center'>
 					<div className='ml-4 mt-10 mb-6'>
 						<h4 className='mb-4 font-medium text-sm lg:text-lg text-gray-50 lg:mb-10'>
 							NEWSLETTER
@@ -112,7 +112,7 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className='ml-12 text-xs text-gray-600 lg:flex lg:items-center lg:justify-between'>
+			<div className='text-xs text-gray-600 flex flex-col md:flex-row justify-center items-center md:justify-between px-8'>
 				<p className='mb-3 text-gray-100 lg:text-sm'>Created with love </p>
 				<div className='flex pb-3'>
 					<img
