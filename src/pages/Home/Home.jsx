@@ -13,7 +13,7 @@ const Home = () => {
 	return (
 		<div className='space-y-32 pb-20'>
 			<Carousels />
-			<div className=' md:container mx-4 lg:mx-auto pl-4 lg:flex lg:items-center pt-40'>
+			<div className=' md:container mx-4 lg:mx-auto pl-4 lg:flex lg:items-center pt-36'>
 				<div className='flex mb-12 lg:mb-0'>
 					<div className='mr-4'>
 						<div>
@@ -78,7 +78,7 @@ const Home = () => {
 			<TopSeller />
 			<MailingForm />
 
-			<div className='md:container mx-4 lg:flex lg: lg:py-16'>
+			<div className=' mx-4 lg:flex lg:py-16'>
 				<AskedQuestion />
 				<Accordion />
 			</div>
