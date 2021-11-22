@@ -6,7 +6,7 @@ const ProductDisplay = ({ product }) => {
 	const { handleAddToCart } = useContext(ProductContext);
 
 	return (
-		<div className='rounded-lg pb-4 relative border shadow-lg w-52 lg:w-60 lg:transition lg:duration-500 lg:ease-in-out lg:transform lg:hover:scale-105'>
+		<div className='rounded-lg pb-4 relative border shadow-lg md:w-52 lg:w-60 lg:transition lg:duration-500 lg:ease-in-out lg:transform lg:hover:scale-105'>
 			<Link to={`/home/product/${product.id}`}>
 				<div className='border-b '>
 					<img
