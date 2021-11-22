@@ -7,7 +7,7 @@ import { Cart, Checkout, Home, ProductDetails, Products } from './pages';
 const App = () => {
 	const { pathname } = useLocation();
 	return (
-		<div className='h-screen w-screen'>
+		<div className='h-screen w-scree overflow-x-hidden'>
 			{pathname !== '/cart' && pathname !== '/checkout' && <Header />}
 
 			<Switch>
