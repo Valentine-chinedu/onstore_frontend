@@ -56,9 +56,9 @@ const Header = () => {
 					</div>
 
 					<div
-						className={`fixed lg:relative lg:pt-3 flex flex-col top-12 left-0 lg:right-8 lg:top-auto justify-center lg:items-end lg:flex-row h-60 lg:h-20 bg-gray-50 lg:w-full ${
+						className={`fixed lg:relative lg:pt-3 flex flex-col top-12 left-0 lg:right-8 lg:top-auto justify-center lg:items-end lg:flex-row h-60 md:h-72 lg:h-20 bg-gray-50 lg:w-full ${
 							isOpen
-								? 'transition-height duration-500 ease-in-out  w-40 lg:transition-none'
+								? 'transition-height duration-500 ease-in-out w-40 md:w-52 lg:transition-none'
 								: 'transition-height duration-500 ease-in-out w-0 overflow-hidden lg:transition-none'
 						}`}
 					>
