@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import ScrollToTop from "./components/ScrollToTop";
-import App from "./App";
-import ProductProvider from "./contextprovider/ProductContext";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
+import App from './App';
+import ProductProvider from './contextprovider/ProductContext';
 
 ReactDOM.render(
 	<BrowserRouter>
@@ -13,5 +13,5 @@ ReactDOM.render(
 			<App />
 		</ProductProvider>
 	</BrowserRouter>,
-	document.getElementById("root")
+	document.getElementById('root')
 );

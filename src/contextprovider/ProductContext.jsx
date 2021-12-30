@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { commerce } from "../lib/commerce";
+import React, { useState, useEffect } from 'react';
+import { commerce } from '../lib/commerce';
 
 export const ProductContext = React.createContext();
 

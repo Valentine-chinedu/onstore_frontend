@@ -1,10 +1,6 @@
 import React from 'react';
 import { FiMessageCircle } from 'react-icons/fi';
 const DropDown = ({ accordion }) => {
-	// const [isOpen, setIsOpen] = useState(false);
-
-	// const toggleTrueFalse = () => setIsOpen(!isOpen);
-
 	return (
 		<div className='transition-height duration-500 ease-in-out h-12 md:h-8 lg:h-12 mb-4 overflow-hidden hover:h-36'>
 			<div className='flex items-center mb-4 lg:mt-3 pt-2'>
