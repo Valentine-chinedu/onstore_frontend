@@ -1,8 +1,12 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductContext } from '../../../contextprovider/ProductContext';
+import { Products } from '../../../types/Products';
 
-const ProductDisplay = ({ product }) => {
+interface IProps {
+	product: Products;
+}
+const ProductDisplay = ({ product }: IProps) => {
 	const { handleAddToCart } = useContext(ProductContext);
 
 	return (
@@ -29,7 +33,7 @@ const ProductDisplay = ({ product }) => {
 			<div className=' w-full flex justify-center'>
 				<button
 					className='focus:outline-none focus:ring-yellow-400 focus:ring-2 rounded-3xl bg-orange-700 hover:bg-orange-800 text-gray-50 text-xs p-2 tracking-wider items-center'
-					onClick={() => handleAddToCart(product.id, 1)}
+					onClick={() => handleAddToCart!(product.id, 1)}
 				>
 					ADD TO CART
 				</button>

@@ -1,10 +1,15 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-function MailingForm() {
-	const { register, handleSubmit, errors, reset } = useForm();
+type Email = string;
+type User = {
+	email: Email;
+};
 
-	const onSubmit = (data) => {
+function MailingForm() {
+	const { register, handleSubmit, errors, reset } = useForm<User>();
+
+	const onSubmit = (data: User): void => {
 		console.log(data);
 		reset();
 	};

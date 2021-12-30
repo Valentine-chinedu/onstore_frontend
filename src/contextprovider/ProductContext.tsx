@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, FC } from 'react';
 import { commerce } from '../lib/commerce';
+import { Cart, ProductsContextState } from '../types';
 
-export const ProductContext = React.createContext();
+// const contextDefaultValues: ProductsContextState = {
+// 	handleAddToCart: () => {},
+// 	handleUpdateCartQty: () => {},
+// 	handleRemoveFromCart: () => {},
+// 	handleEmptyCart: () => {},
+// 	loading: true,
+// 	products: [],
+// 	cart: () => {},
+// };
 
-const ProductProvider = (props) => {
+export const ProductContext = createContext<Partial<ProductsContextState>>({});
+
+const ProductProvider: FC = (props) => {
 	const [products, setProducts] = useState([]);
-	const [cart, setCart] = useState({});
+	const [cart, setCart] = useState<Cart>();
 	const [loading, setLoading] = useState(true);
 
 	const fetchProducts = async () => {
@@ -27,7 +38,7 @@ const ProductProvider = (props) => {
 		}
 	};
 
-	const handleAddToCart = async (productId, quantity) => {
+	const handleAddToCart = async (productId: string, quantity: number) => {
 		try {
 			const { cart } = await commerce.cart.add(productId, quantity);
 			setCart(cart);
@@ -37,7 +48,7 @@ const ProductProvider = (props) => {
 		}
 	};
 
-	const handleUpdateCartQty = async (productId, quantity) => {
+	const handleUpdateCartQty = async (productId: string, quantity: number) => {
 		try {
 			const { cart } = await commerce.cart.update(productId, { quantity });
 			setCart(cart);
@@ -46,7 +57,7 @@ const ProductProvider = (props) => {
 		}
 	};
 
-	const handleRemoveFromCart = async (productId) => {
+	const handleRemoveFromCart = async (productId: string) => {
 		try {
 			const { cart } = await commerce.cart.remove(productId);
 
@@ -70,8 +81,8 @@ const ProductProvider = (props) => {
 		fetchProducts();
 		fetchCart();
 	}, []);
-	console.log(products);
-	console.log(cart);
+
+	// console.log(cart);
 	return (
 		<ProductContext.Provider
 			value={{
