@@ -2,16 +2,6 @@ import React, { useState, useEffect, createContext, FC } from 'react';
 import { commerce } from '../lib/commerce';
 import { Cart, ProductsContextState } from '../types';
 
-// const contextDefaultValues: ProductsContextState = {
-// 	handleAddToCart: () => {},
-// 	handleUpdateCartQty: () => {},
-// 	handleRemoveFromCart: () => {},
-// 	handleEmptyCart: () => {},
-// 	loading: true,
-// 	products: [],
-// 	cart: () => {},
-// };
-
 export const ProductContext = createContext<Partial<ProductsContextState>>({});
 
 const ProductProvider: FC = (props) => {
