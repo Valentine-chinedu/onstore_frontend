@@ -46,7 +46,7 @@ const Accordion = () => {
 					className='border-2 rounded-md mx-4 pt-5 pl-6 pr-4 mb-4'
 					key={accordion._id}
 				>
-					<DropDown accordion={accordion} />
+					<DropDown title={accordion.title} content={accordion.content} />
 				</div>
 			))}
 		</div>

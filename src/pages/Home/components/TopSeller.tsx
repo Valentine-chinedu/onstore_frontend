@@ -19,7 +19,6 @@ const TopSeller = () => {
 						<div className='relative'>
 							<img
 								className='h-80 lg:h-96'
-								s
 								src='/images/Pants/Black_Cargo_Pant.jpg'
 								alt='pants'
 							/>

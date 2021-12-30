@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
@@ -7,8 +7,15 @@ import { ProductContext } from '../contextprovider/ProductContext';
 import { FaSpinner } from 'react-icons/fa';
 
 function Cart() {
-	const { cart, handleUpdateCartQty, handleRemoveFromCart, handleEmptyCart } =
-		useContext(ProductContext);
+	const {
+		cart,
+		loading,
+		handleUpdateCartQty,
+		handleRemoveFromCart,
+		handleEmptyCart,
+	} = useContext(ProductContext);
+
+	console.log(cart?.line_items);
 
 	return (
 		<div className='w-screen overscroll-contain'>
@@ -28,12 +35,12 @@ function Cart() {
 					</Link>
 				</div>
 
-				{!cart.line_items ? (
+				{loading ? (
 					<div className='flex flex-col justify-center items-center h-screen'>
-						<FaSpinner icon='spinner' size={20} className='animate-spin mb-4' />
+						<FaSpinner size={20} className='animate-spin mb-4' />
 						<p>Loading....</p>
 					</div>
-				) : cart.line_items.length === 0 ? (
+				) : cart?.line_items.length === 0 ? (
 					<div className='flex flex-col justify-center items-center h-96'>
 						<p className='mb-4'>There is no item in your cart yet</p>
 						<Link
@@ -44,7 +51,7 @@ function Cart() {
 						</Link>
 					</div>
 				) : (
-					cart.line_items.map((item) => (
+					cart?.line_items.map((item) => (
 						<div
 							key={item.id}
 							className='flex justify-between border-b border-gray-400 w-full px-4 lg:px-8'
@@ -68,7 +75,7 @@ function Cart() {
 								<div className='items-center ml-4 mb-4 text-sm text-orange-700 font-bold hover:text-orange-900'>
 									<button
 										className='border-gray-400 border-b'
-										onClick={() => handleRemoveFromCart(item.id)}
+										onClick={() => handleRemoveFromCart!(item.id)}
 									>
 										Remove
 									</button>
@@ -79,7 +86,7 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											handleUpdateCartQty(item.id, item.quantity - 1)
+											handleUpdateCartQty!(item.id, item.quantity - 1)
 										}
 									>
 										<HiMinusCircle
@@ -91,7 +98,7 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											handleUpdateCartQty(item.id, item.quantity + 1)
+											handleUpdateCartQty!(item.id, item.quantity + 1)
 										}
 									>
 										<HiPlusCircle
@@ -108,10 +115,10 @@ function Cart() {
 				<div className='mx-4 py-4 md:container md:px-4 md:mx-auto'>
 					<div className='flex justify-between'>
 						<h3 className='font-semibold'>
-							Subtotal: ({cart.total_items} items)
+							Subtotal: ({cart?.total_items} items)
 						</h3>
 						<h3 className='text-orange-700 tracking-wider font-bold lg:text-lg'>
-							{cart.subtotal.formatted_with_symbol}
+							{cart?.subtotal.formatted_with_symbol}
 						</h3>
 					</div>
 					<div className='mt-20 flex items-center justify-around'>

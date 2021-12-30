@@ -21,6 +21,7 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "4.0.0",
 		"tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
+		"typescript": "^3.9.10",
 		"web-vitals": "^0.2.4"
 	},
 	"scripts": {
@@ -46,5 +47,13 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@types/jest": "^27.0.3",
+		"@types/node": "^17.0.5",
+		"@types/react": "^17.0.38",
+		"@types/react-dom": "^17.0.11",
+		"@types/react-icons": "^3.0.0",
+		"@types/react-router-dom": "^5.3.2"
 	}
 }

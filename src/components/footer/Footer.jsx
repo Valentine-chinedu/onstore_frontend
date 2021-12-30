@@ -107,7 +107,7 @@ const Footer = () => {
 						<p className='mr-1 text-xs text-gray-300 lg:text-sm'>
 							We never share your info. View our
 						</p>
-						<h className='text-xs text-gray-50 lg:text-base'>Privacy Policy</h>
+						<p className='text-xs text-gray-50 lg:text-base'>Privacy Policy</p>
 					</div>
 				</div>
 			</div>
