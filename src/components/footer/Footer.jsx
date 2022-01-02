@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineSend } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
+import master from './mastercard.png';
+import visa from './visa-credit-card.png';
 
 const Footer = () => {
 	const { register, handleSubmit, errors, reset } = useForm();
@@ -117,16 +119,11 @@ const Footer = () => {
 				<div className='flex pb-3'>
 					<img
 						className='h-10 mr-4'
-						src='./mastercard.png'
+						src={master}
 						alt='MasterCard'
 						loading='lazy'
 					/>
-					<img
-						className='h-10 '
-						src='./visa-credit-card.png'
-						alt='VisaCard'
-						loading='lazy'
-					/>
+					<img className='h-10 ' src={visa} alt='VisaCard' loading='lazy' />
 				</div>
 			</div>
 		</div>
