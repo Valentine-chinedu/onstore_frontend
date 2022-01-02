@@ -1,22 +1,5 @@
 module.exports = {
-	purge: [
-		'./src/components/CheckoutForm/Checkout/AddressForm.jsx',
-		'./src/components/CheckoutForm/Checkout/Checkout.jsx',
-		'./src/components/CheckoutForm/ConfirmationPage.jsx',
-		'./src/components/CheckoutForm/Payment.jsx',
-		'./src/components/footer/Footer.jsx',
-		'./src/components/Home/Accordion.jsx',
-		'./src/components/Home/AskedQuestion.jsx',
-		'./src/components/Home/DropDown.jsx',
-		'./src/components/Home/Home.jsx',
-		'./src/components/Home/MailingForm.jsx',
-		'./src/components/Navbar/Navbar.jsx',
-		'./src/components/Products/ProductDetails.jsx',
-		'./src/components/Products/ProductDisplay.jsx',
-		'./src/components/Products/Products.jsx',
-		'./src/components/Cart.jsx',
-		'./src/App.js',
-	],
+	purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
 		extend: {
