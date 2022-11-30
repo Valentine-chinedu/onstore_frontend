@@ -5,9 +5,10 @@
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
+		"admin": "cd admin && npm start",
 		"client": "cd client && npm start",
 		"server": "nodemon server.js",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
+		"dev": "concurrently \"npm run server\" \"npm run admin\""
 	},
 	"author": "",
 	"license": "ISC",
