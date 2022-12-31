@@ -1,12 +1,23 @@
-import { Categories } from './category';
-
 export interface Products {
 	id: string;
-	photo: string;
+	media: {
+		source: string;
+	};
 	name: string;
-	price: number;
+	price: {
+		formatted_with_symbol: string;
+	};
 	quantity: number;
-	sold: number;
-	category: Categories;
-	shipping: boolean;
+	categories: [
+		{
+			id: string;
+			name: string;
+			slug: string;
+		},
+		{
+			id: string;
+			name: string;
+			slug: string;
+		}
+	];
 }
