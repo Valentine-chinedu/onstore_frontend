@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+	.crl-div {
+		@apply relative flex h-96 items-center justify-center;
+	}
+
+	.crl-h {
+		@apply mb-4 text-xl font-semibold italic text-orange-500 lg:mb-8 lg:text-4xl;
+	}
+
+	.crl-link {
+		@apply rounded-3xl border-4 border-orange-700 bg-orange-500 py-1 px-4 text-lg text-white hover:bg-orange-700 lg:text-2xl;
+	}
+
+	.crl-img {
+		@apply h-96 object-cover lg:h-96 lg:object-none;
+	}
+
+	.nav-btn {
+		@apply p-2 text-sm font-semibold uppercase text-gray-100 hover:text-gray-400 focus:text-gray-400 focus:outline-none md:text-xs lg:mb-0 lg:mr-4;
+	}
+}
