@@ -4,9 +4,8 @@ import './index.css';
 import { BrowserRouter } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 import App from './App';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient();
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -15,8 +14,8 @@ const root = ReactDOM.createRoot(
 root.render(
 	<BrowserRouter>
 		<ScrollToTop />
-		<QueryClientProvider client={queryClient}>
+		<Provider store={store}>
 			<App />
-		</QueryClientProvider>
+		</Provider>
 	</BrowserRouter>
 );
