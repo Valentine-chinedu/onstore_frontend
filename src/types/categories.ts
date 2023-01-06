@@ -9,4 +9,5 @@ export interface Categories {
 		formatted_with_symbol: string;
 	};
 	quantity: number;
+	description: string;
 }
