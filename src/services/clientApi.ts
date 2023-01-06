@@ -3,6 +3,7 @@ import { Carts, Categories, Products } from '../types';
 
 export const clientApi = createApi({
 	reducerPath: 'client',
+	tagTypes: ['carts'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: 'https://api.chec.io/v1/',
 		prepareHeaders: (headers) => {
@@ -19,12 +20,13 @@ export const clientApi = createApi({
 			query: () => 'products',
 		}),
 
-		gethCategories: builder.query<Categories[], void>({
+		getCategories: builder.query<Categories[], void>({
 			query: () => 'categories',
 		}),
 
 		getCart: builder.query<Carts[], void>({
 			query: () => 'carts',
+			providesTags: [{ type: 'carts', id: 'LIST' }],
 		}),
 
 		AddToCart: builder.mutation<Carts, { data: Partial<Carts> }>({
@@ -33,7 +35,10 @@ export const clientApi = createApi({
 				method: 'POST',
 				body: data,
 			}),
+			invalidatesTags: (result) =>
+				result ? [{ type: 'carts', id: 'LIST' }] : [],
 		}),
+
 		UpdateCartQty: builder.mutation<
 			Carts,
 			{ cart_id: string; line_item_id: string; quantity: number }
@@ -43,7 +48,10 @@ export const clientApi = createApi({
 				method: 'PUT',
 				body: quantity,
 			}),
+			invalidatesTags: (result) =>
+				result ? [{ type: 'carts', id: 'LIST' }] : [],
 		}),
+
 		RemoveFromCart: builder.mutation<
 			Carts,
 			{ cart_id: string; line_item_id: string }
@@ -52,19 +60,24 @@ export const clientApi = createApi({
 				url: `carts/${cart_id}/items/${line_item_id}`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: (result) =>
+				result ? [{ type: 'carts', id: 'LIST' }] : [],
 		}),
+
 		emptyCart: builder.mutation<Carts, { cart_id: string }>({
 			query: ({ cart_id }) => ({
 				url: `carts/${cart_id}/items`,
 				method: 'DELETE',
 			}),
+			invalidatesTags: (result) =>
+				result ? [{ type: 'carts', id: 'LIST' }] : [],
 		}),
 	}),
 });
 
 export const {
 	useGetProductsQuery,
-	useGethCategoriesQuery,
+	useGetCategoriesQuery,
 	useGetCartQuery,
 	useAddToCartMutation,
 	useUpdateCartQtyMutation,
