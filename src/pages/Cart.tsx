@@ -1,21 +1,25 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from 'react';
+import React from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
-import { ProductContext } from '../contextprovider/ProductContext';
 import { FaSpinner } from 'react-icons/fa';
+import {
+	useEmptyCartMutation,
+	useGetCartQuery,
+	useRemoveFromCartMutation,
+	useUpdateCartQtyMutation,
+} from '../services/clientApi';
 
 function Cart() {
 	const navigate = useNavigate();
 
-	const {
-		cart,
-		loadingCart,
-		handleUpdateCartQty,
-		handleRemoveFromCart,
-		handleEmptyCart,
-	} = useContext(ProductContext);
+	const { data: cart, isLoading } = useGetCartQuery();
+	const [updateCartQty] = useUpdateCartQtyMutation();
+	const [removeFromCart] = useRemoveFromCartMutation();
+	const [emptyCart] = useEmptyCartMutation();
+
+	console.log(cart);
 
 	return (
 		<div className='w-screen flex-col items-center overscroll-contain pb-12 md:flex'>
@@ -34,7 +38,7 @@ function Cart() {
 				</button>
 			</div>
 			<div className='h-full w-full md:w-7/12'>
-				{loadingCart ? (
+				{isLoading ? (
 					<div className='flex h-screen flex-col items-center justify-center'>
 						<FaSpinner size={20} className='mb-4 animate-spin' />
 						<p>Loading....</p>
@@ -43,7 +47,7 @@ function Cart() {
 					<div className='flex h-96 flex-col items-center justify-center'>
 						<p className='mb-4'>There is no item in your cart yet</p>
 						<Link
-							to='/home/products'
+							to='/categories'
 							className='rounded-3xl bg-orange-600 px-4 py-2 text-sm font-semibold tracking-wide text-gray-50 focus:outline-none'
 						>
 							START SHOPPING
@@ -77,7 +81,12 @@ function Cart() {
 								<div className='ml-4 mb-4 items-center text-sm font-bold text-orange-700 hover:text-orange-900'>
 									<button
 										className='border-b border-gray-400'
-										onClick={() => handleRemoveFromCart!(item.id)}
+										onClick={() =>
+											removeFromCart({
+												cart_id: cart.id,
+												line_item_id: cart?.line_items[0].id,
+											})
+										}
 									>
 										Remove
 									</button>
@@ -88,7 +97,11 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											handleUpdateCartQty!(item.id, item.quantity - 1)
+											updateCartQty!({
+												cart_id: cart.id,
+												line_item_id: cart?.line_items[0].id,
+												quantity: item.quantity - 1,
+											})
 										}
 									>
 										<HiMinusCircle
@@ -100,7 +113,11 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											handleUpdateCartQty!(item.id, item.quantity + 1)
+											updateCartQty({
+												cart_id: cart.id,
+												line_item_id: cart?.line_items[0].id,
+												quantity: item.quantity + 1,
+											})
 										}
 									>
 										<HiPlusCircle
@@ -124,7 +141,9 @@ function Cart() {
 					<div>
 						<button
 							className='border  border-red-500 p-1 text-xs font-medium text-red-600 hover:bg-red-200 focus:outline-none'
-							onClick={handleEmptyCart}
+							onClick={() => {
+								emptyCart({ cart_id: cart!.id });
+							}}
 						>
 							EMPTY CART
 						</button>

@@ -1,21 +1,25 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
-import { ProductContext } from '../../../contextprovider/ProductContext';
+
+import {
+	useAddToCartMutation,
+	useGetCartQuery,
+	useGetCategoriesQuery,
+	useGetProductsQuery,
+} from '../../../services/clientApi';
 
 const FeaturedItems = () => {
-	const {
-		products,
-		category,
-		handleAddToCart,
-		loadingCategory,
-		loadingProducts,
-	} = useContext(ProductContext);
+	const { data: products, isLoading } = useGetProductsQuery();
+	const { data: category } = useGetCategoriesQuery();
+	const [addToCart] = useAddToCartMutation();
+	const { data: cart } = useGetCartQuery();
+
 	const items = products?.filter(
-		(x) => x.categories[0]?.id === category![4]?.id
+		(x) => x.categories?.[0]?.id === category?.[4].id
 	);
 	console.log(items);
 
-	if (loadingCategory && loadingProducts) {
+	if (isLoading) {
 		return (
 			<div className='flex w-full flex-col items-center justify-center'>
 				<FaSpinner size={20} className='mb-4 animate-spin' />
@@ -45,7 +49,11 @@ const FeaturedItems = () => {
 						</h1>
 						<button
 							onClick={() => {
-								handleAddToCart!(items![0]?.id, 1);
+								addToCart!({
+									cart_id: cart!.id,
+									product_id: items![0]?.id,
+									quantity: 1,
+								});
 							}}
 							className='bg-[#FFA500] px-3 py-1.5 text-xs font-medium text-black lg:hover:bg-orange-700'
 						>
@@ -59,7 +67,11 @@ const FeaturedItems = () => {
 							<div className='pt-2 pl-2'>
 								<button
 									onClick={() => {
-										handleAddToCart!(items![1]?.id, 1);
+										addToCart!({
+											cart_id: cart!.id,
+											product_id: items![1]?.id,
+											quantity: 1,
+										});
 									}}
 								>
 									<svg
@@ -161,7 +173,11 @@ const FeaturedItems = () => {
 							<div className='pt-2 pl-2'>
 								<button
 									onClick={() => {
-										handleAddToCart!(items![2]?.id, 1);
+										addToCart!({
+											cart_id: cart!.id,
+											product_id: items![2]?.id,
+											quantity: 1,
+										});
 									}}
 								>
 									<svg

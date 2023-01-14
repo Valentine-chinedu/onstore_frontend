@@ -1,6 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProductContext } from '../../contextprovider/ProductContext';
+import {
+	useAddToCartMutation,
+	useGetCartQuery,
+} from '../../services/clientApi';
 
 import { Products } from '../../types/products';
 
@@ -8,7 +11,8 @@ interface IProps {
 	product: Products;
 }
 const ProductDisplay = ({ product }: IProps) => {
-	const { handleAddToCart } = useContext(ProductContext);
+	const [addToCart] = useAddToCartMutation();
+	const { data: cart } = useGetCartQuery();
 
 	return (
 		<div className='relative rounded-lg border pb-4 shadow-lg md:w-52 lg:w-60 lg:transform lg:transition lg:duration-500 lg:ease-in-out lg:hover:scale-105'>
@@ -33,7 +37,13 @@ const ProductDisplay = ({ product }: IProps) => {
 			<div className=' flex w-full justify-center'>
 				<button
 					className='font- items-center rounded-lg bg-[#FFA500] px-2 py-1 text-xs font-medium tracking-wider text-black hover:bg-orange-800 focus:outline-none'
-					onClick={() => handleAddToCart!(product.id, 1)}
+					onClick={() =>
+						addToCart!({
+							cart_id: cart!.id,
+							product_id: product.id,
+							quantity: 1,
+						})
+					}
 				>
 					Add To Cart
 				</button>

@@ -1,18 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
-import { ProductContext } from '../../contextprovider/ProductContext';
+// import { ProductContext } from '../../contextprovider/ProductContext';
+import {
+	useGetCategoriesQuery,
+	useGetProductsQuery,
+} from '../../services/clientApi';
 import ProductDisplay from '../products/ProductDisplay';
 
 const Watches = () => {
-	const { products, category, loadingCategory, loadingProducts } =
-		useContext(ProductContext);
+	const { data: products, isLoading } = useGetProductsQuery();
+	const { data: category } = useGetCategoriesQuery();
 	const items = products?.filter(
-		(x) => x.categories[1]?.slug === category![0]?.slug
+		(x) => x.categories?.[1]?.slug === category?.[0]?.slug
 	);
 
 	console.log(items);
 
-	if (loadingCategory && loadingProducts) {
+	if (isLoading) {
 		return (
 			<div className='flex h-screen flex-col items-center justify-center'>
 				<FaSpinner size={20} className='mb-4 animate-spin' />

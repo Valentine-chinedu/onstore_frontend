@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
+import { FaSpinner } from 'react-icons/fa';
 import { GoX } from 'react-icons/go';
 import { Link, useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../contextprovider/ProductContext';
+// import { ProductContext } from '../../contextprovider/ProductContext';
+import { useGetCartQuery } from '../../services/clientApi';
 import logo from './onStore_logo.png';
 
 const Header = () => {
-	const { cart } = useContext(ProductContext);
+	const { data: cart, isLoading } = useGetCartQuery();
 	const [isOpen, setOpen] = useState(false);
 
 	let navigate = useNavigate();
@@ -115,7 +117,14 @@ const Header = () => {
 								/>
 							</svg>
 						</Link>
-						{cart!?.total_unique_items > 0 ? (
+						{isLoading ? (
+							<div className='absolute top-0 right-0 px-1.5'>
+								<FaSpinner
+									size={10}
+									className='mb-4 animate-spin text-gray-50'
+								/>
+							</div>
+						) : cart!?.total_unique_items > 0 ? (
 							<div className='absolute top-0 right-0 rounded-full bg-red-600 px-1.5 text-xs font-bold tracking-tighter text-white'>
 								{cart!?.total_unique_items}
 							</div>

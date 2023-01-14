@@ -1,24 +1,27 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
-// import { FaSpinner } from 'react-icons/fa';
-// import { FiArrowRightCircle } from 'react-icons/fi';
+
 import { Link } from 'react-router-dom';
-import { ProductContext } from '../../../contextprovider/ProductContext';
+import {
+	useAddToCartMutation,
+	useGetCartQuery,
+	useGetCategoriesQuery,
+	useGetProductsQuery,
+} from '../../../services/clientApi';
 
 const TopSeller = () => {
-	const {
-		products,
-		category,
-		handleAddToCart,
-		loadingCategory,
-		loadingProducts,
-	} = useContext(ProductContext);
+	const { data: products, isLoading } = useGetProductsQuery();
+	const { data: category } = useGetCategoriesQuery();
+	const [addToCart] = useAddToCartMutation();
+	const { data: cart } = useGetCartQuery();
+
 	const items = products?.filter(
-		(x) => x.categories[0]?.id === category![5]?.id
+		(x) => x.categories?.[0]?.id === category?.[5]?.id
 	);
 	console.log(items);
+	console.log(products);
 
-	if (loadingCategory && loadingProducts) {
+	if (isLoading) {
 		return (
 			<div className='flex w-full flex-col items-center justify-center'>
 				<FaSpinner size={20} className='mb-4 animate-spin' />
@@ -39,7 +42,11 @@ const TopSeller = () => {
 								<div className='pt-2 pl-2'>
 									<button
 										onClick={() => {
-											handleAddToCart!(item?.id, 1);
+											addToCart({
+												cart_id: cart!.id,
+												product_id: item?.id,
+												quantity: 1,
+											});
 										}}
 									>
 										<svg
