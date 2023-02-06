@@ -1,23 +1,14 @@
-export interface Products {
-	id: string;
-	media: {
-		source: string;
-	};
+import { ReviewTypes } from './reviews';
+
+export interface Product {
+	_id: number | string;
 	name: string;
-	price: {
-		formatted_with_symbol: string;
-	};
-	quantity: number;
-	categories: [
-		{
-			id: string;
-			name: string;
-			slug: string;
-		},
-		{
-			id: string;
-			name: string;
-			slug: string;
-		}
-	];
+	price: number;
+	image: string;
+	category: string;
+	brand: string;
+	description: string;
+	qty: number;
+	createdAt: Date;
+	reviews: ReviewTypes[];
 }

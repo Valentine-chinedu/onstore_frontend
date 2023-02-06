@@ -1,20 +1,10 @@
-type Items = {
-	id: string;
+export interface Carts {
+	productId: string;
 	name: string;
 
-	media: {
-		source: string;
-	};
-	price: {
-		formatted_with_symbol: string;
-	};
-	quantity: number;
-};
+	media: string;
 
-export interface Carts {
-	id: string;
-	line_items: Items[];
-	subtotal: { formatted_with_symbol: string };
-	total_items: number;
-	total_unique_items: number;
+	price: string;
+
+	quantity: number;
 }
