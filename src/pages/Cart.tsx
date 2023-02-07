@@ -4,22 +4,23 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
 import { FaSpinner } from 'react-icons/fa';
-import {
-	useEmptyCartMutation,
-	useGetCartQuery,
-	useRemoveFromCartMutation,
-	useUpdateCartQtyMutation,
-} from '../services/clientApi';
+import { useAppDispatch, useAppSelector } from '../redux/store';
+import { removeFromCart } from '../redux/cart/removeFromCart-slice';
+import { decreaseCartQty } from '../redux/cart/decreaseCartQty-slice';
+import { increaseCartQty } from '../redux/cart/increaseCartQty-slice';
+import { emptyCart } from '../redux/cart/emptyCart-slice';
 
 function Cart() {
+	const { loading, cartItems } = useAppSelector((state) => state.cartItems);
+	const { loading: isLoading } = useAppSelector((state) => state.emptyCart);
+	const { userInfo } = useAppSelector((state) => state.login);
+	const dispatch = useAppDispatch();
+
 	const navigate = useNavigate();
 
-	const { data: cart, isLoading } = useGetCartQuery();
-	const [updateCartQty] = useUpdateCartQtyMutation();
-	const [removeFromCart] = useRemoveFromCartMutation();
-	const [emptyCart] = useEmptyCartMutation();
+	console.log(cartItems);
 
-	console.log(cart);
+	const sumOfPrices = cartItems.reduce((sum, item) => sum + item.price, 0);
 
 	return (
 		<div className='w-screen flex-col items-center overscroll-contain pb-12 md:flex'>
@@ -38,12 +39,12 @@ function Cart() {
 				</button>
 			</div>
 			<div className='h-full w-full md:w-7/12'>
-				{isLoading ? (
+				{loading ? (
 					<div className='flex h-screen flex-col items-center justify-center'>
 						<FaSpinner size={20} className='mb-4 animate-spin' />
 						<p>Loading....</p>
 					</div>
-				) : cart?.line_items.length === 0 ? (
+				) : cartItems?.length === 0 ? (
 					<div className='flex h-96 flex-col items-center justify-center'>
 						<p className='mb-4'>There is no item in your cart yet</p>
 						<Link
@@ -54,9 +55,9 @@ function Cart() {
 						</Link>
 					</div>
 				) : (
-					cart?.line_items.map((item) => (
+					cartItems?.map((item) => (
 						<div
-							key={item.id}
+							key={item.productId}
 							className='flex w-full justify-between border-b border-gray-400 px-4 lg:px-8'
 						>
 							<div className='pt-4'>
@@ -64,7 +65,7 @@ function Cart() {
 									<div className='flex w-24 justify-center bg-gray-300'>
 										<img
 											className='h-20 '
-											src={item.media.source}
+											src={item.media}
 											alt={item.name}
 											loading='lazy'
 										/>
@@ -74,7 +75,7 @@ function Cart() {
 											{item.name}
 										</h3>
 										<h3 className='mr-1 text-sm font-semibold text-orange-800'>
-											{item.price.formatted_with_symbol}
+											${item.price}
 										</h3>
 									</div>
 								</div>
@@ -82,10 +83,12 @@ function Cart() {
 									<button
 										className='border-b border-gray-400'
 										onClick={() =>
-											removeFromCart({
-												cart_id: cart.id,
-												line_item_id: cart?.line_items[0].id,
-											})
+											dispatch(
+												removeFromCart({
+													productId: item.productId,
+													userId: userInfo!._id,
+												})
+											)
 										}
 									>
 										Remove
@@ -97,11 +100,12 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											updateCartQty!({
-												cart_id: cart.id,
-												line_item_id: cart?.line_items[0].id,
-												quantity: item.quantity - 1,
-											})
+											dispatch(
+												decreaseCartQty({
+													productId: item.productId,
+													userId: userInfo!._id,
+												})
+											)
 										}
 									>
 										<HiMinusCircle
@@ -113,10 +117,9 @@ function Cart() {
 									<button
 										className='focus:outline-none'
 										onClick={() =>
-											updateCartQty({
-												cart_id: cart.id,
-												line_item_id: cart?.line_items[0].id,
-												quantity: item.quantity + 1,
+											increaseCartQty({
+												productId: item.productId,
+												userId: userInfo!._id,
 											})
 										}
 									>
@@ -133,19 +136,23 @@ function Cart() {
 
 				<div className='mx-4 space-y-4 py-4 md:px-8'>
 					<div className='flex justify-between'>
-						<h3 className=''>Subtotal: ({cart?.total_items} items)</h3>
+						<h3 className=''>Subtotal: ({cartItems?.length} items)</h3>
 						<h3 className='font-bold tracking-wider text-orange-700 lg:text-lg'>
-							{cart?.subtotal.formatted_with_symbol}
+							${sumOfPrices}
 						</h3>
 					</div>
 					<div>
 						<button
 							className='border  border-red-500 p-1 text-xs font-medium text-red-600 hover:bg-red-200 focus:outline-none'
 							onClick={() => {
-								emptyCart({ cart_id: cart!.id });
+								emptyCart({ userId: userInfo!._id });
 							}}
 						>
-							EMPTY CART
+							{isLoading ? (
+								<FaSpinner size={20} className='mb-4 animate-spin' />
+							) : (
+								'EMPTY CART'
+							)}
 						</button>
 					</div>
 				</div>
