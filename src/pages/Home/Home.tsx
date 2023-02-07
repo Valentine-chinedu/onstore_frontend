@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Accordion from './components/Accordion';
-import AskedQuestion from './components/AskedQuestion';
+import FAQ from './components/FAQ';
 import TopSeller from './components/TopSeller';
 import Carousels from './components/Carousels';
 import { Link } from 'react-router-dom';
@@ -37,7 +37,7 @@ const Home = () => {
 			<TopSeller />
 			<div className='w-full justify-center bg-gray-500 px-4 py-8 md:flex'>
 				<div className='md:w-6/12'>
-					<AskedQuestion />
+					<FAQ />
 					<Accordion />
 				</div>
 			</div>
