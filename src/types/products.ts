@@ -1,7 +1,7 @@
 import { ReviewTypes } from './reviews';
 
 export interface Product {
-	_id: number | string;
+	_id: string;
 	name: string;
 	price: number;
 	image: string;
