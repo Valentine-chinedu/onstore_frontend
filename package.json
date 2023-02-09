@@ -21,7 +21,7 @@
 		"react": "^18.1.0",
 		"react-dom": "^18.1.0",
 		"react-helmet": "^6.1.0",
-		"react-hook-form": "^6.15.8",
+		"react-hook-form": "^7.43.1",
 		"react-hot-toast": "^2.4.0",
 		"react-icons": "^4.1.0",
 		"react-paginate": "^8.1.4",
