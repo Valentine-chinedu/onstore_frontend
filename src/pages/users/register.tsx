@@ -108,7 +108,7 @@ const Register = () => {
 							placeholder='*********'
 							{...register('confirmPassword')}
 						/>
-						{errors.password?.message && (
+						{errors.confirmPassword?.message && (
 							<p className='text-red-500'>{errors.password?.message}</p>
 						)}
 					</div>
