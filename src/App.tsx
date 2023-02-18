@@ -1,14 +1,24 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { Footer, Header } from './components';
-// import AllProducts from './components/Categories.tsx/AllProducts';
-import Products from './components/Categories.tsx/Products';
-// import Shirts from './components/Categories.tsx/Shirts';
-// import Shoes from './components/Categories.tsx/Shoes';
-// import Watches from './components/Categories.tsx/Watches';
+import Products from './components/products/Products';
 import { Cart, Home, ProductDetails } from './pages';
-import Categories from './pages/Categories';
+import Checkout from './pages/cart/Checkout';
+import OrderDetails from './pages/cart/orderDetails';
+import ShippingAddress from './pages/cart/ShippingAddress';
+import DashboardPage from './pages/dashboard/DashboardPage';
+import OrdersTable from './pages/dashboard/order/orderTable';
+import ProductTable from './pages/dashboard/products/ProductTable';
+import ProductUpdate from './pages/dashboard/products/ProductUpdate';
+import UserTable from './pages/dashboard/users/users-table';
+import ProductsPage from './pages/ProductsPage';
+import Login from './pages/users/login';
+import Profile from './pages/users/profile';
+import Register from './pages/users/register';
+import AdminProvider from './utils/admin-provider';
+import AuthProvider from './utils/auth-provider';
 
 const App = () => {
 	const { pathname } = useLocation();
@@ -19,13 +29,95 @@ const App = () => {
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path='home' element={<Home />} />
-				<Route path='categories' element={<Categories />}>
-					<Route path='/category/:category' element={<Products />} />
+				<Route path='products' element={<ProductsPage />}>
+					<Route path='/products/:category' element={<Products />} />
 				</Route>
 				<Route path='/home/product/:id' element={<ProductDetails />} />
 				<Route path='cart' element={<Cart />} />
+				<Route
+					path='/shipping-address'
+					element={
+						<AuthProvider>
+							<ShippingAddress />
+						</AuthProvider>
+					}
+				/>
+				<Route
+					path='/checkout'
+					element={
+						<AuthProvider>
+							<Checkout />
+						</AuthProvider>
+					}
+				/>
+				<Route
+					path='/profile/:id'
+					element={
+						<AuthProvider>
+							<Profile />
+						</AuthProvider>
+					}
+				/>
+				<Route path='/login' element={<Login />} />
+				<Route path='/register' element={<Register />} />
+				<Route
+					path='/orders/:id'
+					element={
+						<AuthProvider>
+							<OrderDetails />
+						</AuthProvider>
+					}
+				/>
+				<Route
+					path='/dashboard'
+					element={
+						<AdminProvider>
+							<DashboardPage />
+						</AdminProvider>
+					}
+				/>
+				<Route
+					path='/dashboard/product-list'
+					element={
+						<AdminProvider>
+							<ProductTable />
+						</AdminProvider>
+					}
+				/>
+				<Route
+					path='/dashboard/product-list/:pageNumber'
+					element={
+						<AdminProvider>
+							<ProductTable />
+						</AdminProvider>
+					}
+				/>
+				<Route
+					path='/dashboard/user-list'
+					element={
+						<AdminProvider>
+							<UserTable />
+						</AdminProvider>
+					}
+				/>
+				<Route
+					path='/dashboard/orders-list'
+					element={
+						<AdminProvider>
+							<OrdersTable />
+						</AdminProvider>
+					}
+				/>
+				<Route
+					path='/dashboard/product-edit/:id'
+					element={
+						<AdminProvider>
+							<ProductUpdate />
+						</AdminProvider>
+					}
+				/>
 			</Routes>
-
+			<Toaster position='top-center' reverseOrder={false} />
 			<Footer />
 		</div>
 	);
