@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import { Carts } from '../../types';
+import { AddressTypes, Carts } from '../../types';
 import { setError } from '../../utils/error';
 import publicAxios from '../../utils/public-axios';
 
@@ -8,12 +8,14 @@ export interface CartSliceState {
 	cartItems: Carts[];
 	loading: boolean;
 	error: null | object;
+	shippingAddress: AddressTypes | null;
 }
 
 const initialState: CartSliceState = {
 	cartItems: [],
 	loading: false,
 	error: null,
+	shippingAddress: null,
 };
 
 export const getCarts = createAsyncThunk('carts/list', async () => {
@@ -29,7 +31,19 @@ export const getCarts = createAsyncThunk('carts/list', async () => {
 export const cartListSlice = createSlice({
 	name: 'carts-list',
 	initialState,
-	reducers: {},
+	reducers: {
+		saveAddress: (
+			state: CartSliceState,
+			action: PayloadAction<AddressTypes>
+		) => {
+			state.shippingAddress = action.payload;
+		},
+		reset: (state: any) => {
+			state.cartItems = [];
+			state.shippingAddress = null;
+		},
+	},
+
 	extraReducers: (builder) => {
 		builder.addCase(getCarts.pending, (state) => {
 			state.loading = true;
@@ -43,5 +57,7 @@ export const cartListSlice = createSlice({
 		});
 	},
 });
+
+export const { saveAddress, reset } = cartListSlice.actions;
 
 export default cartListSlice;
