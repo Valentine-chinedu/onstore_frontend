@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form/dist/useForm';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import * as Yup from 'yup';
@@ -13,6 +12,7 @@ import { formatCurrencry, getDate } from '../../utils/helper';
 import { FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
 import { GrView } from 'react-icons/gr';
 import { setError } from '../../utils/error';
+import { useForm } from 'react-hook-form';
 
 type FormValues = {
 	email: string;

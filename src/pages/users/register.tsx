@@ -19,7 +19,7 @@ const Register = () => {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string()
 			.required('Username is required')
-			.min(6, 'Username must be at least 6 characters')
+			.min(3, 'Username must be at least 3 characters')
 			.max(20, 'Username must not exceed 20 characters'),
 		email: Yup.string().required('Email is required').email('Email is invalid'),
 		password: Yup.string()
@@ -50,19 +50,19 @@ const Register = () => {
 	};
 
 	return (
-		<section className='h-screen'>
+		<section className='flex h-screen items-center justify-center'>
 			<div className='mb-12 md:mb-0 md:w-8/12 lg:w-5/12 xl:ml-20 xl:w-5/12'>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					{/* UserName input  */}
 					<div className='mb-6'>
 						<input
-							className={`input ${
+							className={`m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none ${
 								errors.name?.message ? 'border-red-500' : 'border-gray-300'
 							}`}
 							type='text'
 							id='exampleFormControlInput2'
 							placeholder='Username'
-							{...register('email')}
+							{...register('name')}
 						/>
 						{errors.name?.message && (
 							<p className='text-red-500'>{errors.name?.message}</p>
@@ -72,7 +72,7 @@ const Register = () => {
 					{/* Email input  */}
 					<div className='mb-6'>
 						<input
-							className={`input ${
+							className={`m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none ${
 								errors.email?.message ? 'border-red-500' : 'border-gray-300'
 							}`}
 							type='text'
@@ -89,9 +89,9 @@ const Register = () => {
 					<div className='mb-6'>
 						<input
 							type='password'
-							className='input'
+							className='m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none'
 							id='exampleFormControlInput2'
-							placeholder='*********'
+							placeholder='Password'
 							{...register('password')}
 						/>
 						{errors.password?.message && (
@@ -103,9 +103,9 @@ const Register = () => {
 					<div className='mb-6'>
 						<input
 							type='password'
-							className='input'
+							className='m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding px-4 py-2 text-xl font-normal text-gray-700 transition ease-in-out focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none'
 							id='exampleFormControlInput2'
-							placeholder='*********'
+							placeholder='Confirm Password'
 							{...register('confirmPassword')}
 						/>
 						{errors.confirmPassword?.message && (
@@ -115,7 +115,7 @@ const Register = () => {
 
 					<div className='text-center lg:text-left'>
 						<button
-							type='button'
+							type='submit'
 							className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
 						>
 							Register
@@ -123,7 +123,7 @@ const Register = () => {
 						<p className='mt-2 mb-0 pt-1 text-sm font-semibold'>
 							Already have an account?
 							<Link
-								to='/register'
+								to='/login'
 								className='text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700'
 							>
 								Login
