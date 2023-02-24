@@ -1,6 +1,6 @@
 import React, { Fragment, ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from '../services/store';
+import { useAppSelector } from '../redux/store';
 
 type Props = {
 	children: ReactNode;
