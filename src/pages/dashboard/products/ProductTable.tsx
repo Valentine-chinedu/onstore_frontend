@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import DashboardLayout from '../../../components/layouts/DashboardLayout';
 import ProductModal from '../../../components/modal/productModal';
 import Loader from '../../../components/ui/Loader';
 import Paginate from '../../../components/ui/Paginate';
@@ -21,8 +22,8 @@ function ProductTable() {
 	const productsPerPage = 10;
 
 	const endOffSet = PageOffSet + productsPerPage;
-	const currentProducts = products.slice(PageOffSet, endOffSet);
-	const pageCount = Math.ceil(products.length / productsPerPage);
+	const currentProducts = products?.slice(PageOffSet, endOffSet);
+	const pageCount = Math.ceil(products?.length / productsPerPage);
 
 	const handlePageClick = (event: any) => {
 		const newOffset = (event.selected * productsPerPage) % products.length;
@@ -49,13 +50,14 @@ function ProductTable() {
 	useEffect(() => {
 		dispatch(getProducts());
 	}, [dispatch, refresh]);
+	// console.log(currentProducts?[0].image);
 
 	return (
-		<div className=''>
+		<DashboardLayout>
 			{loading ? (
 				<Loader />
 			) : (
-				<div className='flex flex-col py-3'>
+				<div className='flex flex-col space-y-4 py-3'>
 					<div className='flex items-center justify-between'>
 						<span>Product List</span>
 						<button
@@ -65,49 +67,59 @@ function ProductTable() {
 							Add Product
 						</button>
 					</div>
-					<table className=''>
-						<thead>
-							<tr>
-								{cols.map((col) => (
-									<th className='px-4 py-2'>{col}</th>
-								))}
-							</tr>
-						</thead>
-						<tbody>
-							{currentProducts.map((product) => (
-								<tr key={product._id}>
-									<td className='py-2'>
-										<img
-											className='rounded-full'
-											src={product.image}
-											alt='product'
-										/>
-									</td>
-									<td className='py-2'>{product.name}</td>
-									<td className='py-2'>{product.brand}</td>
-									<td className='py-2'>{product.category}</td>
-									<td className='py-2'>{formatCurrencry(product.price)}</td>
-									<td className='py-2'>{getDate(product?.createdAt)}</td>
-									<td className='py-2'>
-										<Link
-											to={`/dashboard/product-edit/${product._id}`}
-											className=''
-										>
-											<FaEdit />
-										</Link>
-										<button onClick={() => onDelete(product._id)} className=''>
-											<FaTrash />
-										</button>
-									</td>
+
+					{currentProducts ? (
+						<table className='table-auto border-collapse border border-gray-700'>
+							<thead className=' bg-gray-500 text-gray-100'>
+								<tr>
+									{cols?.map((col) => (
+										<th className='py-2'>{col}</th>
+									))}
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+							<tbody className=''>
+								{currentProducts?.map((product) => (
+									<tr className=' text-gray-700' key={product._id}>
+										<td className=''>
+											<img
+												className='h-10 rounded-full'
+												src={product?.image}
+												alt='product'
+												loading='lazy'
+											/>
+										</td>
+										<td className='flex h-16 items-center justify-center border-l border-gray-900'>
+											{product.name}
+										</td>
+										<td className='bg-yellow-300 py-2'>{product.category}</td>
+										<td className='py-2'>{formatCurrencry(product.price)}</td>
+										<td className='py-2'>{getDate(product?.createdAt)}</td>
+										<td className='py-2'>
+											<Link
+												to={`/dashboard/product-edit/${product._id}`}
+												className=''
+											>
+												<FaEdit />
+											</Link>
+											<button
+												onClick={() => onDelete(product._id)}
+												className=''
+											>
+												<FaTrash />
+											</button>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					) : (
+						<p>No products found</p>
+					)}
 				</div>
 			)}
 			<Paginate handlePageClick={handlePageClick} pageCount={pageCount} />
 			<ProductModal setRefresh={setRefresh} show={show} handleClose={onClose} />
-		</div>
+		</DashboardLayout>
 	);
 }
 

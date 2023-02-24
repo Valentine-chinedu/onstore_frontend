@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import DashboardLayout from '../../components/layouts/DashboardLayout';
 import { getOrdersList } from '../../redux/order/slice-list';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { formatCurrencry } from '../../utils/helper';
@@ -28,7 +29,7 @@ const DashboardPage = () => {
 	}, [dispatch]);
 
 	return (
-		<div>
+		<DashboardLayout>
 			<div className='g-6 my-6 flex flex-wrap'>
 				<div className='w-full p-2 md:w-1/3'>
 					<div className='rounded-lg border-0 bg-white p-4 shadow'>
@@ -48,7 +49,7 @@ const DashboardPage = () => {
 								<i className='bi bi-arrow-up mr-2'></i>
 								13%
 							</span>
-							<span className='text-gray-500'>Depuis le mois dernier</span>
+							<span className='text-gray-500'>Since last month</span>
 						</div>
 					</div>
 				</div>
@@ -70,7 +71,7 @@ const DashboardPage = () => {
 								<i className='bi bi-arrow-up mr-2'></i>
 								30%
 							</span>
-							<span className='text-gray-500'>Depuis le mois dernier</span>
+							<span className='text-gray-500'>Since last Month</span>
 						</div>
 					</div>
 				</div>
@@ -93,11 +94,11 @@ const DashboardPage = () => {
 							<i className='' />
 							-5%
 						</span>
-						<span className='text-xs'>Depuis le mois dernier</span>
+						<span className='text-xs'>Since last month</span>
 					</div>
 				</div>
 			</div>
-		</div>
+		</DashboardLayout>
 	);
 };
 

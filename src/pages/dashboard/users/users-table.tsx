@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
+import DashboardLayout from '../../../components/layouts/DashboardLayout';
 import Loader from '../../../components/ui/Loader';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
@@ -47,7 +48,7 @@ const UserTable = () => {
 	}, [dispatch, refresh]);
 
 	return (
-		<div>
+		<DashboardLayout>
 			{loading ? (
 				<Loader />
 			) : (
@@ -105,7 +106,7 @@ const UserTable = () => {
 					</div>
 				</div>
 			)}
-		</div>
+		</DashboardLayout>
 	);
 };
 

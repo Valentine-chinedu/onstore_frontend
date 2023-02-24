@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { setError } from '../../../utils/error';
 import { useAppSelector } from '../../../redux/store';
 import authAxios from '../../../utils/auth-axios';
+import DashboardLayout from '../../../components/layouts/DashboardLayout';
 
 type FormValues = {
 	name: string;
@@ -51,7 +52,7 @@ const ProductUpdate = () => {
 	};
 
 	return (
-		<div>
+		<DashboardLayout>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className='mb-4'>
 					<label className='mb-2 block font-medium text-gray-700'>Name</label>
@@ -151,7 +152,7 @@ const ProductUpdate = () => {
 					ADD
 				</button>
 			</form>
-		</div>
+		</DashboardLayout>
 	);
 };
 
