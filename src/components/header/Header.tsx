@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { GoX } from 'react-icons/go';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppSelector } from '../../redux/store';
+import { reset } from '../../redux/cart/list-slice';
+import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { userLogout } from '../../redux/users/login-slice';
 import logo from './onStore_logo.png';
 
 const Header = () => {
 	const { cartItems } = useAppSelector((store) => store.cartItems);
+	const { userInfo } = useAppSelector((state) => state.login);
 	const [isOpen, setOpen] = useState(false);
 
+	console.log(userInfo);
+
 	let navigate = useNavigate();
+	const dispatch = useAppDispatch();
 
 	function handleClickToProducts() {
 		navigate('/categories');
@@ -18,6 +24,17 @@ const Header = () => {
 	function handleClickToHome() {
 		navigate('/home');
 		setOpen(false);
+	}
+
+	function handleClickToLogin() {
+		navigate('/login');
+		setOpen(false);
+	}
+
+	function handleClickToLogout() {
+		dispatch(userLogout());
+		dispatch(reset());
+		navigate('/login');
 	}
 
 	return (
@@ -56,15 +73,23 @@ const Header = () => {
 						<GoX size={25} />
 					</button>
 				</div>
-				<div className='lg:mr-10 '>
+				<div className='flex items-center space-x-4 lg:mr-10'>
 					<Link to='/home'>
 						<img
-							className='ml-2 h-16 lg:h-24'
+							className='ml-2 h-16 lg:h-16'
 							src={logo}
 							alt='logo'
 							loading='lazy'
 						/>
 					</Link>
+					<Link className='nav-btn' to={`/profile/${userInfo?._id}`}>
+						Profile
+					</Link>
+					{userInfo?.isAdmin && (
+						<Link className='nav-btn' to='/dashboard'>
+							Dashboard
+						</Link>
+					)}
 				</div>
 
 				<div
@@ -88,6 +113,15 @@ const Header = () => {
 				</div>
 
 				<div className='relative flex h-10 items-center space-x-6 md:mr-2 lg:mr-0'>
+					{!userInfo ? (
+						<button onClick={handleClickToLogin} className='nav-btn'>
+							Login
+						</button>
+					) : (
+						<button onClick={handleClickToLogout} className='nav-btn'>
+							Logout
+						</button>
+					)}
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
