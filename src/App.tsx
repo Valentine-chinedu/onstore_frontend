@@ -1,15 +1,15 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import { Footer, Header } from './components';
+// import { Footer } from './components';
 import Products from './components/products/Products';
 import { Cart, Home, ProductDetails } from './pages';
 import Checkout from './pages/cart/Checkout';
 import OrderDetails from './pages/cart/orderDetails';
 import ShippingAddress from './pages/cart/ShippingAddress';
 import DashboardPage from './pages/dashboard/DashboardPage';
-import OrdersTable from './pages/dashboard/order/orderTable';
+import OrdersTable from './pages/dashboard/order/OrdersTable';
 import ProductTable from './pages/dashboard/products/ProductTable';
 import ProductUpdate from './pages/dashboard/products/ProductUpdate';
 import UserTable from './pages/dashboard/users/users-table';
@@ -21,11 +21,8 @@ import AdminProvider from './utils/admin-provider';
 import AuthProvider from './utils/auth-provider';
 
 const App = () => {
-	const { pathname } = useLocation();
 	return (
 		<div className='h-screen overflow-x-hidden font-sans'>
-			{pathname !== '/cart' && pathname !== '/checkout' && <Header />}
-
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path='home' element={<Home />} />
@@ -118,7 +115,7 @@ const App = () => {
 				/>
 			</Routes>
 			<Toaster position='top-center' reverseOrder={false} />
-			<Footer />
+			{/* <Footer /> */}
 		</div>
 	);
 };

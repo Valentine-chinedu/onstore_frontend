@@ -11,10 +11,10 @@ const DashboardLayout = ({ children }: LayoutProvider) => {
 		<>
 			<div className='flex flex-col lg:flex-row '>
 				<Sidebar />
-				<div style={{ minHeight: '100vh' }} className='flex-grow'>
+				<div className='min-h-screen flex-grow'>
 					<Topbar />
 					<main>
-						<div className='container'>{children}</div>
+						<div className='lg:px-6'>{children}</div>
 					</main>
 				</div>
 			</div>
