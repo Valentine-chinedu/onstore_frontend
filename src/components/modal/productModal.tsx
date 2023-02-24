@@ -7,7 +7,8 @@ import authAxios from '../../utils/auth-axios';
 import toast from 'react-hot-toast';
 import { setError } from '../../utils/error';
 import { ChangeEvent, useState } from 'react';
-import { baseUrl } from '../../utils/helper';
+import storage from '../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 type Props = {
 	show: boolean;
@@ -19,7 +20,6 @@ type FormValues = {
 	name: string;
 	image: string;
 	category: string;
-	brand: string;
 	price: number;
 	description: string;
 };
@@ -42,11 +42,14 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string().required(),
 		category: Yup.string().required(),
-		brand: Yup.string().required(),
 		price: Yup.number().required(),
 		description: Yup.string().required(),
 	});
-	const [image, setImage] = useState<string>('');
+
+	const [image, setImage] = useState('');
+
+	const [percent, setPercent] = useState(0);
+
 	const {
 		register,
 		handleSubmit,
@@ -58,16 +61,35 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files) {
 			const file = e.target.files[0];
+			const storageRef = ref(storage, `/files/${file.name}`);
+			const uploadTask = uploadBytesResumable(storageRef, file);
 
-			let formData = new FormData();
+			uploadTask.on(
+				'state_changed',
+				(snapshot) => {
+					const percent = Math.round(
+						(snapshot.bytesTransferred / snapshot.totalBytes) * 100
+					);
 
-			formData.append('image', file);
-
-			authAxios.post('/uploads/image', formData).then((res) => {
-				if (res.data) {
-					setImage(`${baseUrl}${res.data}`);
+					setPercent(percent);
+				},
+				(err) => console.log(err),
+				() => {
+					getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+						console.log(url);
+						setImage(url);
+					});
 				}
-			});
+			);
+			// let formData = new FormData();
+
+			// formData.append('image', url);
+
+			// authAxios.post('/uploads/image', formData).then((res) => {
+			// 	if (res.data) {
+			// 		setImage(`${baseUrl}${res.data}`);
+			// 	}
+			// });
 		}
 	};
 
@@ -96,9 +118,7 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 					<input
 						type='text'
 						placeholder='doe'
-						className={`form-input ${
-							errors.name?.message ? 'border-red-500' : ''
-						}`}
+						className={` ${errors.name?.message ? 'border-red-500' : ''}`}
 						{...register('name')}
 					/>
 					{errors.name?.message && (
@@ -116,23 +136,10 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 						onChange={onChange}
 						className='form-input'
 					/>
+
+					{percent > 0 && <p>{percent}% done</p>}
 				</div>
-				<div className='mb-4'>
-					<label className='mb-2 block font-medium text-gray-700'>Brand</label>
-					<input
-						type='text'
-						placeholder='Msi'
-						className={`form-input ${
-							errors.brand?.message ? 'border-red-500' : ''
-						}`}
-						{...register('brand')}
-					/>
-					{errors.brand?.message && (
-						<p className='mt-2 text-xs italic text-red-500'>
-							{errors.brand?.message}
-						</p>
-					)}
-				</div>
+
 				<div className='mb-4'>
 					<label className='mb-2 block font-medium text-gray-700'>
 						Category
