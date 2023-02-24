@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Topbar = () => {
 	return (
@@ -8,10 +9,9 @@ const Topbar = () => {
 		>
 			<div className='container'>
 				<div className='h-16'>
-					<div className='items-center '>
-						<div className=' '>
-							<h1 className='mb-2 '>home</h1>
-						</div>
+					<div className='flex items-center justify-between '>
+						<Link to='/home'>Back to Home</Link>
+
 						<div className='text-xl'>Admin Dashboard</div>
 					</div>
 				</div>
