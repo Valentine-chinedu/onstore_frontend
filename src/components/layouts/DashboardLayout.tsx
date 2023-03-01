@@ -9,11 +9,11 @@ type LayoutProvider = {
 const DashboardLayout = ({ children }: LayoutProvider) => {
 	return (
 		<>
-			<div className='flex flex-col lg:flex-row '>
-				<Sidebar />
-				<div className='min-h-screen flex-grow'>
-					<Topbar />
-					<main>
+			<div className='flex flex-col '>
+				<Topbar />
+				<div className='flex min-h-screen flex-grow'>
+					<Sidebar />
+					<main className='w-full'>
 						<div className='lg:px-6'>{children}</div>
 					</main>
 				</div>

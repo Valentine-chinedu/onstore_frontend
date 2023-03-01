@@ -1,15 +1,17 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { HiUsers } from 'react-icons/hi';
-import { AiFillDashboard } from 'react-icons/ai';
+import { Link, useNavigate, NavLink, useLocation } from 'react-router-dom';
 import { userLogout } from '../../redux/users/login-slice';
-import { NavLink } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { HiOutlineUserCircle } from 'react-icons/hi';
 
 const Sidebar = () => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { userInfo } = useAppSelector((state) => state.login);
+
+	const location = useLocation();
+
+	const { pathname } = location;
 
 	const onLogout = () => {
 		dispatch(userLogout());
@@ -17,53 +19,64 @@ const Sidebar = () => {
 	};
 
 	return (
-		<nav
-			className='border-b px-0  py-3 lg:border-b-0 '
-			id='navbarVertical'
-			style={{ backgroundColor: '#1b1b1b' }}
-		>
-			<div className='container'>
-				<button>toggle-icon</button>
-				<Link className='' to='/'>
-					onstore
-				</Link>
+		<nav className=' w-60 border-r border-gray-400'>
+			<div className='flex h-full flex-col pl-4'>
+				<div className='flex h-full w-full flex-col justify-around'>
+					<div className='flex w-full flex-col items-center space-y-8  '>
+						<Link
+							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+								pathname === '/dashboard' && 'bg-gray-300'
+							}`}
+							to='/dashboard'
+						>
+							Dashboard
+						</Link>
 
-				<div className=''>
-					<ul className=''>
-						<li className=' '>
-							<Link className='' to='/dashboard'>
-								<AiFillDashboard className='' size={'1.5rem'} /> Accueil
-							</Link>
-						</li>
-						<li className=''>
-							<Link className=' p-5' to='/dashboard/product-list'>
-								<HiUsers className='' size={'1.5rem'} /> Products
-							</Link>
-						</li>
+						<Link
+							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+								pathname === '/dashboard/product-list' && 'bg-gray-300'
+							}`}
+							to='/dashboard/product-list'
+						>
+							Products
+						</Link>
 
-						<li className=''>
-							<Link className='p-5' to='/dashboard/user-list'>
-								<HiUsers className='' size={'1.5rem'} /> Users
-							</Link>
-						</li>
-						<li className=''>
-							<Link className='p-5' to='/dashboard/orders-list'>
-								<HiUsers className='' size={'1.5rem'} /> Orders
-							</Link>
-						</li>
-					</ul>
+						<Link
+							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+								pathname === '/dashboard/user-list' && 'bg-gray-300'
+							}`}
+							to='/dashboard/user-list'
+						>
+							Users
+						</Link>
 
-					<hr className='my-5 opacity-20' />
+						<Link
+							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+								pathname === '/dashboard/orders-list' && 'bg-gray-300'
+							}`}
+							to='/dashboard/orders-list'
+						>
+							Orders
+						</Link>
+					</div>
 
-					<div className='' />
-					<ul className=''>
-						<li className=''>
-							<NavLink to={`/profile/${userInfo?._id}`}>Profile</NavLink>
-						</li>
-						<li className=''>
-							<button onClick={onLogout}>Logout</button>
-						</li>
-					</ul>
+					<div className='space-y-4'>
+						<div className='flex items-center space-x-2'>
+							<HiOutlineUserCircle size={24} />
+
+							<Link
+								className='text-lg font-semibold
+									'
+								to={`/profile/${userInfo?._id}`}
+							>
+								{userInfo?.name}
+							</Link>
+						</div>
+
+						<button className='font-semibold' onClick={onLogout}>
+							Logout
+						</button>
+					</div>
 				</div>
 			</div>
 		</nav>
