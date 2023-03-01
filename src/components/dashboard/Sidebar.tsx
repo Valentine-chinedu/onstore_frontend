@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate, NavLink, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userLogout } from '../../redux/users/login-slice';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { HiOutlineUserCircle } from 'react-icons/hi';
