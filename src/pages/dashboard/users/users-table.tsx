@@ -69,7 +69,7 @@ const UserTable = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{users.map((user) => (
+								{users?.map((user) => (
 									<tr key={user._id}>
 										<td className='px-4 py-2'>{user.name}</td>
 										<td className='px-4 py-2'>{user.email}</td>

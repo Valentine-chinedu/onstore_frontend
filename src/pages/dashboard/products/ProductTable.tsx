@@ -26,14 +26,22 @@ function ProductTable() {
 	const pageCount = Math.ceil(products?.length / productsPerPage);
 
 	const handlePageClick = (event: any) => {
-		const newOffset = (event.selected * productsPerPage) % products.length;
+		const newOffset = (event.selected * productsPerPage) % products?.length;
 		setPageOffSet(newOffset);
 	};
 
 	const onOpen = () => setShow(true);
 	const onClose = () => setShow(false);
 
-	const cols = ['image', 'name', 'category', 'price', 'created At', 'options'];
+	const cols = [
+		'Image',
+		'Name',
+		'Category',
+		'Price',
+		'Quantity',
+		'Created At',
+		'Options',
+	];
 
 	const onDelete = (id: string | number) => {
 		if (window.confirm('are you sure?')) {
@@ -50,18 +58,18 @@ function ProductTable() {
 	useEffect(() => {
 		dispatch(getProducts());
 	}, [dispatch, refresh]);
-	// console.log(currentProducts?[0].image);
+	console.log(products);
 
 	return (
 		<DashboardLayout>
 			{loading ? (
 				<Loader />
 			) : (
-				<div className='flex flex-col space-y-4 py-3'>
+				<div className='mb-8 flex flex-col space-y-4 pt-12'>
 					<div className='flex items-center justify-between'>
-						<span>Product List</span>
+						<span className='text-2xl font-bold'>Product List</span>
 						<button
-							className='rounded bg-red-600 px-2 py-1 text-white hover:bg-red-700'
+							className='rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700'
 							onClick={onOpen}
 						>
 							Add Product
@@ -69,55 +77,71 @@ function ProductTable() {
 					</div>
 
 					{currentProducts ? (
-						<table className='table-auto border-collapse border border-gray-700'>
-							<thead className=' bg-gray-500 text-gray-100'>
-								<tr>
+						<div className='table w-full border-collapse'>
+							<div className='table-header-group bg-gray-500 text-gray-100'>
+								<div className='table-row'>
 									{cols?.map((col) => (
-										<th className='py-2'>{col}</th>
+										<div className='table-cell text-center'>{col}</div>
 									))}
-								</tr>
-							</thead>
-							<tbody className=''>
+								</div>
+							</div>
+							<div className='table-row-group'>
 								{currentProducts?.map((product) => (
-									<tr className=' text-gray-700' key={product._id}>
-										<td className=''>
+									<div className='table-row text-gray-700' key={product._id}>
+										<div className='flex  h-20 items-center justify-center'>
 											<img
-												className='h-10 rounded-full'
+												className='h-10'
 												src={product?.image}
 												alt='product'
 												loading='lazy'
 											/>
-										</td>
-										<td className='flex h-16 items-center justify-center border-l border-gray-900'>
-											{product.name}
-										</td>
-										<td className='bg-yellow-300 py-2'>{product.category}</td>
-										<td className='py-2'>{formatCurrencry(product.price)}</td>
-										<td className='py-2'>{getDate(product?.createdAt)}</td>
-										<td className='py-2'>
-											<Link
-												to={`/dashboard/product-edit/${product._id}`}
-												className=''
-											>
-												<FaEdit />
-											</Link>
-											<button
-												onClick={() => onDelete(product._id)}
-												className=''
-											>
-												<FaTrash />
-											</button>
-										</td>
-									</tr>
+										</div>
+
+										<div className='table-cell text-center'>{product.name}</div>
+										<div className='table-cell text-center'>
+											{product.category}
+										</div>
+										<div className='table-cell text-center'>
+											{formatCurrencry(product.price)}
+										</div>
+										<div className='table-cell text-center'>{product.qty}</div>
+										<div className='table-cell text-center'>
+											{getDate(product?.createdAt)}
+										</div>
+										<div className='table-cell  text-center'>
+											<div className=' flex justify-center space-x-4 '>
+												<Link
+													to={`/dashboard/product-edit/${product._id}`}
+													className=''
+												>
+													<FaEdit className='text-2xl hover:text-gray-500' />
+												</Link>
+												<button
+													onClick={() => onDelete(product._id)}
+													className=''
+												>
+													<FaTrash className='text-xl hover:text-gray-500' />
+												</button>
+											</div>
+										</div>
+									</div>
 								))}
-							</tbody>
-						</table>
+							</div>
+						</div>
 					) : (
-						<p>No products found</p>
+						<div className='flex justify-center'>
+							<p>No products found !</p>
+						</div>
 					)}
 				</div>
 			)}
-			<Paginate handlePageClick={handlePageClick} pageCount={pageCount} />
+			{currentProducts?.length > 0 && (
+				<Paginate
+					handlePageClick={handlePageClick}
+					currentProducts={currentProducts}
+					pageCount={pageCount}
+				/>
+			)}
 			<ProductModal setRefresh={setRefresh} show={show} handleClose={onClose} />
 		</DashboardLayout>
 	);

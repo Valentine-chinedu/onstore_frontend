@@ -60,10 +60,9 @@ const DashboardPage = () => {
 								<span className='text-sm font-medium text-gray-600'>
 									Clients
 								</span>
-								<h3 className='mt-2 text-xl font-bold'>{users.length}</h3>
-							</div>
-							<div className='flex h-16 w-16 items-center justify-center rounded-full text-white'>
-								<i className='bi bi-people text-lg'></i>
+								<h3 className='mt-2 text-xl font-bold'>
+									{users?.length ? users?.length : 0}
+								</h3>
 							</div>
 						</div>
 						<div className='mt-4 text-sm'>
@@ -88,13 +87,13 @@ const DashboardPage = () => {
 								<i className='bi bi-clock-history text-lg'></i>
 							</div>
 						</div>
-					</div>
-					<div className='mt-2 mb-0 text-sm'>
-						<span className=''>
-							<i className='' />
-							-5%
-						</span>
-						<span className='text-xs'>Since last month</span>
+						<div className='mt-2 mb-0 text-sm'>
+							<span className=''>
+								<i className='' />
+								-5%
+							</span>
+							<span className='text-xs'>Since last month</span>
+						</div>
 					</div>
 				</div>
 			</div>

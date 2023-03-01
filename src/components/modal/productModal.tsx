@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,7 +6,6 @@ import * as Yup from 'yup';
 import authAxios from '../../utils/auth-axios';
 import toast from 'react-hot-toast';
 import { setError } from '../../utils/error';
-import { ChangeEvent, useState } from 'react';
 import storage from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
@@ -22,6 +21,7 @@ type FormValues = {
 	category: string;
 	price: number;
 	description: string;
+	qty: number;
 };
 
 const customStyles = {
@@ -42,17 +42,18 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 	const validationSchema = Yup.object().shape({
 		name: Yup.string().required(),
 		category: Yup.string().required(),
-		price: Yup.number().required(),
+		price: Yup.number().positive().required(),
+		qty: Yup.number().nullable(true),
 		description: Yup.string().required(),
 	});
 
 	const [image, setImage] = useState('');
-
 	const [percent, setPercent] = useState(0);
 
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm<FormValues>({
 		resolver: yupResolver(validationSchema),
@@ -81,15 +82,6 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 					});
 				}
 			);
-			// let formData = new FormData();
-
-			// formData.append('image', url);
-
-			// authAxios.post('/uploads/image', formData).then((res) => {
-			// 	if (res.data) {
-			// 		setImage(`${baseUrl}${res.data}`);
-			// 	}
-			// });
 		}
 	};
 
@@ -98,6 +90,7 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 			.post('/products', { ...data, image })
 			.then((res) => {
 				toast.success('Product has beend created');
+				reset();
 				setRefresh((prev: any) => (prev = !prev));
 				handleClose();
 			})
@@ -173,6 +166,19 @@ const ProductModal = ({ show, handleClose, setRefresh }: Props) => {
 							{errors.price?.message}
 						</p>
 					)}
+				</div>
+				<div className='mb-4'>
+					<label className='mb-2 block font-medium text-gray-700'>
+						Quantity
+					</label>
+					<input
+						type='number'
+						placeholder='5'
+						className={`form-input ${
+							errors.qty?.message ? 'border-red-500' : ''
+						}`}
+						{...register('qty')}
+					/>
 				</div>
 				<div className='mb-4'>
 					<label className='mb-2 block font-medium text-gray-700'>
