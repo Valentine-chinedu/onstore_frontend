@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
-import { getProductByCategory } from '../../redux/products/category-slice';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { getProductByCategory } from '../../../redux/products/category-slice';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 import ProductDisplay from './ProductDisplay';
 

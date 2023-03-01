@@ -3,10 +3,10 @@ import { BsArrowLeft } from 'react-icons/bs';
 import { FaSpinner } from 'react-icons/fa';
 
 import { useParams, useNavigate } from 'react-router-dom';
-import { addToCart } from '../../redux/cart/addToCart-slice';
-import { getProductById } from '../../redux/products/details-slice';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import DefaultLayout from '../layouts/DefaultLayout';
+import { addToCart } from '../../../redux/cart/addToCart-slice';
+import { getProductById } from '../../../redux/products/details-slice';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import DefaultLayout from '../../adminPage/layouts/DefaultLayout';
 
 function ProductDetails() {
 	const { product, loading } = useAppSelector((state) => state.productDetail);

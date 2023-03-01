@@ -1,14 +1,14 @@
 import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import Accordion from './components/Accordion';
-import FAQ from './components/FAQ';
+import Accordion from '../../components/userPage/home/Accordion';
+import FAQ from '../../components/userPage/home/FAQ';
 // import TopSeller from './components/TopSeller';
-import Carousels from './components/Carousels';
+import Carousels from '../../components/userPage/home/Carousels';
 import { Link } from 'react-router-dom';
 // import FeaturedItems from './components/FeaturedItems';
-import NewCollection from './components/NewCollection';
-import Services from './components/Services';
-import DefaultLayout from '../../components/layouts/DefaultLayout';
+import NewCollection from '../../components/userPage/home/NewCollection';
+import Services from '../../components/userPage/home/Services';
+import DefaultLayout from '../../components/adminPage/layouts/DefaultLayout';
 
 const Home = () => {
 	return (

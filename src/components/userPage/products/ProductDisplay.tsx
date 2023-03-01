@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../redux/cart/addToCart-slice';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { Product } from '../../types/products';
+import { addToCart } from '../../../redux/cart/addToCart-slice';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { Product } from '../../../types/products';
 
 interface IProps {
 	product: Product;

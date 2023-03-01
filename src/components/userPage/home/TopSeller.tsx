@@ -1,23 +1,20 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../redux/cart/addToCart-slice';
-import { getProductByCategory } from '../../../redux/products/category-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 const TopSeller = () => {
-	const { products: items, loading } = useAppSelector(
-		(state) => state.productsByCategory
-	);
+	const { products, loading } = useAppSelector((state) => state.productList);
 	const { userInfo } = useAppSelector((state) => state.login);
 	const { loading: isLoading } = useAppSelector((state) => state.addToCart);
 
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(getProductByCategory('top-seller'));
-	}, [dispatch]);
+	const items = products?.filter(
+		(product) => product.category === 'top-selling'
+	);
 
 	if (loading) {
 		return (

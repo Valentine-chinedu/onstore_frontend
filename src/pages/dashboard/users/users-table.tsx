@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheck, FaTimes, FaTrash } from 'react-icons/fa';
-import DashboardLayout from '../../../components/layouts/DashboardLayout';
+import DashboardLayout from '../../../components/adminPage/layouts/DashboardLayout';
 import Loader from '../../../components/ui/Loader';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 

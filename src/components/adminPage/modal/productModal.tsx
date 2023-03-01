@@ -3,10 +3,10 @@ import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import authAxios from '../../utils/auth-axios';
+import authAxios from '../../../utils/auth-axios';
 import toast from 'react-hot-toast';
-import { setError } from '../../utils/error';
-import storage from '../../firebase';
+import { setError } from '../../../utils/error';
+import storage from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 type Props = {

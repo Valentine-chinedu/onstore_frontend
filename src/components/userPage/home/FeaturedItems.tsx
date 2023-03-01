@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { addToCart } from '../../../redux/cart/addToCart-slice';
-import { getProductByCategory } from '../../../redux/products/category-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 
 const FeaturedItems = () => {
-	const { products: items, loading } = useAppSelector(
-		(state) => state.productsByCategory
-	);
+	const { products, loading } = useAppSelector((state) => state.productList);
 	const { loading: isLoading } = useAppSelector((state) => state.addToCart);
 	const { userInfo } = useAppSelector((state) => state.login);
 
 	const dispatch = useAppDispatch();
 
-	useEffect(() => {
-		dispatch(getProductByCategory('featured-items'));
-	}, [dispatch]);
-
-	console.log(items);
+	const items = products?.filter(
+		(product) => product.category === 'featured-item'
+	);
 
 	if (loading) {
 		return (

@@ -3,7 +3,7 @@ import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 
 // import { Footer } from './components';
-import Products from './components/products/Products';
+import Products from './components/userPage/products/Products';
 import { Cart, Home, ProductDetails } from './pages';
 import Checkout from './pages/cart/Checkout';
 import OrderDetails from './pages/cart/orderDetails';

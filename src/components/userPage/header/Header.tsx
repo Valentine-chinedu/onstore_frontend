@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { GoX } from 'react-icons/go';
 import { Link, useNavigate } from 'react-router-dom';
-import { reset } from '../../redux/cart/list-slice';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { userLogout } from '../../redux/users/login-slice';
+import { reset } from '../../../redux/cart/list-slice';
+import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { userLogout } from '../../../redux/users/login-slice';
 import logo from './onStore_logo.png';
 
 const Header = () => {
