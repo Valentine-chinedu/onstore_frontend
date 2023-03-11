@@ -2,20 +2,20 @@ import React from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Accordion from '../../components/userPage/home/Accordion';
 import FAQ from '../../components/userPage/home/FAQ';
-// import TopSeller from './components/TopSeller';
 import Carousels from '../../components/userPage/home/Carousels';
 import { Link } from 'react-router-dom';
-// import FeaturedItems from './components/FeaturedItems';
 import NewCollection from '../../components/userPage/home/NewCollection';
 import Services from '../../components/userPage/home/Services';
 import DefaultLayout from '../../components/adminPage/layouts/DefaultLayout';
+import FeaturedItems from '../../components/userPage/home/FeaturedItems';
+import TopSeller from '../../components/userPage/home/TopSeller';
 
 const Home = () => {
 	return (
 		<DefaultLayout>
 			<div className='items-center md:flex md:flex-col'>
 				<Carousels />
-				{/* <FeaturedItems /> */}
+				<FeaturedItems />
 				<div className='flex h-80 items-center justify-center bg-image1 bg-contain bg-repeat-round md:h-[600px] md:w-full'>
 					<div className=''>
 						<div className=' flex w-full flex-col items-center space-y-3 text-gray-100'>
@@ -36,8 +36,8 @@ const Home = () => {
 				</div>
 				<NewCollection />
 				<Services />
-				{/* <TopSeller /> */}
-				<div className='w-full justify-center bg-gray-500 px-4 py-8 md:flex'>
+				<TopSeller />
+				<div className='w-full justify-center bg-gray-500 px-4 py-32 md:flex'>
 					<div className='md:w-6/12'>
 						<FAQ />
 						<Accordion />

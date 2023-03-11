@@ -3,7 +3,7 @@ import { FiThumbsUp } from 'react-icons/fi';
 
 const Services = () => {
 	return (
-		<div className=' w-full bg-black py-8 pl-4 md:flex md:justify-center md:py-28'>
+		<div className=' w-full bg-black py-8 pl-4 md:flex md:justify-center md:py-32'>
 			<div className='md:flex md:w-8/12 md:space-x-4'>
 				<div className='mb-12 flex md:flex-col md:items-center md:space-y-6 lg:mb-0'>
 					<div className='mr-4'>
@@ -12,10 +12,10 @@ const Services = () => {
 						</div>
 					</div>
 					<div className='flex-col items-center md:flex md:text-center'>
-						<h2 className='mb-4 text-sm font-semibold tracking-wide text-gray-100 md:mb-2'>
+						<h2 className='mb-4 font-semibold tracking-wide text-gray-100 md:mb-2'>
 							100% QUALITY
 						</h2>
-						<p className='text-xs text-gray-300'>
+						<p className='text-sm text-gray-300'>
 							Aenean magna est, pretium id libero quis, eleifend cursus diam.
 						</p>
 					</div>
@@ -37,10 +37,10 @@ const Services = () => {
 						</svg>
 					</div>
 					<div className='flex-col items-center md:flex md:text-center'>
-						<h2 className='mb-4 text-sm font-semibold tracking-wide text-gray-100 md:mb-2'>
+						<h2 className='mb-4 font-semibold tracking-wide text-gray-100 md:mb-2'>
 							SECURE PAYMENT
 						</h2>
-						<p className='text-xs text-gray-300'>
+						<p className='text-sm text-gray-300'>
 							Aenean magna est, pretium id libero quis, eleifend cursus diam.
 						</p>
 					</div>
@@ -61,10 +61,10 @@ const Services = () => {
 						</svg>
 					</div>
 					<div className='flex-col items-center md:flex md:text-center'>
-						<h2 className='mb-4 text-sm font-semibold tracking-wide text-gray-100 md:mb-2'>
+						<h2 className='mb-4 font-semibold tracking-wide text-gray-100 md:mb-2'>
 							FREE SHIPPING
 						</h2>
-						<p className='text-xs text-gray-300'>
+						<p className='text-sm text-gray-300'>
 							Aenean magna est, pretium id libero quis, eleifend cursus diam.
 						</p>
 					</div>
@@ -86,10 +86,10 @@ const Services = () => {
 						</svg>
 					</div>
 					<div className='flex-col items-center md:flex md:text-center'>
-						<h2 className='mb-4 text-sm font-semibold tracking-wide text-gray-100 md:mb-2'>
+						<h2 className='mb-4 font-semibold tracking-wide text-gray-100 md:mb-2'>
 							FREE RETURN
 						</h2>
-						<p className='text-xs text-gray-300'>
+						<p className='text-sm text-gray-300'>
 							Aenean magna est, pretium id libero quis, eleifend cursus diam.
 						</p>
 					</div>

@@ -15,6 +15,8 @@ const Products = () => {
 	const params = useParams();
 	const category = params.category;
 
+	console.log(items);
+
 	useEffect(() => {
 		dispatch(getProductByCategory(category!));
 	}, [dispatch, category]);

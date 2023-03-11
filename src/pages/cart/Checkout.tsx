@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { reset } from '../../redux/cart/list-slice';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { getUserById } from '../../redux/users/user-details';
 import authAxios from '../../utils/auth-axios';
 import { setError } from '../../utils/error';
 import { formatCurrencry } from '../../utils/helper';
 
 const Checkout = () => {
-	const { shippingAddress, cartItems } = useAppSelector(
-		(state) => state.cartItems
-	);
+	const navigate = useNavigate();
+
+	const { userInfo } = useAppSelector((state) => state.login);
+	const { user } = useAppSelector((state) => state.userDetails);
+
 	const dispatch = useAppDispatch();
 
-	const navigate = useNavigate();
-	const itemsPrice = cartItems.reduce(
+	const cartItems = user?.carts;
+
+	const itemsPrice = cartItems!.reduce(
 		(acc, item) => acc + item.quantity * item.price,
 		0
 	);
@@ -30,7 +34,7 @@ const Checkout = () => {
 		const order = {
 			totalPrice,
 			cartItems,
-			shippingAddress,
+			// shippingAddress,
 		};
 		authAxios
 			.post('/orders', order)
@@ -42,6 +46,10 @@ const Checkout = () => {
 			.catch((err) => toast.error(setError(err)));
 	};
 
+	useEffect(() => {
+		dispatch(getUserById(userInfo?._id));
+	}, [userInfo, dispatch]);
+
 	return (
 		<div className='container mx-auto'>
 			<div className='flex flex-wrap'>
@@ -52,19 +60,19 @@ const Checkout = () => {
 								<li className='list-group-item'>
 									<div className='flex items-center justify-between'>
 										<span className='text-lg'>Address:</span>
-										<span className='text-lg'>
+										{/* <span className='text-lg'>
 											{shippingAddress?.address} {shippingAddress?.city}{' '}
 											{shippingAddress?.postalCode}
-										</span>
+										</span> */}
 									</div>
 								</li>
 								<h3 className='my-3'>Items</h3>
-								{cartItems.map((item) => (
+								{cartItems?.map((item) => (
 									<li className='list-group-item mb-2' key={item.productId}>
 										<div className='flex'>
 											<div className='md:w-2/12'>
 												<img
-													src={item.media}
+													src={item.image}
 													alt=''
 													className='h-16 w-16 rounded-full'
 												/>
@@ -88,14 +96,14 @@ const Checkout = () => {
 							<ul className='list-group list-group-flush'>
 								<li className='list-group-item'>
 									SubTotal (
-									{cartItems.reduce((acc, item) => acc + item.quantity, 0)})
+									{cartItems?.reduce((acc, item) => acc + item.quantity, 0)})
 									item
 								</li>
 								<li className='list-group-item flex items-center justify-between'>
 									<span className='text-lg'>Total Price :</span>
 									<span className='text-lg'>
 										{formatCurrencry(
-											cartItems.reduce(
+											cartItems?.reduce(
 												(acc, item) => acc + item.price * item.quantity,
 												0
 											)
@@ -120,7 +128,7 @@ const Checkout = () => {
 									<button
 										className='w-full'
 										onClick={onSubmit}
-										disabled={cartItems.length === 0}
+										disabled={cartItems?.length === 0}
 									>
 										Place Order
 									</button>

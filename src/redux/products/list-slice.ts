@@ -21,6 +21,8 @@ const initialState: ProductSliceState = {
 export const getProducts = createAsyncThunk('products/list', async () => {
 	try {
 		const { data } = await publicAxios.get('/products');
+		console.log(data);
+
 		return data;
 	} catch (error: any) {
 		const message = setError(error);

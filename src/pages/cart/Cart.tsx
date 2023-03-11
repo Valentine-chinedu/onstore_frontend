@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi';
@@ -9,18 +9,31 @@ import { removeFromCart } from '../../redux/cart/removeFromCart-slice';
 import { decreaseCartQty } from '../../redux/cart/decreaseCartQty-slice';
 import { increaseCartQty } from '../../redux/cart/increaseCartQty-slice';
 import { emptyCart } from '../../redux/cart/emptyCart-slice';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { getCarts } from '../../redux/cart/list-slice';
+import { getUserById } from '../../redux/users/user-details';
+import { formatCurrencry } from '../../utils/helper';
 
 function Cart() {
-	const { loading, cartItems } = useAppSelector((state) => state.cartItems);
+	// const { loading, cartItems } = useAppSelector((state) => state.cartItems);
 	const { loading: isLoading } = useAppSelector((state) => state.emptyCart);
 	const { userInfo } = useAppSelector((state) => state.login);
+
+	const { user, loading } = useAppSelector((state) => state.userDetails);
 	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
 
-	console.log(cartItems);
+	const cartItems = user?.carts;
 
-	const sumOfPrices = cartItems.reduce((sum, item) => sum + item.price, 0);
+	console.log(user);
+	console.log(userInfo);
+
+	const sumOfPrices = cartItems?.reduce((sum, item) => sum + item.price, 0);
+
+	useEffect(() => {
+		dispatch(getUserById(userInfo?._id));
+	}, [userInfo, dispatch]);
 
 	return (
 		<div className='w-screen flex-col items-center overscroll-contain pb-12 md:flex'>
@@ -65,7 +78,7 @@ function Cart() {
 									<div className='flex w-24 justify-center bg-gray-300'>
 										<img
 											className='h-20 '
-											src={item.media}
+											src={item.image}
 											alt={item.name}
 											loading='lazy'
 										/>
@@ -75,7 +88,7 @@ function Cart() {
 											{item.name}
 										</h3>
 										<h3 className='mr-1 text-sm font-semibold text-orange-800'>
-											${item.price}
+											{formatCurrencry(item.price)}
 										</h3>
 									</div>
 								</div>
@@ -138,7 +151,7 @@ function Cart() {
 					<div className='flex justify-between'>
 						<h3 className=''>Subtotal: ({cartItems?.length} items)</h3>
 						<h3 className='font-bold tracking-wider text-orange-700 lg:text-lg'>
-							${sumOfPrices}
+							{formatCurrencry(sumOfPrices)}
 						</h3>
 					</div>
 					<div>

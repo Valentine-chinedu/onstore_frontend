@@ -12,6 +12,7 @@ import { formatCurrencry, getDate } from '../../../utils/helper';
 function OrdersTable() {
 	const dispatch = useAppDispatch();
 	const { orders, loading } = useAppSelector((state) => state.orders);
+	const { userInfo } = useAppSelector((state) => state.login);
 	const [refresh, setRefresh] = useState<boolean>(false);
 	const cols = [
 		'Order_id',
@@ -80,6 +81,7 @@ function OrdersTable() {
 										<button
 											onClick={() => onDelete(order._id)}
 											className='rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700'
+											disabled={userInfo?.name === 'tester1'}
 										>
 											<FaTrash />
 										</button>

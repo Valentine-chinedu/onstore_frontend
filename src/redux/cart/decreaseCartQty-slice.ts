@@ -8,12 +8,12 @@ export interface FormValue {
 	userId: string;
 }
 
-type SliceState = {
+type DecSliceState = {
 	loading: boolean;
 	error: null | object;
 };
 
-const initialState: SliceState = {
+const initialState: DecSliceState = {
 	loading: false,
 	error: null,
 };

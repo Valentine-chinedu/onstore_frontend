@@ -2,6 +2,7 @@ import React from 'react';
 import { FaSpinner } from 'react-icons/fa';
 import { addToCart } from '../../../redux/cart/addToCart-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { formatCurrencry } from '../../../utils/helper';
 
 const FeaturedItems = () => {
 	const { products, loading } = useAppSelector((state) => state.productList);
@@ -14,6 +15,8 @@ const FeaturedItems = () => {
 		(product) => product.category === 'featured-item'
 	);
 
+	console.log(products);
+
 	if (loading) {
 		return (
 			<div className='flex w-full flex-col items-center justify-center'>
@@ -23,7 +26,7 @@ const FeaturedItems = () => {
 	}
 
 	return (
-		<div className='flex flex-col items-center justify-center space-y-10 py-8 md:w-6/12 '>
+		<div className='flex flex-col items-center justify-center space-y-10 py-32 md:w-6/12 '>
 			<div className=' w-full pl-6 font-merriweather text-xl text-gray-800 md:pl-0'>
 				<h1>Featured Items</h1>
 			</div>
@@ -39,7 +42,9 @@ const FeaturedItems = () => {
 						<h2 className='font-medium text-gray-900'>{items[0]?.name}</h2>
 					</div>
 					<div className='absolute left-[16.8rem] bottom-[4.5rem] space-y-2 md:left-[14.5rem] md:w-24'>
-						<h1 className='font-medium text-gray-900'>{items[0]?.price}</h1>
+						<h1 className='font-medium text-gray-900'>
+							{formatCurrencry(items[0]?.price)}
+						</h1>
 
 						<button
 							className='bg-[#FFA500] px-3 py-1.5 text-xs font-medium text-black disabled:bg-gray-500 lg:hover:bg-orange-700'
@@ -172,7 +177,9 @@ const FeaturedItems = () => {
 								</svg>
 							</div>
 							<h1 className='text-xs font-medium'>{items[1]?.name}</h1>
-							<h2 className='text-sm font-medium'>{items[1]?.price}</h2>
+							<h2 className='text-sm font-medium'>
+								{formatCurrencry(items[1]?.price)}
+							</h2>
 						</div>
 					</div>
 					<div className='space-y-1'>
@@ -282,7 +289,9 @@ const FeaturedItems = () => {
 								</svg>
 							</div>
 							<h1 className='text-xs font-medium'>{items[2]?.name}</h1>
-							<h2 className='text-sm font-medium'>{items[2]?.price}</h2>
+							<h2 className='text-sm font-medium'>
+								{formatCurrencry(items[2]?.price)}
+							</h2>
 						</div>
 					</div>
 				</div>

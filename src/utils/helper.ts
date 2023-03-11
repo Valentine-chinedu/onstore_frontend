@@ -12,3 +12,4 @@ export const getDate = (date: Date) => {
 };
 
 export const baseUrl = 'https://nice-ruby-ostrich.cyclic.app';
+// export const baseUrl = 'http://localhost:4000';

@@ -14,6 +14,7 @@ import { getDate } from '../../../utils/helper';
 const UserTable = () => {
 	const dispatch = useAppDispatch();
 	const { users, loading } = useAppSelector((state) => state.userList);
+	const { userInfo } = useAppSelector((state) => state.login);
 
 	const cols = ['name', 'email', 'created At', 'admin', 'promote', 'delete'];
 
@@ -86,6 +87,7 @@ const UserTable = () => {
 												<button
 													onClick={() => onPromote(user._id)}
 													className='rounded-full bg-green-500 px-3 py-1 text-white hover:bg-green-600'
+													disabled={userInfo?.name === 'tester1'}
 												>
 													Promote
 												</button>
@@ -95,6 +97,7 @@ const UserTable = () => {
 											<button
 												onClick={() => onDelete(user._id)}
 												className='rounded-full bg-red-500 px-3 py-1 text-white hover:bg-red-600'
+												disabled={userInfo?.name === 'tester1'}
 											>
 												<FaTrash />
 											</button>

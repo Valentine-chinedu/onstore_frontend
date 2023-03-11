@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import * as Yup from 'yup';
 import authAxios from '../../utils/auth-axios';
 import { toast } from 'react-hot-toast';
-import { getUserBydId } from '../../redux/users/user-details';
+import { getUserById } from '../../redux/users/user-details';
 import { getUserOrder } from '../../redux/order/user-orders';
 import Loader from '../../components/ui/Loader';
 import { formatCurrencry, getDate } from '../../utils/helper';
@@ -76,7 +76,7 @@ const Profile = () => {
 	};
 
 	useEffect(() => {
-		dispatch(getUserBydId(id));
+		dispatch(getUserById(id));
 		dispatch(getUserOrder());
 	}, [dispatch, id, refresh]);
 

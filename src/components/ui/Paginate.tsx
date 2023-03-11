@@ -15,12 +15,10 @@ const Paginate = ({ handlePageClick, currentProducts, pageCount }: IProps) => {
 				breakLabel='...'
 				breakClassName='text-gray-600'
 				nextLabel='next >'
-				nextClassName={`${pageCount < 2 && 'invisible'}`}
 				onPageChange={handlePageClick}
 				pageRangeDisplayed={9}
 				pageCount={pageCount}
 				previousLabel='< previous'
-				previousClassName={`${pageCount < 2 && 'invisible'}`}
 			/>
 		</div>
 	);

@@ -1,7 +1,7 @@
 export interface Carts {
 	productId: string;
 	name: string;
-	media: string;
+	image: string;
 	price: number;
 	quantity: number;
 }

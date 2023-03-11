@@ -9,7 +9,7 @@ const DefaultLayout = ({ children }: LayoutProvider) => {
 	return (
 		<>
 			<Header />
-			<main>{children}</main>
+			<main className='h-full'>{children}</main>
 		</>
 	);
 };

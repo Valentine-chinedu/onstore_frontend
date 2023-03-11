@@ -14,11 +14,14 @@ import { setError } from '../../../utils/error';
 import { formatCurrencry, getDate } from '../../../utils/helper';
 
 function ProductTable() {
-	const dispatch = useAppDispatch();
 	const { products, loading } = useAppSelector((state) => state.productList);
 	const [PageOffSet, setPageOffSet] = useState(0);
 	const [refresh, setRefresh] = useState<boolean>(false);
 	const [show, setShow] = useState<boolean>(false);
+	const { userInfo } = useAppSelector((state) => state.login);
+
+	const dispatch = useAppDispatch();
+
 	const productsPerPage = 10;
 
 	const endOffSet = PageOffSet + productsPerPage;
@@ -69,8 +72,9 @@ function ProductTable() {
 					<div className='flex items-center justify-between'>
 						<span className='text-2xl font-bold'>Product List</span>
 						<button
-							className='rounded bg-red-600 px-4 py-1 text-white hover:bg-red-700'
+							className='rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800'
 							onClick={onOpen}
+							disabled={userInfo?.name === 'tester1'}
 						>
 							Add Product
 						</button>
@@ -118,9 +122,9 @@ function ProductTable() {
 												</Link>
 												<button
 													onClick={() => onDelete(product._id)}
-													className=''
+													disabled={userInfo?.name === 'tester1'}
 												>
-													<FaTrash className='text-xl hover:text-gray-500' />
+													<FaTrash className='text-xl text-red-500 hover:text-gray-500' />
 												</button>
 											</div>
 										</div>

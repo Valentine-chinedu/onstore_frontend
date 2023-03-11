@@ -18,7 +18,7 @@ const initialState: ProductSliceState = {
 
 export const getProductById = createAsyncThunk(
 	'products/details',
-	async (id: string) => {
+	async (id: string | undefined) => {
 		try {
 			const res = await publicAxios.get(`/products/${id}`);
 			if (res.data) {
@@ -37,7 +37,6 @@ export const productDetailsSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addCase(getProductById.pending, (state) => {
-			// Add user to the state array
 			state.loading = true;
 		});
 		builder.addCase(getProductById.fulfilled, (state, action) => {

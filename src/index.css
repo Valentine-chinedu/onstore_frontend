@@ -20,7 +20,7 @@
 	}
 
 	.nav-btn {
-		@apply p-2 text-sm font-semibold uppercase text-gray-100 hover:text-gray-400 focus:text-gray-400 focus:outline-none md:text-xs lg:mb-0 lg:mr-4;
+		@apply p-2 text-sm font-semibold capitalize text-gray-100 hover:text-gray-400 active:text-gray-400 md:text-base lg:mb-0 lg:mr-4;
 	}
 
 	/* .input {

@@ -33,7 +33,6 @@ const ProductUpdate = () => {
 		name: Yup.string().required(),
 		image: Yup.string().required(),
 		category: Yup.string().required(),
-		brand: Yup.string().required(),
 		price: Yup.number().required(),
 		qty: Yup.number().required(),
 		description: Yup.string().required(),

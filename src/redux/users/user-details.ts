@@ -3,19 +3,19 @@ import { User } from '../../types';
 
 import publicAxios from '../../utils/public-axios';
 
-interface ProductSliceState {
+interface UserSliceState {
 	user: User | null;
 	loading: boolean;
 	error: null | object;
 }
 
-const initialState: ProductSliceState = {
+const initialState: UserSliceState = {
 	user: null,
 	loading: false,
 	error: null,
 };
 
-export const getUserBydId = createAsyncThunk(
+export const getUserById = createAsyncThunk(
 	'users/:id',
 	async (id: string | undefined) => {
 		try {
@@ -32,15 +32,15 @@ export const userDetailsSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(getUserBydId.pending, (state) => {
+		builder.addCase(getUserById.pending, (state) => {
 			// Add user to the state array
 			state.loading = true;
 		});
-		builder.addCase(getUserBydId.fulfilled, (state, action) => {
+		builder.addCase(getUserById.fulfilled, (state, action) => {
 			state.loading = false;
 			state.user = action.payload;
 		});
-		builder.addCase(getUserBydId.rejected, (state) => {
+		builder.addCase(getUserById.rejected, (state) => {
 			state.loading = false;
 		});
 	},

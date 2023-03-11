@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userLogout } from '../../../redux/users/login-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { HiOutlineUserCircle } from 'react-icons/hi';
+import { BiLogOutCircle } from 'react-icons/bi';
 
 const Sidebar = () => {
 	const dispatch = useAppDispatch();
@@ -20,11 +21,11 @@ const Sidebar = () => {
 
 	return (
 		<nav className=' w-60 border-r border-gray-400'>
-			<div className='flex h-full flex-col pl-4'>
+			<div className='flex h-full flex-col px-4'>
 				<div className='flex h-full w-full flex-col justify-around'>
 					<div className='flex w-full flex-col items-center space-y-8  '>
 						<Link
-							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+							className={` w-full rounded pl-1 text-lg font-semibold hover:bg-gray-300 ${
 								pathname === '/dashboard' && 'bg-gray-300'
 							}`}
 							to='/dashboard'
@@ -33,7 +34,7 @@ const Sidebar = () => {
 						</Link>
 
 						<Link
-							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+							className={` w-full rounded pl-1 text-lg font-semibold hover:bg-gray-300 ${
 								pathname === '/dashboard/product-list' && 'bg-gray-300'
 							}`}
 							to='/dashboard/product-list'
@@ -42,7 +43,7 @@ const Sidebar = () => {
 						</Link>
 
 						<Link
-							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+							className={` w-full rounded pl-1 text-lg font-semibold hover:bg-gray-300 ${
 								pathname === '/dashboard/user-list' && 'bg-gray-300'
 							}`}
 							to='/dashboard/user-list'
@@ -51,7 +52,7 @@ const Sidebar = () => {
 						</Link>
 
 						<Link
-							className={` w-full pl-1 text-lg font-semibold hover:bg-gray-300 ${
+							className={` w-full rounded pl-1 text-lg font-semibold hover:bg-gray-300 ${
 								pathname === '/dashboard/orders-list' && 'bg-gray-300'
 							}`}
 							to='/dashboard/orders-list'
@@ -72,10 +73,12 @@ const Sidebar = () => {
 								{userInfo?.name}
 							</Link>
 						</div>
-
-						<button className='font-semibold' onClick={onLogout}>
-							Logout
-						</button>
+						<div className='flex items-center space-x-2'>
+							<BiLogOutCircle size={24} />
+							<button className='text-lg font-semibold' onClick={onLogout}>
+								Logout
+							</button>
+						</div>
 					</div>
 				</div>
 			</div>

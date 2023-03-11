@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NewCollection = () => {
 	return (
-		<div className='flex h-full  w-full py-8 md:justify-center '>
+		<div className='flex h-full  w-full py-32 md:justify-center '>
 			<div className='space-y-8 md:w-8/12 md:space-y-6'>
 				<div className='flex flex-col pl-6'>
 					<h1 className=' font-merriweather text-gray-900'>New Arrivals</h1>

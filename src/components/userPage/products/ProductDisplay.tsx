@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { addToCart } from '../../../redux/cart/addToCart-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { Product } from '../../../types/products';
+import { formatCurrencry } from '../../../utils/helper';
 
 interface IProps {
 	product: Product;
@@ -15,7 +16,7 @@ const ProductDisplay = ({ product }: IProps) => {
 
 	return (
 		<div className='relative rounded-lg border pb-4 shadow-lg md:w-52 lg:w-60 lg:transform lg:transition lg:duration-500 lg:ease-in-out lg:hover:scale-105'>
-			<Link to={`/home/product/${product._id}`}>
+			<Link to={`/home/product/${product?._id}`}>
 				<div className='border-b '>
 					<img
 						className='h-60 w-full rounded-t-lg object-cover'
@@ -26,12 +27,14 @@ const ProductDisplay = ({ product }: IProps) => {
 				</div>
 
 				<div className='mt-1 mb-0.5 ml-2'>
-					<h5 className='text-xs text-gray-900 '>{product?.name}</h5>
+					<h5 className='text-xs font-medium text-gray-900 md:text-sm '>
+						{product?.name}
+					</h5>
 				</div>
 			</Link>
 
 			<div className='ml-2 mb-2 text-sm font-medium text-gray-900'>
-				<h5>{product?.price} </h5>
+				<h5>{formatCurrencry(product?.price)} </h5>
 			</div>
 			<div className=' flex w-full justify-center'>
 				<button

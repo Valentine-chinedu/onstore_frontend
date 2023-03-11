@@ -7,12 +7,12 @@ export interface FormValue {
 	userId: string;
 }
 
-type SliceState = {
+type emptySliceState = {
 	loading: boolean;
 	error: null | object;
 };
 
-const initialState: SliceState = {
+const initialState: emptySliceState = {
 	loading: false,
 	error: null,
 };

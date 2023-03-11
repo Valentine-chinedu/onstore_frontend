@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Carousels = () => {
 	return (
 		<Carousel
-			className='relative bg-[#0D0D10] lg:h-96'
+			className='relative bg-[#0D0D10] '
 			showArrows={true}
 			showStatus={false}
 			showThumbs={true}
@@ -17,7 +17,7 @@ const Carousels = () => {
 			dynamicHeight={true}
 		>
 			<div className=' md:flex md:w-full md:justify-center lg:items-end'>
-				<div className='items-center justify-center  pt-4 md:flex md:w-9/12 lg:h-96 lg:space-x-20 '>
+				<div className='items-center justify-center  pt-4 md:flex md:w-9/12 lg:h-full lg:space-x-20 '>
 					<div>
 						<div className='mb-4 space-y-2 px-4 text-gray-200 lg:w-full lg:text-left'>
 							<div className='font-merriweather '>

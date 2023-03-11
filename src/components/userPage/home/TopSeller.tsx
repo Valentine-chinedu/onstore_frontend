@@ -4,6 +4,7 @@ import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../redux/cart/addToCart-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
+import { formatCurrencry } from '../../../utils/helper';
 
 const TopSeller = () => {
 	const { products, loading } = useAppSelector((state) => state.productList);
@@ -25,7 +26,7 @@ const TopSeller = () => {
 	}
 
 	return (
-		<div className='w-full py-8 md:flex md:justify-center'>
+		<div className='w-full py-32 md:flex md:justify-center'>
 			<div className='flex flex-col items-center justify-center space-y-4 md:w-8/12'>
 				<div className=' font-merriweather text-gray-900'>
 					<h1>Top Selling Items</h1>
@@ -145,7 +146,9 @@ const TopSeller = () => {
 									</svg>
 								</div>
 								<h1 className='text-xs '>{item?.name}</h1>
-								<h2 className='text-xs font-medium'>{item?.price}</h2>
+								<h2 className='text-xs font-medium'>
+									{formatCurrencry(item?.price)}
+								</h2>
 							</div>
 						</div>
 					))}

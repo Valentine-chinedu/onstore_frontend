@@ -1,10 +1,11 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import { ProductDetails } from './components/userPage/products';
 
 // import { Footer } from './components';
 import Products from './components/userPage/products/Products';
-import { Cart, Home, ProductDetails } from './pages';
+import { Cart, Home } from './pages';
 import Checkout from './pages/cart/Checkout';
 import OrderDetails from './pages/cart/orderDetails';
 import ShippingAddress from './pages/cart/ShippingAddress';

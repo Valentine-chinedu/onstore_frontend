@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoX } from 'react-icons/go';
+import { NavLink } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import { reset } from '../../../redux/cart/list-slice';
+import { getCategories } from '../../../redux/categories/slice-list';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { userLogout } from '../../../redux/users/login-slice';
 import logo from './onStore_logo.png';
@@ -9,17 +11,16 @@ import logo from './onStore_logo.png';
 const Header = () => {
 	const { cartItems } = useAppSelector((store) => store.cartItems);
 	const { userInfo } = useAppSelector((state) => state.login);
-	const [isOpen, setOpen] = useState(false);
+	const { categories } = useAppSelector((state) => state.categoriesList);
 
-	console.log(userInfo);
-
-	let navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
-	function handleClickToProducts() {
-		navigate('/categories');
-		setOpen(false);
-	}
+	const filteredCategory = categories?.filter(
+		(category) => category !== 'featured-item' && category !== 'top-selling'
+	);
+	const [isOpen, setOpen] = useState(false);
+
+	let navigate = useNavigate();
 
 	function handleClickToHome() {
 		navigate('/home');
@@ -36,6 +37,10 @@ const Header = () => {
 		dispatch(reset());
 		navigate('/login');
 	}
+
+	useEffect(() => {
+		dispatch(getCategories());
+	}, [dispatch]);
 
 	return (
 		<nav className='md:p-o sticky  top-0 z-50 flex justify-center overflow-hidden bg-black'>
@@ -74,14 +79,14 @@ const Header = () => {
 					</button>
 				</div>
 				<div className='flex items-center space-x-4 lg:mr-10'>
-					<Link to='/home'>
+					<button onClick={handleClickToHome}>
 						<img
 							className='ml-2 h-16 lg:h-16'
 							src={logo}
 							alt='logo'
 							loading='lazy'
 						/>
-					</Link>
+					</button>
 					<Link className='nav-btn' to={`/profile/${userInfo?._id}`}>
 						Profile
 					</Link>
@@ -93,22 +98,26 @@ const Header = () => {
 				</div>
 
 				<div
-					className={`fixed top-0 left-0  flex h-72 flex-col justify-center bg-gray-800 md:h-72 lg:relative lg:h-20 lg:w-auto lg:flex-row lg:items-center lg:bg-black ${
+					className={`fixed top-0 left-0  flex h-72 flex-col justify-center bg-gray-800 md:h-72 lg:relative lg:h-32 lg:w-auto lg:flex-row lg:items-center lg:bg-black ${
 						isOpen
 							? 'transition-height w-40 duration-500 ease-in-out md:w-52 lg:transition-none'
 							: 'transition-height w-0 overflow-hidden duration-500 ease-in-out lg:transition-none'
 					}`}
 				>
 					<div className='flex w-full flex-col items-start overflow-hidden lg:ml-0 lg:h-full lg:flex-row lg:items-center lg:space-x-8'>
-						<button onClick={handleClickToHome} className='nav-btn'>
-							Home
-						</button>
-						<button onClick={handleClickToProducts} className='nav-btn'>
-							Categories
-						</button>
-						<button className='nav-btn'>About</button>
-						<button className='nav-btn'>Newsletter</button>
-						<button className='nav-btn'>contact</button>
+						<nav className='flex h-16 w-full items-center justify-center space-x-8 pb-2'>
+							{filteredCategory?.map((category) => (
+								<NavLink
+									to={`/products/${category}`}
+									onClick={() => {
+										setOpen(false);
+									}}
+									className='nav-btn'
+								>
+									{category}
+								</NavLink>
+							))}
+						</nav>
 					</div>
 				</div>
 
@@ -149,7 +158,7 @@ const Header = () => {
 								/>
 							</svg>
 						</Link>
-						{cartItems.length > 0 && (
+						{cartItems?.length > 0 && (
 							<div className='absolute top-0 right-0 rounded-full bg-red-600 px-1.5 text-xs font-bold tracking-tighter text-white'>
 								{cartItems.length}
 							</div>
