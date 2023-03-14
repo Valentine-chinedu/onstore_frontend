@@ -3,10 +3,6 @@ import { toast } from 'react-hot-toast';
 import { setError } from '../../utils/error';
 import publicAxios from '../../utils/public-axios';
 
-export interface FormValue {
-	userId: string;
-}
-
 type emptySliceState = {
 	loading: boolean;
 	error: null | object;
@@ -17,18 +13,15 @@ const initialState: emptySliceState = {
 	error: null,
 };
 
-export const emptyCart = createAsyncThunk(
-	'carts/empty',
-	async (data: FormValue) => {
-		try {
-			const res = await publicAxios.post('/carts/decrease', data);
-			toast.success(res.data);
-		} catch (error: any) {
-			const message = setError(error);
-			toast.error(message);
-		}
+export const emptyCart = createAsyncThunk('carts/empty', async (id: string) => {
+	try {
+		const res = await publicAxios.post(`/carts/empty/${id}`);
+		toast.success(res.data);
+	} catch (error: any) {
+		const message = setError(error);
+		toast.error(message);
 	}
-);
+});
 
 export const emptyCartSlice = createSlice({
 	name: 'carts-empty',

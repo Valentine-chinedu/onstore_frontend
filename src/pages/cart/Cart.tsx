@@ -26,7 +26,7 @@ function Cart() {
 
 	const cartItems = user?.carts;
 
-	console.log(user);
+	console.log(cartItems);
 	console.log(userInfo);
 
 	const sumOfPrices = cartItems?.reduce((sum, item) => sum + item.price, 0);
@@ -68,9 +68,9 @@ function Cart() {
 						</Link>
 					</div>
 				) : (
-					cartItems?.map((item) => (
+					cartItems?.map((item, index) => (
 						<div
-							key={item.productId}
+							key={index}
 							className='flex w-full justify-between border-b border-gray-400 px-4 lg:px-8'
 						>
 							<div className='pt-4'>
@@ -158,7 +158,7 @@ function Cart() {
 						<button
 							className='border  border-red-500 p-1 text-xs font-medium text-red-600 hover:bg-red-200 focus:outline-none'
 							onClick={() => {
-								emptyCart({ userId: userInfo!._id });
+								emptyCart(userInfo!._id);
 							}}
 						>
 							{isLoading ? (
