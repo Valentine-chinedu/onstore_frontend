@@ -3,16 +3,18 @@ import { Link } from 'react-router-dom';
 
 const NewCollection = () => {
 	return (
-		<div className='flex h-full  w-full py-32 md:justify-center '>
+		<div className='flex h-full  w-full py-16 md:justify-center md:py-32 '>
 			<div className='space-y-8 md:w-8/12 md:space-y-6'>
 				<div className='flex flex-col pl-6'>
-					<h1 className=' font-merriweather text-gray-900'>New Arrivals</h1>
-					<p className=' font-bold text-gray-900'>
+					<h1 className=' font-merriweather text-gray-900 md:text-3xl'>
+						New Arrivals
+					</h1>
+					<p className=' font-bold text-green-500 md:text-xl'>
 						Latest fashion styles to hit our store.
 					</p>
 				</div>
 				<div className='items-end justify-between space-y-4 md:flex md:w-full md:space-x-20'>
-					<Link to='/categories/pants'>
+					<Link to='/products/shirt'>
 						<div className='flex flex-col items-center space-y-2 md:w-96'>
 							<img src='/collection_image1.png' alt='jacket' />
 							<h2 className='font-medium text-gray-900'>
@@ -31,7 +33,7 @@ const NewCollection = () => {
 								<div className='flex flex-col items-center'>
 									<h1 className='text-sm font-medium text-gray-100'>SHIRTS</h1>
 									<Link
-										to='/categories/shirts'
+										to='/products/shirt'
 										className='text-xs font-semibold text-gray-300 lg:hover:text-orange-600'
 									>
 										See All
@@ -50,7 +52,7 @@ const NewCollection = () => {
 										SNEAKERS
 									</h1>
 									<Link
-										to='/home/products'
+										to='/products/shoe'
 										className='text-xs font-semibold text-gray-300 lg:hover:text-orange'
 									>
 										See All
@@ -67,7 +69,7 @@ const NewCollection = () => {
 								<div className='flex flex-col items-center'>
 									<h1 className='text-sm font-medium text-gray-100'>WATCHES</h1>
 									<Link
-										to='/home/products'
+										to='/home/watch'
 										className='text-xs font-semibold text-gray-300 lg:hover:text-orange'
 									>
 										See All
@@ -85,7 +87,7 @@ const NewCollection = () => {
 								</div>
 								<div>
 									<Link
-										to='/home/products'
+										to='/products/pants'
 										className='rounded-sm bg-[#FFA500] px-2 py-1 text-xs font-semibold text-black lg:hover:bg-orange-600'
 									>
 										Shop Now

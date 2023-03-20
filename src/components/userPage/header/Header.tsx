@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { GoX } from 'react-icons/go';
 import { NavLink } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
-import { reset } from '../../../redux/cart/list-slice';
+import { reset } from '../../../redux/cart/cart-Slice';
 import { getCategories } from '../../../redux/categories/slice-list';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { userLogout } from '../../../redux/users/login-slice';
 import logo from './onStore_logo.png';
 
 const Header = () => {
-	const { cartItems } = useAppSelector((store) => store.cartItems);
+	const { cartItems } = useAppSelector((store) => store.cart);
 	const { userInfo } = useAppSelector((state) => state.login);
 	const { categories } = useAppSelector((state) => state.categoriesList);
 
