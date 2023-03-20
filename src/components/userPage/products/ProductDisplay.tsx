@@ -1,7 +1,6 @@
 import React from 'react';
-import { FaSpinner } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { addToCart } from '../../../redux/cart/addToCart-slice';
+import { addToCart } from '../../../redux/cart/cart-Slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { Product } from '../../../types/products';
 import { formatCurrencry } from '../../../utils/helper';
@@ -10,7 +9,6 @@ interface IProps {
 	product: Product;
 }
 const ProductDisplay = ({ product }: IProps) => {
-	const { loading } = useAppSelector((state) => state.addToCart);
 	const { userInfo } = useAppSelector((state) => state.login);
 	const dispatch = useAppDispatch();
 
@@ -40,21 +38,9 @@ const ProductDisplay = ({ product }: IProps) => {
 				<button
 					className='font- items-center rounded-lg bg-[#FFA500] px-2 py-1 text-xs font-medium tracking-wider text-black hover:bg-orange-800 focus:outline-none disabled:bg-gray-500'
 					disabled={userInfo === null}
-					onClick={() =>
-						dispatch(
-							addToCart({
-								productId: product?._id,
-								userId: userInfo!._id,
-								quantity: 1,
-							})
-						)
-					}
+					onClick={() => dispatch(addToCart(product))}
 				>
-					{loading ? (
-						<FaSpinner size={20} className='mb-4 animate-spin' />
-					) : (
-						'Add To Cart'
-					)}
+					Add To Cart
 				</button>
 			</div>
 		</div>
