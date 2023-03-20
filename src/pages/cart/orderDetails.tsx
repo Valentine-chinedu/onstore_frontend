@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { formatCurrencry } from '../../utils/helper';
-import Stripe from 'react-stripe-checkout';
+import Stripe, { Token } from 'react-stripe-checkout';
 import authAxios from '../../utils/auth-axios';
 import toast from 'react-hot-toast';
 import { setError } from '../../utils/error';
@@ -11,9 +11,11 @@ import Loader from '../../components/ui/Loader';
 import { getOrderById } from '../../redux/order/order-details';
 
 const OrderDetails = () => {
-	const { order, loading } = useAppSelector((state) => state.orderDetail);
+	const { orders, loading } = useAppSelector((state) => state.orders);
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
+
+	const order = orders?.find((order) => order._id === id!);
 
 	const itemsPrice: number | undefined = order?.cartItems.reduce(
 		(acc, item) => acc + item.qty * item.price,
@@ -27,7 +29,7 @@ const OrderDetails = () => {
 
 	const totalPrice = itemsPrice && itemsPrice + taxPrice + shippingPrice;
 
-	const handlePayment = (token: any) => {
+	const handlePayment = (token: Token) => {
 		authAxios
 			.post('/orders/stripe', {
 				token: token.id,
@@ -41,7 +43,7 @@ const OrderDetails = () => {
 			})
 			.catch((error) => toast.error(setError(error)));
 	};
-	const tokenHandler = (token: any) => {
+	const tokenHandler = (token: Token) => {
 		handlePayment(token);
 	};
 
@@ -49,29 +51,39 @@ const OrderDetails = () => {
 		dispatch(getOrderById(id));
 	}, [dispatch, id]);
 
+	console.log(order);
+
 	return (
-		<div className='container mx-auto'>
-			<h2 className='mb-5'>Payment</h2>
+		<div className='container mx-auto flex flex-col items-center pb-16 pt-12'>
+			<h2 className='mb-5 text-3xl'>Summary</h2>
 
 			{loading ? (
 				<Loader />
 			) : (
-				<div>
-					<div className='mb-2'>
-						<div>
-							<div>
-								<h4>Order Summery</h4>
-								<ul>
+				<div className='w-full space-y-8'>
+					<div className=' w-full'>
+						<div className='mx-2 border border-gray-400 bg-white md:mx-0'>
+							<div className='p-6'>
+								<ul className=''>
 									{order?.cartItems.map((item) => (
-										<li key={item._id}>
-											<div>
-												<div>
-													<img src={item.image} alt='' className='h-16 w-16' />
+										<li className=' mb-8' key={item._id}>
+											<div className='flex items-center justify-between'>
+												<div className='flex items-center md:w-4/12'>
+													<img
+														src={item.image}
+														alt=''
+														className='mr-4 h-10 w-10 rounded-full md:h-16 md:w-16'
+													/>
+													<div className='text-sm md:w-6/12 md:text-base'>
+														{item.name}
+													</div>
 												</div>
-												<div className=''>{item.name}</div>
-												<div>{item?.qty}</div>
-
-												<div>{formatCurrencry(item.price * item.qty)}</div>
+												<div className='w-12 text-sm md:text-base'>
+													{item?.qty}
+												</div>
+												<div className='w-12 text-sm md:text-base'>
+													{formatCurrencry(item.price * item.qty)}
+												</div>
 											</div>
 										</li>
 									))}
@@ -80,40 +92,31 @@ const OrderDetails = () => {
 						</div>
 					</div>
 					<div>
-						<div>
-							<div>
-								<h2 className='text-center'>Payment</h2>
-								<ul>
-									<li>
+						<div className='mx-2 border border-gray-400 bg-white'>
+							<div className=' p-6'>
+								<ul className='space-y-4'>
+									<li className='text-sm font-medium md:text-base'>
 										SubTotal (
-										{order?.cartItems.reduce((acc, item) => acc + item.qty, 0)})
-										item
+										{order!.cartItems?.reduce((acc, item) => acc + item.qty, 0)}
+										) item
 									</li>
-									<li className='flex items-center justify-between'>
-										<span>Total Price :</span>
-										<span>
-											{formatCurrencry(
-												order?.cartItems.reduce(
-													(acc, item) => acc + item.price * item.qty,
-													0
-												)
-											)}
+									<li className=' flex items-center justify-between'>
+										<span className='text-sm font-medium md:text-lg'>
+											Total Price{' '}
+										</span>
+										<span className='text-sm md:text-lg'>
+											{formatCurrencry(totalPrice)}
 										</span>
 									</li>
-									<li className='flex items-center justify-between'>
-										<span>Tax Price</span>
-										<span>{formatCurrencry(taxPrice)}</span>
+									<li className=' flex items-center justify-between'>
+										<span className='text-sm font-medium md:text-lg'>
+											Tax Price
+										</span>
+										<span className='text-sm md:text-lg'>
+											{formatCurrencry(taxPrice)}
+										</span>
 									</li>
-									<li className=' d-flex justify-content-between align-items-center'>
-										<span>Shipping Price</span>
-										<span>{formatCurrencry(shippingPrice)}</span>
-									</li>
-									<li>
-										<h5 className=' d-flex justify-content-between align-items-center'>
-											<span>Total Price</span>
-											<span>{formatCurrencry(totalPrice)}</span>
-										</h5>
-									</li>
+
 									{!order?.isPaid && (
 										<li className=''>
 											<Stripe
