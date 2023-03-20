@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import Header from '../../userPage/header/Header';
+import Header from '../userPage/header/Header';
 
 type LayoutProvider = {
 	children: ReactNode;

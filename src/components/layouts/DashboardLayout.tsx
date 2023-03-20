@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import Sidebar from '../dashboard/Sidebar';
-import Topbar from '../dashboard/Topbar';
+import Sidebar from '../adminPage/dashboard/Sidebar';
+import Topbar from '../adminPage/dashboard/Topbar';
 
 type LayoutProvider = {
 	children: ReactNode;
