@@ -14,12 +14,7 @@ import orderDetailSlice from './order/order-details';
 import { authorizationProvider } from '../utils/auth-axios';
 import productsByCategorySlice from './products/category-slice';
 import categoriesListSlice from './categories/slice-list';
-import cartListSlice from './cart/list-slice';
-import { addToCartSlice } from './cart/addToCart-slice';
-import { removeFromCartSlice } from './cart/removeFromCart-slice';
-import { increaseCartQtySlice } from './cart/increaseCartQty-slice';
-import { decreaseCartQtySlice } from './cart/decreaseCartQty-slice';
-import { emptyCartSlice } from './cart/emptyCart-slice';
+import cartSlice from './cart/cart-Slice';
 
 const reducers = combineReducers({
 	//products
@@ -28,13 +23,7 @@ const reducers = combineReducers({
 	productFilter: productFilterSlice.reducer,
 	productsByCategory: productsByCategorySlice.reducer,
 	categoriesList: categoriesListSlice.reducer,
-	//cart
-	cartItems: cartListSlice.reducer,
-	addToCart: addToCartSlice.reducer,
-	removeItem: removeFromCartSlice.reducer,
-	increaseItem: increaseCartQtySlice.reducer,
-	decreaseItem: decreaseCartQtySlice.reducer,
-	emptyCart: emptyCartSlice.reducer,
+	cart: cartSlice.reducer,
 	//auth
 	login: loginSlice.reducer,
 	userDetails: userDetailsSlice.reducer,

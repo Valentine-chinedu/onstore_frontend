@@ -1,9 +1,9 @@
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
+import { Footer } from './components/userPage';
 import { ProductDetails } from './components/userPage/products';
 
-// import { Footer } from './components';
 import Products from './components/userPage/products/Products';
 import { Cart, Home } from './pages';
 import Checkout from './pages/cart/Checkout';
@@ -23,7 +23,7 @@ import AuthProvider from './utils/auth-provider';
 
 const App = () => {
 	return (
-		<div className='h-screen overflow-x-hidden font-sans'>
+		<div className=' overflow-x-hidden font-sans'>
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path='home' element={<Home />} />
@@ -116,7 +116,7 @@ const App = () => {
 				/>
 			</Routes>
 			<Toaster position='top-center' reverseOrder={false} />
-			{/* <Footer /> */}
+			<Footer />
 		</div>
 	);
 };
