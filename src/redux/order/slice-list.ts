@@ -1,10 +1,6 @@
 import {
 	createSlice,
 	createAsyncThunk,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	PayloadAction,
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	CaseReducer,
 	createEntityAdapter,
 } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';

@@ -5,7 +5,7 @@ import authAxios from '../../utils/auth-axios';
 import { setError } from '../../utils/error';
 
 export interface OrderSliceState {
-	order: OrderTypes | null;
+	order: null | OrderTypes;
 	loading: boolean;
 	error: null | object;
 }
@@ -17,8 +17,8 @@ const initialState: OrderSliceState = {
 };
 
 export const getOrderById = createAsyncThunk(
-	'orders/:id',
-	async (id?: string) => {
+	'order/details',
+	async (id: string | undefined) => {
 		try {
 			const { data } = await authAxios.get(`/orders/${id}`);
 			return data;
