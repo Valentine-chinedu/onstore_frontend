@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { reset } from '../../redux/cart/list-slice';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { getUserById } from '../../redux/users/user-details';
+
+import { useAppSelector } from '../../redux/store';
 import authAxios from '../../utils/auth-axios';
 import { setError } from '../../utils/error';
 import { formatCurrencry } from '../../utils/helper';
@@ -12,17 +12,14 @@ import { formatCurrencry } from '../../utils/helper';
 const Checkout = () => {
 	const navigate = useNavigate();
 
-	const { userInfo } = useAppSelector((state) => state.login);
-	const { user } = useAppSelector((state) => state.userDetails);
+	const { shippingAddress, cartItems } = useAppSelector((state) => state.cart);
 
-	const dispatch = useAppDispatch();
+	const itemTotalPrices = cartItems.map((item) => {
+		const totalPrice = item.price * item.qty;
+		return totalPrice;
+	});
 
-	const cartItems = user?.carts;
-
-	const itemsPrice = cartItems!.reduce(
-		(acc, item) => acc + item.quantity * item.price,
-		0
-	);
+	const itemsPrice = itemTotalPrices.reduce((sum, item) => sum + item, 0);
 
 	const taxPrice = itemsPrice * 0.1;
 
@@ -34,55 +31,49 @@ const Checkout = () => {
 		const order = {
 			totalPrice,
 			cartItems,
-			// shippingAddress,
+			shippingAddress,
 		};
 		authAxios
 			.post('/orders', order)
 			.then((res) => {
 				toast.success('your order has been created');
-				dispatch(reset());
-				navigate(`/orders/${res.data._id}`);
+				navigate(`/orders/${res?.data._id}`);
 			})
 			.catch((err) => toast.error(setError(err)));
 	};
 
-	useEffect(() => {
-		dispatch(getUserById(userInfo?._id));
-	}, [userInfo, dispatch]);
-
 	return (
-		<div className='container mx-auto'>
-			<div className='flex flex-wrap'>
-				<div className='mb-2 w-full md:w-8/12'>
-					<div className='bg-white shadow'>
+		<div className='container mx-auto mb-12 h-full w-full space-y-2 pt-4'>
+			<Link
+				to='/cart'
+				className='ml-2 text-sm font-medium underline md:text-lg'
+			>
+				Back to Cart
+			</Link>
+			<div className='flex h-full flex-col items-center space-y-2 md:space-y-4'>
+				<div className=' w-full md:w-8/12'>
+					<div className='mx-2 border border-gray-400 bg-white md:mx-0'>
 						<div className='p-6'>
-							<ul className='list-group list-group-flush'>
-								<li className='list-group-item'>
-									<div className='flex items-center justify-between'>
-										<span className='text-lg'>Address:</span>
-										{/* <span className='text-lg'>
-											{shippingAddress?.address} {shippingAddress?.city}{' '}
-											{shippingAddress?.postalCode}
-										</span> */}
-									</div>
-								</li>
-								<h3 className='my-3'>Items</h3>
+							<ul className=''>
 								{cartItems?.map((item) => (
-									<li className='list-group-item mb-2' key={item.productId}>
-										<div className='flex'>
-											<div className='md:w-2/12'>
+									<li className=' mb-8' key={item._id}>
+										<div className='flex items-center justify-between'>
+											<div className='flex items-center md:w-4/12'>
 												<img
 													src={item.image}
 													alt=''
-													className='h-16 w-16 rounded-full'
+													className='mr-4 h-10 w-10 rounded-full md:h-16 md:w-16'
 												/>
+												<div className='text-sm md:w-6/12 md:text-base'>
+													{item.name}
+												</div>
 											</div>
-											<div className='md:w-6/12'>{item.name}</div>
-											<div className='w-12'>{item?.quantity}</div>
-											<div className='w-12'>
-												{formatCurrencry(item.price * item.quantity)}
+											<div className='w-12 text-sm md:text-base'>
+												{item?.qty}
 											</div>
-											<div className='w-12'></div>
+											<div className='w-12 text-sm md:text-base'>
+												{formatCurrencry(item.price * item.qty)}
+											</div>
 										</div>
 									</li>
 								))}
@@ -90,43 +81,60 @@ const Checkout = () => {
 						</div>
 					</div>
 				</div>
-				<div className='w-full md:w-4/12'>
-					<div className='bg-white shadow'>
-						<div className='p-6'>
-							<ul className='list-group list-group-flush'>
-								<li className='list-group-item'>
-									SubTotal (
-									{cartItems?.reduce((acc, item) => acc + item.quantity, 0)})
-									item
+				<div className='h-full w-full md:w-4/12'>
+					<div className='mx-2 border border-gray-400 bg-white'>
+						<div className=' p-6'>
+							<ul className='space-y-4'>
+								<li className=''>
+									<div className=' flex flex-col items-start md:flex'>
+										<span className='mb-2 text-sm font-medium md:mb-0 md:text-lg'>
+											Address:
+										</span>
+										<span className='text-sm md:text-base'>
+											{shippingAddress?.address}, {shippingAddress?.city},
+											{shippingAddress?.postalCode}
+										</span>
+									</div>
 								</li>
-								<li className='list-group-item flex items-center justify-between'>
-									<span className='text-lg'>Total Price :</span>
-									<span className='text-lg'>
-										{formatCurrencry(
-											cartItems?.reduce(
-												(acc, item) => acc + item.price * item.quantity,
-												0
-											)
-										)}
+								<li className='text-sm font-medium md:text-base'>
+									SubTotal (
+									{cartItems?.reduce((acc, item) => acc + item.qty, 0)}) item
+								</li>
+								<li className=' flex items-center justify-between'>
+									<span className='text-sm font-medium md:text-lg'>
+										Total Price{' '}
+									</span>
+									<span className='text-sm md:text-lg'>
+										{formatCurrencry(itemsPrice)}
 									</span>
 								</li>
-								<li className='list-group-item flex items-center justify-between'>
-									<span className='text-lg'>Tax Price</span>
-									<span className='text-lg'>{formatCurrencry(taxPrice)}</span>
+								<li className=' flex items-center justify-between'>
+									<span className='text-sm font-medium md:text-lg'>
+										Tax Price
+									</span>
+									<span className='text-sm md:text-lg'>
+										{formatCurrencry(taxPrice)}
+									</span>
 								</li>
-								<li className='list-group-item flex items-center justify-between'>
-									<span className='text-lg'>Shipping Price</span>
-									<span className='text-lg'>
+								<li className=' flex items-center justify-between'>
+									<span className='text-sm font-medium md:text-lg'>
+										Shipping Price
+									</span>
+									<span className='text-sm md:text-lg'>
 										{formatCurrencry(shippingPrice)}
 									</span>
 								</li>
-								<li className='list-group-item flex items-center justify-between'>
-									<span className='text-lg'>Total Price</span>
-									<span className=''>{formatCurrencry(totalPrice)}</span>
+								<li className=' flex items-center justify-between'>
+									<span className='text-base font-medium md:text-lg'>
+										Total Price
+									</span>
+									<span className='text-base md:text-xl'>
+										{formatCurrencry(totalPrice)}
+									</span>
 								</li>
 								<li className='flex items-center justify-between'>
 									<button
-										className='w-full'
+										className='w-full rounded-md bg-gray-200 py-2 font-semibold shadow-md hover:bg-gray-300'
 										onClick={onSubmit}
 										disabled={cartItems?.length === 0}
 									>
