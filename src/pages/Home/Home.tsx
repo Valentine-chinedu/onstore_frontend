@@ -6,9 +6,9 @@ import Carousels from '../../components/userPage/home/Carousels';
 import { Link } from 'react-router-dom';
 import NewCollection from '../../components/userPage/home/NewCollection';
 import Services from '../../components/userPage/home/Services';
-import DefaultLayout from '../../components/adminPage/layouts/DefaultLayout';
+import DefaultLayout from '../../components/layouts/DefaultLayout';
 import FeaturedItems from '../../components/userPage/home/FeaturedItems';
-import TopSeller from '../../components/userPage/home/TopSeller';
+import TopSelling from '../../components/userPage/home/TopSelling';
 
 const Home = () => {
 	return (
@@ -36,7 +36,7 @@ const Home = () => {
 				</div>
 				<NewCollection />
 				<Services />
-				<TopSeller />
+				<TopSelling />
 				<div className='w-full justify-center bg-gray-500 px-4 py-32 md:flex'>
 					<div className='md:w-6/12'>
 						<FAQ />
