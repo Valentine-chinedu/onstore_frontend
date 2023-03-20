@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveAddress } from '../../redux/cart/list-slice';
+import { saveAddress } from '../../redux/cart/cart-Slice';
+
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { AddressTypes } from '../../types';
 
 const ShippingAddress = () => {
-	const { shippingAddress } = useAppSelector((state) => state.cartItems);
+	const { shippingAddress } = useAppSelector((state) => state.cart);
 	const dispatch = useAppDispatch();
 
 	const navigate = useNavigate();
@@ -41,11 +42,15 @@ const ShippingAddress = () => {
 	}, [shippingAddress, navigate]);
 
 	return (
-		<div>
-			<form onSubmit={onSubmit}>
-				<div>
-					<label>Address</label>
+		<div className='flex h-full items-center justify-center '>
+			<form
+				onSubmit={onSubmit}
+				className='space-y-16 rounded-xl border px-20 py-32 shadow-xl'
+			>
+				<div className='flex flex-col space-y-2'>
+					<label className='text-lg font-semibold'>Address</label>
 					<input
+						className='h-12 w-96 border pl-4 text-lg'
 						type='text'
 						onChange={onChange}
 						name='address'
@@ -53,9 +58,10 @@ const ShippingAddress = () => {
 						required
 					/>
 				</div>
-				<div>
-					<label>City</label>
+				<div className='flex flex-col space-y-2'>
+					<label className='text-lg font-semibold'>City</label>
 					<input
+						className='h-12 w-96 border pl-4 text-lg'
 						type='text'
 						onChange={onChange}
 						name='city'
@@ -63,9 +69,10 @@ const ShippingAddress = () => {
 						required
 					/>
 				</div>
-				<div>
-					<label>Postal Code</label>
+				<div className='flex flex-col space-y-2'>
+					<label className='text-lg font-semibold'>Postal Code</label>
 					<input
+						className='h-12 w-96 border pl-4 text-lg'
 						type='text'
 						onChange={onChange}
 						name='postalCode'
@@ -73,9 +80,10 @@ const ShippingAddress = () => {
 						required
 					/>
 				</div>
-				<div>
-					<label>Country</label>
+				<div className='flex flex-col space-y-2'>
+					<label className='text-lg font-semibold'>Country</label>
 					<input
+						className='h-12 w-96 border pl-4 text-lg'
 						type='text'
 						onChange={onChange}
 						name='country'
@@ -83,9 +91,14 @@ const ShippingAddress = () => {
 						required
 					/>
 				</div>
-				<button type='submit' className='mt-4 w-full'>
-					Submit
-				</button>
+				<div className='flex justify-center'>
+					<button
+						type='submit'
+						className='rounded-md border px-12 py-2 shadow-md hover:bg-gray-50'
+					>
+						Submit
+					</button>
+				</div>
 			</form>
 		</div>
 	);
