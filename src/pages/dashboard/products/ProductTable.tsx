@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import DashboardLayout from '../../../components/adminPage/layouts/DashboardLayout';
+import DashboardLayout from '../../../components/layouts/DashboardLayout';
 import ProductModal from '../../../components/adminPage/modal/productModal';
 import Loader from '../../../components/ui/Loader';
 import Paginate from '../../../components/ui/Paginate';

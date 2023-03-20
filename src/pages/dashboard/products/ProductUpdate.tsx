@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 import { setError } from '../../../utils/error';
 import { useAppSelector } from '../../../redux/store';
 import authAxios from '../../../utils/auth-axios';
-import DashboardLayout from '../../../components/adminPage/layouts/DashboardLayout';
+import DashboardLayout from '../../../components/layouts/DashboardLayout';
 import storage from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 

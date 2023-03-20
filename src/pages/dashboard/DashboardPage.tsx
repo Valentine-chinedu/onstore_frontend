@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import DashboardLayout from '../../components/adminPage/layouts/DashboardLayout';
+import DashboardLayout from '../../components/layouts/DashboardLayout';
 import { getOrdersList } from '../../redux/order/slice-list';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { formatCurrencry } from '../../utils/helper';

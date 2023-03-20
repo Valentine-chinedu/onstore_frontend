@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import DefaultLayout from '../components/adminPage/layouts/DefaultLayout';
+import DefaultLayout from '../components/layouts/DefaultLayout';
 
 const ProductsPage = () => {
 	return (
