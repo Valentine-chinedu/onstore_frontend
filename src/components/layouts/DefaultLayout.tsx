@@ -7,10 +7,10 @@ type LayoutProvider = {
 
 const DefaultLayout = ({ children }: LayoutProvider) => {
 	return (
-		<>
+		<div className='pt-12 lg:pt-16'>
 			<Header />
 			<main className='h-full'>{children}</main>
-		</>
+		</div>
 	);
 };
 

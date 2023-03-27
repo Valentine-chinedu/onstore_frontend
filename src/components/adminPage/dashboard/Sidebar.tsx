@@ -3,9 +3,12 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { userLogout } from '../../../redux/users/login-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { HiOutlineUserCircle } from 'react-icons/hi';
-import { BiLogOutCircle } from 'react-icons/bi';
+import { BiArrowBack, BiLogOutCircle } from 'react-icons/bi';
 
-const Sidebar = () => {
+type Iprops = {
+	isOpen: boolean;
+};
+const Sidebar = ({ isOpen }: Iprops) => {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const { userInfo } = useAppSelector((state) => state.login);
@@ -20,8 +23,18 @@ const Sidebar = () => {
 	};
 
 	return (
-		<nav className=' w-60 border-r border-gray-400'>
+		<nav
+			className={`overflow-hidden border-r border-gray-400 transition-width duration-500 lg:w-60 ${
+				isOpen ? 'w-full' : 'w-0'
+			}`}
+		>
 			<div className='flex h-full flex-col px-4'>
+				<div className='flex items-center space-x-2 pt-2 lg:hidden'>
+					<BiArrowBack />
+					<Link className='font-bold' to='/home'>
+						Home
+					</Link>
+				</div>
 				<div className='flex h-full w-full flex-col justify-around'>
 					<div className='flex w-full flex-col items-center space-y-8  '>
 						<Link
