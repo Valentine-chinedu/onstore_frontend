@@ -1,8 +1,4 @@
-import {
-	createSlice,
-	createAsyncThunk,
-	createEntityAdapter,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
 import { Product } from '../../types';
 import authAxios from '../../utils/auth-axios';
@@ -45,12 +41,6 @@ export const getOrdersList = createAsyncThunk('orders/list', async () => {
 		const message = setError(error);
 		toast.error(message);
 	}
-});
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getOrderPrice = createEntityAdapter<OrderSliceState>({
-	selectId: (state) =>
-		state.orders.reduce((acc, order) => acc + order.totalPrice, 0),
 });
 
 export const orderListSlice = createSlice({

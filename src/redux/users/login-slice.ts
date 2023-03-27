@@ -4,8 +4,8 @@ import { setError } from '../../utils/error';
 import publicAxios from '../../utils/public-axios';
 
 type User = {
-	email: string;
-	password: string;
+	email: string | undefined;
+	password: string | undefined;
 };
 
 type UserInfo = {

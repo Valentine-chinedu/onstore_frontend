@@ -25,6 +25,7 @@ const ProductUpdate = () => {
 	const { products } = useAppSelector((state) => state.productFilter);
 	const [image, setImage] = useState('');
 	const [percent, setPercent] = useState(0);
+	const { userInfo } = useAppSelector((state) => state.login);
 
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -190,8 +191,9 @@ const ProductUpdate = () => {
 						</p>
 					</div>
 					<button
-						className='focus:shadow-outline rounded-md bg-red-500 py-2 px-4 font-medium text-white hover:bg-red-700 focus:outline-none'
+						className='focus:shadow-outline rounded-md bg-red-500 py-2 px-4 font-medium text-white hover:bg-red-700 focus:outline-none disabled:bg-gray-400 disabled:hover:bg-gray-400'
 						type='submit'
+						disabled={userInfo?.name === 'tester1'}
 					>
 						ADD
 					</button>

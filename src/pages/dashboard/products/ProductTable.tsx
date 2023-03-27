@@ -42,7 +42,7 @@ function ProductTable() {
 		'Category',
 		'Price',
 		'Quantity',
-		'Created At',
+		'Created',
 		'Options',
 	];
 
@@ -65,88 +65,111 @@ function ProductTable() {
 
 	return (
 		<DashboardLayout>
-			{loading ? (
-				<Loader />
-			) : (
-				<div className='mb-8 flex flex-col space-y-4 pt-12'>
-					<div className='flex items-center justify-between'>
-						<span className='text-2xl font-bold'>Product List</span>
-						<button
-							className='rounded bg-blue-600 px-4 py-1 text-white hover:bg-blue-800'
-							onClick={onOpen}
-							disabled={userInfo?.name === 'tester1'}
-						>
-							Add Product
-						</button>
-					</div>
+			<div className='mb-4 overflow-x-scroll lg:mb-0 lg:overflow-x-hidden'>
+				{loading ? (
+					<Loader />
+				) : (
+					<div className='mb-2 flex flex-col space-y-4 pt-12  lg:mb-8'>
+						<div className='flex items-center justify-between px-2 lg:px-0'>
+							<span className='text-lg font-bold lg:text-2xl'>
+								Product List
+							</span>
+							<button
+								className='rounded bg-blue-600 px-4 py-1 text-sm text-white hover:bg-blue-800 disabled:bg-gray-400 disabled:hover:bg-gray-400 lg:text-base'
+								onClick={onOpen}
+								disabled={userInfo?.name === 'tester1'}
+							>
+								Add Product
+							</button>
+						</div>
 
-					{currentProducts ? (
-						<div className='table w-full border-collapse'>
-							<div className='table-header-group bg-gray-500 text-gray-100'>
-								<div className='table-row'>
-									{cols?.map((col) => (
-										<div className='table-cell text-center'>{col}</div>
+						{currentProducts ? (
+							<div className='table w-full border-collapse'>
+								<div className='table-header-group bg-gray-500 text-gray-100'>
+									<div className='table-row'>
+										{cols?.map((col) => (
+											<div className='table-cell px-2 text-center text-sm lg:text-base'>
+												{col}
+											</div>
+										))}
+									</div>
+								</div>
+								<div className='table-row-group'>
+									{currentProducts?.map((product) => (
+										<div
+											className='table-row items-center text-gray-700'
+											key={product._id}
+										>
+											<div className='flex  h-20 items-center justify-center'>
+												<img
+													className='h-5 lg:h-10'
+													src={product?.image}
+													alt='product'
+													loading='lazy'
+												/>
+											</div>
+
+											<div className='table-cell text-center text-xs lg:text-base'>
+												{product.name}
+											</div>
+											<div className='table-cell text-center text-xs lg:text-base'>
+												{product.category}
+											</div>
+											<div className='table-cell text-center text-xs lg:text-base'>
+												{formatCurrencry(product.price)}
+											</div>
+											<div className='table-cell text-center text-xs lg:text-base'>
+												{product.qty}
+											</div>
+											<div className='table-cell text-center text-xs lg:text-base'>
+												{getDate(product?.createdAt)}
+											</div>
+											<div className='table-cell  text-center'>
+												<div className=' flex justify-center space-x-2 lg:space-x-4 '>
+													<Link
+														to={`/dashboard/product-edit/${product._id}`}
+														className=''
+													>
+														<FaEdit className='text-base hover:text-gray-500 lg:text-2xl' />
+													</Link>
+													<button
+														onClick={() => onDelete(product._id)}
+														disabled={userInfo?.name === 'tester1'}
+													>
+														<FaTrash
+															className={`hover:text-gray-500 lg:text-xl ${
+																userInfo?.name === 'tester1'
+																	? 'text-gray-400'
+																	: 'text-red-500'
+															}`}
+														/>
+													</button>
+												</div>
+											</div>
+										</div>
 									))}
 								</div>
 							</div>
-							<div className='table-row-group'>
-								{currentProducts?.map((product) => (
-									<div className='table-row text-gray-700' key={product._id}>
-										<div className='flex  h-20 items-center justify-center'>
-											<img
-												className='h-10'
-												src={product?.image}
-												alt='product'
-												loading='lazy'
-											/>
-										</div>
-
-										<div className='table-cell text-center'>{product.name}</div>
-										<div className='table-cell text-center'>
-											{product.category}
-										</div>
-										<div className='table-cell text-center'>
-											{formatCurrencry(product.price)}
-										</div>
-										<div className='table-cell text-center'>{product.qty}</div>
-										<div className='table-cell text-center'>
-											{getDate(product?.createdAt)}
-										</div>
-										<div className='table-cell  text-center'>
-											<div className=' flex justify-center space-x-4 '>
-												<Link
-													to={`/dashboard/product-edit/${product._id}`}
-													className=''
-												>
-													<FaEdit className='text-2xl hover:text-gray-500' />
-												</Link>
-												<button
-													onClick={() => onDelete(product._id)}
-													disabled={userInfo?.name === 'tester1'}
-												>
-													<FaTrash className='text-xl text-red-500 hover:text-gray-500' />
-												</button>
-											</div>
-										</div>
-									</div>
-								))}
+						) : (
+							<div className='flex justify-center'>
+								<p>No products found !</p>
 							</div>
-						</div>
-					) : (
-						<div className='flex justify-center'>
-							<p>No products found !</p>
-						</div>
-					)}
-				</div>
-			)}
-			{currentProducts?.length > 0 && (
-				<Paginate
-					handlePageClick={handlePageClick}
-					currentProducts={currentProducts}
-					pageCount={pageCount}
+						)}
+					</div>
+				)}
+				{currentProducts?.length > 0 && (
+					<Paginate
+						handlePageClick={handlePageClick}
+						currentProducts={currentProducts}
+						pageCount={pageCount}
+					/>
+				)}
+				<ProductModal
+					setRefresh={setRefresh}
+					show={show}
+					handleClose={onClose}
 				/>
-			)}
-			<ProductModal setRefresh={setRefresh} show={show} handleClose={onClose} />
+			</div>
 		</DashboardLayout>
 	);
 }

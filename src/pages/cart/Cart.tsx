@@ -56,7 +56,7 @@ function Cart() {
 							There is no item in your cart yet
 						</p>
 						<Link
-							to='/home'
+							to='/products'
 							className='rounded-3xl bg-orange-600 px-4 py-2 text-sm font-semibold tracking-wide text-gray-50 focus:outline-none'
 						>
 							START SHOPPING

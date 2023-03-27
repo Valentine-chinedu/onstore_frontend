@@ -80,7 +80,7 @@ function OrdersTable() {
 									<td className='px-4 py-2'>
 										<button
 											onClick={() => onDelete(order._id)}
-											className='rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700'
+											className='rounded bg-red-500 py-2 px-4 font-bold text-white hover:bg-red-700 disabled:bg-gray-400 disabled:hover:bg-gray-400'
 											disabled={userInfo?.name === 'tester1'}
 										>
 											<FaTrash />

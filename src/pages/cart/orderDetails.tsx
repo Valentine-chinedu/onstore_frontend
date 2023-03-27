@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react';
 
 import { useNavigate, useParams } from 'react-router-dom';
@@ -8,6 +9,7 @@ import toast from 'react-hot-toast';
 import { setError } from '../../utils/error';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import Loader from '../../components/ui/Loader';
+import { getOrdersList } from '../../redux/order/slice-list';
 import { getOrderById } from '../../redux/order/order-details';
 
 const OrderDetails = () => {
@@ -17,7 +19,7 @@ const OrderDetails = () => {
 
 	const order = orders?.find((order) => order._id === id!);
 
-	const itemsPrice: number | undefined = order?.cartItems.reduce(
+	const itemsPrice: number | undefined = order?.cartItems?.reduce(
 		(acc, item) => acc + item.qty * item.price,
 		0
 	);
@@ -48,8 +50,8 @@ const OrderDetails = () => {
 	};
 
 	useEffect(() => {
-		dispatch(getOrderById(id));
-	}, [dispatch, id]);
+		dispatch(getOrdersList());
+	}, [dispatch]);
 
 	console.log(order);
 
@@ -65,7 +67,7 @@ const OrderDetails = () => {
 						<div className='mx-2 border border-gray-400 bg-white md:mx-0'>
 							<div className='p-6'>
 								<ul className=''>
-									{order?.cartItems.map((item) => (
+									{order?.cartItems?.map((item) => (
 										<li className=' mb-8' key={item._id}>
 											<div className='flex items-center justify-between'>
 												<div className='flex items-center md:w-4/12'>
@@ -97,7 +99,7 @@ const OrderDetails = () => {
 								<ul className='space-y-4'>
 									<li className='text-sm font-medium md:text-base'>
 										SubTotal (
-										{order!.cartItems?.reduce((acc, item) => acc + item.qty, 0)}
+										{order?.cartItems?.reduce((acc, item) => acc + item.qty, 0)}
 										) item
 									</li>
 									<li className=' flex items-center justify-between'>

@@ -7,8 +7,8 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { userLogin } from '../../redux/users/login-slice';
 
 type FormValues = {
-	email: string;
-	password: string;
+	email: string | undefined;
+	password: string | undefined;
 };
 
 const Login = () => {
@@ -16,23 +16,30 @@ const Login = () => {
 	const navigate = useNavigate();
 	const { userInfo } = useAppSelector((state) => state.login);
 	const validationSchema = Yup.object().shape({
-		email: Yup.string().required('Email is required').email('Email is invalid'),
-		password: Yup.string()
-			.required('Password is required')
-			.min(6, 'Password must be at least 6 characters')
-			.max(40, 'Password must not exceed 40 characters'),
+		email: Yup.string(),
+		// .required('Email is required').email('Email is invalid'),
+		password: Yup.string(),
+		// .required('Password is required')
+		// .min(6, 'Password must be at least 6 characters')
+		// .max(40, 'Password must not exceed 40 characters'),
 	});
 
 	const {
 		register,
 		handleSubmit,
 		formState: { errors },
+		setValue,
 	} = useForm<FormValues>({
 		resolver: yupResolver(validationSchema),
 	});
 
 	const onSubmit = (data: FormValues) => {
 		dispatch(userLogin(data));
+	};
+
+	const handleDemoLogin = () => {
+		setValue('email', 'valentine11.dev@gmail.com', { shouldValidate: true });
+		setValue('password', 'Young2sis', { shouldValidate: true });
 	};
 
 	useEffect(() => {
@@ -72,12 +79,21 @@ const Login = () => {
 					</div>
 
 					<div className='text-center lg:text-left'>
-						<button
-							type='submit'
-							className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
-						>
-							Login
-						</button>
+						<div className='space-x-4'>
+							<button
+								type='submit'
+								className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
+							>
+								Login
+							</button>
+							<button
+								type='submit'
+								className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
+								onClick={() => handleDemoLogin()}
+							>
+								Demo Login
+							</button>
+						</div>
 						<p className='mt-2 mb-0 pt-1 text-sm font-semibold'>
 							Don't have an account?
 							<Link

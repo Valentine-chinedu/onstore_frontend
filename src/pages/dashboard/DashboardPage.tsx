@@ -26,6 +26,9 @@ const DashboardPage = () => {
 
 	useEffect(() => {
 		dispatch(getOrdersList());
+		window.alert(
+			'You are in demo mode, adding, deleting and updating products will be disabled.'
+		);
 	}, [dispatch]);
 
 	return (

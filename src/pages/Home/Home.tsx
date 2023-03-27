@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Accordion from '../../components/userPage/home/Accordion';
 import FAQ from '../../components/userPage/home/FAQ';
@@ -9,8 +9,16 @@ import Services from '../../components/userPage/home/Services';
 import DefaultLayout from '../../components/layouts/DefaultLayout';
 import FeaturedItems from '../../components/userPage/home/FeaturedItems';
 import TopSelling from '../../components/userPage/home/TopSelling';
+import { getProducts } from '../../redux/products/list-slice';
+import { useAppDispatch } from '../../redux/store';
 
 const Home = () => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(getProducts());
+	}, [dispatch]);
+
 	return (
 		<DefaultLayout>
 			<div className='items-center md:flex md:flex-col'>

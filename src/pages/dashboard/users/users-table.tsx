@@ -86,7 +86,7 @@ const UserTable = () => {
 											{!user?.isAdmin && (
 												<button
 													onClick={() => onPromote(user._id)}
-													className='rounded-full bg-green-500 px-3 py-1 text-white hover:bg-green-600'
+													className='rounded-full bg-green-500 px-3 py-1 text-white hover:bg-green-600 disabled:bg-gray-400 disabled:hover:bg-gray-400'
 													disabled={userInfo?.name === 'tester1'}
 												>
 													Promote
@@ -96,7 +96,7 @@ const UserTable = () => {
 										<td className='px-4 py-2'>
 											<button
 												onClick={() => onDelete(user._id)}
-												className='rounded-full bg-red-500 px-3 py-1 text-white hover:bg-red-600'
+												className='rounded-full bg-red-500 px-3 py-1 text-white hover:bg-red-600 disabled:bg-gray-400 disabled:hover:bg-gray-400'
 												disabled={userInfo?.name === 'tester1'}
 											>
 												<FaTrash />
