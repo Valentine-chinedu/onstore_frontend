@@ -16,5 +16,5 @@ fullstack E-commerce web-app built to diplay ans sell clothing items to costumer
 
 ## Live Application
 
-[Link to live webapp](https://onstore.vercel.app/)
+[Link to live webapp](https://onstore-frontend.vercel.app/)
 
