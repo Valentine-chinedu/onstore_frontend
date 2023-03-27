@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BsArrowLeft } from 'react-icons/bs';
 import { FaSpinner } from 'react-icons/fa';
 
 import { useParams, useNavigate } from 'react-router-dom';
 import { addToCart } from '../../../redux/cart/cart-Slice';
+import { getProducts } from '../../../redux/products/list-slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { formatCurrencry } from '../../../utils/helper';
 import DefaultLayout from '../../layouts/DefaultLayout';
@@ -19,6 +20,10 @@ function ProductDetails() {
 	const product = products?.find((product) => product._id === id);
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		dispatch(getProducts());
+	}, [dispatch]);
 
 	console.log(product);
 
