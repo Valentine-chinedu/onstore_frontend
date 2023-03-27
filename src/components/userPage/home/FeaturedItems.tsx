@@ -34,7 +34,7 @@ const FeaturedItems = () => {
 					<div className=' flex h-72 w-72 flex-col items-center justify-center space-y-2 rounded-full bg-[#EAE4E4] md:h-96 lg:w-96 '>
 						<img
 							className='h-44 object-contain md:h-52'
-							src={items[0]?.image}
+							src={items?.[0]?.image}
 							alt='Watch'
 							loading='lazy'
 						/>
@@ -42,11 +42,11 @@ const FeaturedItems = () => {
 					</div>
 					<div className='absolute left-[16.8rem] bottom-[4.5rem] space-y-2 md:left-[18rem] md:w-24'>
 						<h1 className='font-medium text-gray-900'>
-							{formatCurrencry(items[0]?.price)}
+							{formatCurrencry(items?.[0]?.price)}
 						</h1>
 
 						<button
-							className='bg-[#FFA500] px-3 py-1.5 text-xs font-medium text-black disabled:bg-gray-500 lg:hover:bg-orange-700'
+							className='bg-[#FFA500] px-3 py-1.5 text-xs font-medium text-black lg:hover:bg-orange-700'
 							disabled={userInfo === null}
 							onClick={() => dispatch(addToCart(items[0]))}
 						>
@@ -59,12 +59,12 @@ const FeaturedItems = () => {
 						<div className='h-56 w-44 space-y-4 px-2 md:h-80 md:w-72'>
 							<div className='pt-2 pl-2'>
 								<button
-									className='disabled:bg-gray-500'
+									className=''
 									disabled={userInfo === null}
 									onClick={() => dispatch(addToCart(items[1]))}
 								>
 									<svg
-										className='h-4 hover:fill-[#FFA500] md:h-6'
+										className='h-4 cursor-pointer hover:fill-[#FFA500] md:h-6'
 										xmlns='http://www.w3.org/2000/svg'
 										viewBox='0 0 24 24'
 										// width='24'
@@ -79,7 +79,7 @@ const FeaturedItems = () => {
 							<div className='flex h-full items-center justify-center'>
 								<img
 									className=' object-cover'
-									src={items[1]?.image}
+									src={items?.[1]?.image}
 									alt='media'
 									loading='lazy'
 								/>
@@ -154,10 +154,10 @@ const FeaturedItems = () => {
 								</svg>
 							</div>
 							<h1 className='text-xs font-medium md:text-sm'>
-								{items[1]?.name}
+								{items?.[1]?.name}
 							</h1>
 							<h2 className='text-sm font-medium md:text-base'>
-								{formatCurrencry(items[1]?.price)}
+								{formatCurrencry(items?.[1]?.price)}
 							</h2>
 						</div>
 					</div>
@@ -165,12 +165,11 @@ const FeaturedItems = () => {
 						<div className='h-56 w-44 space-y-4 px-2 md:h-80 md:w-72'>
 							<div className='pt-2 pl-2'>
 								<button
-									className='disabled:bg-gray-500'
 									disabled={userInfo === null}
 									onClick={() => dispatch(addToCart(items[2]))}
 								>
 									<svg
-										className='h-4 hover:fill-[#FFA500] md:h-6'
+										className='h-4 cursor-pointer hover:fill-[#FFA500] md:h-6'
 										xmlns='http://www.w3.org/2000/svg'
 										viewBox='0 0 24 24'
 									>
@@ -183,7 +182,7 @@ const FeaturedItems = () => {
 							<div className='flex h-full items-center justify-center'>
 								<img
 									className='object-cover'
-									src={items[2]?.image}
+									src={items?.[2]?.image}
 									alt='Watch'
 									loading='lazy'
 								/>
@@ -258,10 +257,10 @@ const FeaturedItems = () => {
 								</svg>
 							</div>
 							<h1 className='text-xs font-medium md:text-sm'>
-								{items[2]?.name}
+								{items?.[2]?.name}
 							</h1>
 							<h2 className='text-sm font-medium  md:text-base'>
-								{formatCurrencry(items[2]?.price)}
+								{formatCurrencry(items?.[2]?.price)}
 							</h2>
 						</div>
 					</div>

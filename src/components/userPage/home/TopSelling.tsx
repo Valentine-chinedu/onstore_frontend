@@ -25,15 +25,15 @@ const TopSelling = () => {
 	}
 
 	return (
-		<div className='w-full py-16 md:flex md:justify-center md:py-32'>
-			<div className='flex flex-col items-center justify-center space-y-4 md:w-8/12 lg:space-y-8'>
+		<div className='w-full py-16 md:container md:mx-auto md:flex md:justify-center md:py-32'>
+			<div className='flex flex-col items-center justify-center space-y-4 lg:space-y-8'>
 				<div className=' font-merriweather text-gray-900 md:text-4xl'>
 					<h1>Top Selling Items</h1>
 				</div>
 				<div className='grid grid-cols-2 gap-x-2 gap-y-6 md:grid-cols-4 md:gap-4 '>
 					{items?.map((item) => (
 						<div key={item?._id} className='space-y-1'>
-							<div className='h-56 w-44  space-y-4 bg-[#EAE4E4] md:h-72 md:w-72'>
+							<div className='h-56 w-44 space-y-4 bg-[#EAE4E4] md:h-72 md:w-72'>
 								<div className='pt-2 pl-2'>
 									<button
 										className='disabled:bg-gray-500'
