@@ -23,14 +23,15 @@ import AuthProvider from './utils/auth-provider';
 
 const App = () => {
 	return (
-		<div className=' overflow-x-hidden font-sans'>
+		<div className='flex h-screen flex-col justify-between overflow-x-hidden font-sans'>
 			<Routes>
 				<Route index element={<Home />} />
 				<Route path='home' element={<Home />} />
-				<Route path='products' element={<ProductsPage />}>
-					<Route path='/products/:category' element={<Products />} />
+				<Route path='products/:category' element={<ProductsPage />}>
+					<Route path=':category' element={<Products />} />
+					<Route index element={<Products />} />
 				</Route>
-				<Route path='/home/product/:id' element={<ProductDetails />} />
+				<Route path='/product/:id' element={<ProductDetails />} />
 				<Route path='cart' element={<Cart />} />
 				<Route
 					path='/shipping-address'
