@@ -13,8 +13,8 @@ const ProductDisplay = ({ product }: IProps) => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className='relative rounded-lg border pb-4 shadow-lg md:w-52 lg:w-60 lg:transform lg:transition lg:duration-500 lg:ease-in-out lg:hover:scale-105'>
-			<Link to={`/home/product/${product?._id}`}>
+		<div className='relative rounded-lg border pb-4 shadow-lg  md:container md:mx-auto lg:transform lg:transition lg:duration-500 lg:ease-in-out lg:hover:scale-105'>
+			<Link to={`/product/${product?._id}`}>
 				<div className='border-b '>
 					<img
 						className='h-60 w-full rounded-t-lg object-cover'
