@@ -36,7 +36,6 @@ const TopSelling = () => {
 							<div className='h-56 w-44 space-y-4 bg-[#EAE4E4] md:h-72 md:w-72'>
 								<div className='pt-2 pl-2'>
 									<button
-										className='disabled:bg-gray-500'
 										disabled={userInfo === null}
 										onClick={() => dispatch(addToCart(item))}
 									>
