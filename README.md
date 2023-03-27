@@ -4,17 +4,17 @@
 
 ## About
 
-A headless E-commerce web-app built to diplay clothing items to costumers with a fully functional cart that includes addTocart, Delete and update functionalities.
+fullstack E-commerce web-app built to diplay ans sell clothing items to costumers with a fully functional cart user login and admin dashboard.
 
 ## Tools
 
 - Typscript
 - Reactjs
 - Tailwind Css
-- Commerce.js
+- Redux/toolkit
 - React-Icons
 
 ## Live Application
 
-[Link to live webapp](https://onstore-project.firebaseapp.com/)
+[Link to live webapp](https://onstore.vercel.app/)
 
