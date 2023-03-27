@@ -54,7 +54,7 @@ const FeaturedItems = () => {
 						</button>
 					</div>
 				</div>
-				<div className='grid-col-2 grid grid-flow-col gap-x-4 md:gap-x-12'>
+				<div className='grid-col-2 grid grid-flow-col gap-x-2 md:gap-x-12'>
 					<div className='space-y-1  bg-[#EAE4E4]'>
 						<div className='h-56 w-44 space-y-4 px-2 md:h-80 md:w-72'>
 							<div className='pt-2 pl-2'>

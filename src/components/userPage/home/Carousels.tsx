@@ -11,15 +11,14 @@ const Carousels = () => {
 			stopOnHover={true}
 			interval={10000}
 			transitionTime={800}
-			autoPlay={true}
 			infiniteLoop={true}
 			dynamicHeight={true}
 		>
-			<div className=' md:h-[650px]'>
-				<div className='h-96 lg:h-full lg:w-full'>
+			<div className=' h-96 justify-center pt-2 md:h-[650px] lg:flex lg:pt-8'>
+				<div className='relative md:h-[650px] lg:h-full lg:w-full'>
 					<img
-						className='h-full object-fill lg:h-full lg:object-cover'
-						src='/images/pants/Suit_Material_Trousers.jpg'
+						className='h-96 object-contain md:h-[650px]'
+						src='/collection_image2.png'
 						alt='Man on suit'
 						loading='lazy'
 					/>
