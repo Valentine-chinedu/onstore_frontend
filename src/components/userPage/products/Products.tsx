@@ -29,7 +29,7 @@ const Products = () => {
 		);
 	}
 	return (
-		<div className='mx-4 grid h-full grid-cols-2 gap-x-4 gap-y-6 py-8 md:mx-0 md:grid-cols-4 md:gap-x-8 md:gap-y-12'>
+		<div className='mx-4 grid h-full grid-cols-2 gap-x-4 gap-y-6 md:mx-0 md:grid-cols-4 md:gap-x-8 md:gap-y-12 lg:py-8'>
 			{items?.map((item) => (
 				<div className='' key={item._id}>
 					<ProductDisplay product={item} />
