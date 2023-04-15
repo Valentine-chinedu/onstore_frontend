@@ -38,7 +38,7 @@ const FeaturedItems = () => {
 							alt='Watch'
 							loading='lazy'
 						/>
-						<h2 className='font-medium text-gray-900'>{items[0]?.name}</h2>
+						<h2 className='font-medium text-gray-900'>{items?.[0]?.name}</h2>
 					</div>
 					<div className='absolute left-[16.8rem] bottom-[4.5rem] space-y-2 md:left-[18rem] md:w-24'>
 						<h1 className='font-medium text-gray-900'>
@@ -48,7 +48,7 @@ const FeaturedItems = () => {
 						<button
 							className='bg-[#FFA500] px-3 py-1.5 text-xs font-medium text-black lg:hover:bg-orange-700'
 							disabled={userInfo === null}
-							onClick={() => dispatch(addToCart(items[0]))}
+							onClick={() => dispatch(addToCart(items?.[0]))}
 						>
 							Add to Cart
 						</button>
@@ -61,7 +61,7 @@ const FeaturedItems = () => {
 								<button
 									className=''
 									disabled={userInfo === null}
-									onClick={() => dispatch(addToCart(items[1]))}
+									onClick={() => dispatch(addToCart(items?.[1]))}
 								>
 									<svg
 										className='h-4 cursor-pointer hover:fill-[#FFA500] md:h-6'
@@ -166,7 +166,7 @@ const FeaturedItems = () => {
 							<div className='pt-2 pl-2'>
 								<button
 									disabled={userInfo === null}
-									onClick={() => dispatch(addToCart(items[2]))}
+									onClick={() => dispatch(addToCart(items?.[2]))}
 								>
 									<svg
 										className='h-4 cursor-pointer hover:fill-[#FFA500] md:h-6'
