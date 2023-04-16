@@ -10,6 +10,3 @@ export const formatCurrencry = (number: any) => {
 export const getDate = (date: Date) => {
 	return new Date(date).toLocaleDateString('en');
 };
-
-// export const baseUrl = 'https://nice-ruby-ostrich.cyclic.app';
-export const baseUrl = 'http://localhost:4000';

@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { baseUrl } from './helper';
 
 const publicAxios = axios.create({
-	baseURL: `${baseUrl}/api`,
+	baseURL: `${process.env.REACT_APP_BASEURL}/api`,
 });
 
 export default publicAxios;
