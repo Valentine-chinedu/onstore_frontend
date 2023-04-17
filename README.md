@@ -4,7 +4,7 @@
 
 ## About
 
-fullstack E-commerce web-app built to diplay ans sell clothing items to costumers with a fully functional cart user login and admin dashboard.
+fullstack E-commerce web-app built to diplay and sell clothing items to costumers with a fully functional cart, user login and admin dashboard.
 
 ## Tools
 
@@ -17,4 +17,6 @@ fullstack E-commerce web-app built to diplay ans sell clothing items to costumer
 ## Live Application
 
 [Link to live webapp](https://onstore-frontend.vercel.app/)
+
+[Link to backend code](https://github.com/Valentine-chinedu/onstore-backend)
 
