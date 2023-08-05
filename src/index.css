@@ -20,7 +20,7 @@
 	}
 
 	.nav-btn {
-		@apply p-2 font-semibold capitalize text-gray-100 hover:text-gray-400 active:text-gray-400 md:text-base lg:mb-0 lg:mr-4 lg:text-xl;
+		@apply p-2 font-semibold capitalize text-gray-100 hover:text-gray-400 active:text-gray-400 md:text-base lg:mb-0 lg:mr-4;
 	}
 
 	/* .input {

@@ -6,7 +6,8 @@
 		"start": "react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"cypress:run": "cypress run --config video=false --component"
 	},
 	"dependencies": {
 		"@chec/commerce.js": "^2.3.1",
@@ -67,6 +68,7 @@
 		"@types/react-router-dom": "^5.3.3",
 		"@types/redux-localstorage": "^1.0.8",
 		"autoprefixer": "^10.4.2",
+		"cypress": "^12.17.2",
 		"jest": "^28.1.2",
 		"postcss": "^8.4.5",
 		"prettier": "^2.6.2",
