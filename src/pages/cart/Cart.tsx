@@ -66,6 +66,7 @@ function Cart() {
 					cartItems?.map((item, index) => (
 						<div
 							key={index}
+							data-testid='cart-item'
 							className=' flex w-full justify-between border-b border-gray-400 px-4 lg:px-8'
 						>
 							<div className='pt-4'>
@@ -90,6 +91,7 @@ function Cart() {
 								<div className='ml-4 mb-4 items-center text-sm font-bold text-orange-700 hover:text-orange-900'>
 									<button
 										className='border-b border-gray-400'
+										data-testid='remove-button'
 										onClick={() => dispatch(removeFromCart(item._id))}
 									>
 										Remove
@@ -100,6 +102,7 @@ function Cart() {
 								<div className='mb-4 flex items-center'>
 									<button
 										className='focus:outline-none'
+										data-testid='decrease-quantity'
 										onClick={() => dispatch(decreaseItemQty(item._id))}
 									>
 										<HiMinusCircle
@@ -110,6 +113,7 @@ function Cart() {
 									<h3 className='mx-1 border-b px-4'>{item.qty}</h3>
 									<button
 										className='focus:outline-none'
+										data-testid='increase-quantity'
 										onClick={() => dispatch(increaseItemQty(item._id))}
 									>
 										<HiPlusCircle
@@ -134,12 +138,14 @@ function Cart() {
 						<div className='flex justify-between'>
 							<button
 								className='border  border-red-500 p-1 text-xs font-medium text-red-600 hover:bg-red-200 focus:outline-none'
+								data-testid='empty-cart-button'
 								onClick={() => dispatch(reset())}
 							>
 								EMPTY CART
 							</button>
 							<Link
 								to='/shipping-address'
+								data-testid='checkout-button'
 								className='border bg-green-600 p-1.5 font-semibold text-gray-100 hover:bg-green-800 focus:outline-none'
 							>
 								CHECK OUT
