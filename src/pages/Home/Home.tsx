@@ -33,7 +33,7 @@ const Home = () => {
 							</p>
 							<div className='md:pt-4'>
 								<Link
-									to='/categories'
+									to='/products/pants'
 									className='rounded-sm bg-[#FFA500] px-2 py-0.5 text-sm font-semibold text-black md:py-1 md:px-2.5'
 								>
 									Shop Now

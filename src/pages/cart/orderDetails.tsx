@@ -10,7 +10,6 @@ import { setError } from '../../utils/error';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import Loader from '../../components/ui/Loader';
 import { getOrdersList } from '../../redux/order/slice-list';
-import { getOrderById } from '../../redux/order/order-details';
 
 const OrderDetails = () => {
 	const { orders, loading } = useAppSelector((state) => state.orders);
