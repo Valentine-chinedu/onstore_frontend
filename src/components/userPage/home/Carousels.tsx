@@ -6,9 +6,9 @@ const Carousels = () => {
 		<Carousel
 			className='h-96 bg-[#0D0D10] md:h-[650px]'
 			showArrows={true}
-			showStatus={false}
+			showStatus={true}
+			autoPlay={true}
 			showThumbs={true}
-			stopOnHover={true}
 			interval={10000}
 			transitionTime={800}
 			infiniteLoop={true}
