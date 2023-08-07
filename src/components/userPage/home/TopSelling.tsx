@@ -1,10 +1,9 @@
 import React from 'react';
-import { FaSpinner } from 'react-icons/fa';
-
 import { Link } from 'react-router-dom';
 import { addToCart } from '../../../redux/cart/cart-Slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { formatCurrencry } from '../../../utils/helper';
+import TopSellingLoader from '../../ui/TopSellingLoader';
 
 const TopSelling = () => {
 	const { products, loading } = useAppSelector((state) => state.productList);
@@ -17,11 +16,7 @@ const TopSelling = () => {
 	);
 
 	if (loading) {
-		return (
-			<div className='flex w-full flex-col items-center justify-center'>
-				<FaSpinner size={20} className='mb-4 animate-spin' />
-			</div>
-		);
+		return <TopSellingLoader />;
 	}
 
 	return (

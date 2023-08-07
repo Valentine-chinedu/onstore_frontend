@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaSpinner } from 'react-icons/fa';
 import { addToCart } from '../../../redux/cart/cart-Slice';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { formatCurrencry } from '../../../utils/helper';
+import Loader from '../../ui/FeaturedItemsLoader';
 
 const FeaturedItems = () => {
 	const { products, loading } = useAppSelector((state) => state.productList);
@@ -17,11 +17,7 @@ const FeaturedItems = () => {
 	console.log(products);
 
 	if (loading) {
-		return (
-			<div className='flex w-full flex-col items-center justify-center'>
-				<FaSpinner size={20} className='mb-4 animate-spin' />
-			</div>
-		);
+		return <Loader />;
 	}
 
 	return (
@@ -33,9 +29,9 @@ const FeaturedItems = () => {
 				<div className='relative flex w-full justify-center '>
 					<div className=' flex h-72 w-72 flex-col items-center justify-center space-y-2 rounded-full bg-[#EAE4E4] md:h-96 lg:w-96 '>
 						<img
-							className='h-44 object-contain md:h-52'
+							className='h-44 object-contain md:h-60'
 							src={items?.[0]?.image}
-							alt='Watch'
+							alt='media'
 							loading='lazy'
 						/>
 						<h2 className='font-medium text-gray-900'>{items?.[0]?.name}</h2>
@@ -76,7 +72,7 @@ const FeaturedItems = () => {
 									</svg>
 								</button>
 							</div>
-							<div className='flex h-full items-center justify-center'>
+							<div className='flex h-64 items-center justify-center '>
 								<img
 									className=' object-cover'
 									src={items?.[1]?.image}
