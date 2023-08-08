@@ -72,7 +72,7 @@ const FeaturedItems = () => {
 									</svg>
 								</button>
 							</div>
-							<div className='flex h-64 items-center justify-center '>
+							<div className='flex items-center justify-center md:h-64 '>
 								<img
 									className=' object-cover'
 									src={items?.[1]?.image}
