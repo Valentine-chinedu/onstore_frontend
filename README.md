@@ -26,6 +26,7 @@ A full-stack e-commerce web application for clothing retail, featuring a respons
 - [Redux Toolkit](https://redux-toolkit.js.org/) - State management
 - [Tailwind CSS](https://tailwindcss.com/) - Styling and UI components
 - [React Icons](https://react-icons.github.io/react-icons/) - Icon components
+- [Stripe](https://stripe.com/) - Payment
 
 ## 🚀 Getting Started
 
