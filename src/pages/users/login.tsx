@@ -97,7 +97,7 @@ const Login = () => {
 								Demo Login
 							</button>
 						</div>
-						<div className='mt-2 mb-0 flex gap-2 pt-1 text-sm font-semibold'>
+						<div className='mt-2 mb-0 flex gap-1 pt-1 text-sm font-semibold'>
 							<p>Don't have an account?</p>
 							<Link
 								to='/register'
