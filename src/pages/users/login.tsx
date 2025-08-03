@@ -27,7 +27,6 @@ const Login = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-		setValue,
 	} = useForm<FormValues>({
 		resolver: yupResolver(validationSchema),
 	});
@@ -37,8 +36,12 @@ const Login = () => {
 	};
 
 	const handleDemoLogin = () => {
-		setValue('email', 'valentine11.dev@gmail.com', { shouldValidate: true });
-		setValue('password', 'Young2sis', { shouldValidate: true });
+		dispatch(
+			userLogin({
+				email: process.env.REACT_APP_EMAIL,
+				password: process.env.REACT_APP_PASSWORD,
+			})
+		);
 	};
 
 	useEffect(() => {
@@ -89,15 +92,7 @@ const Login = () => {
 							<button
 								type='button'
 								className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
-								onClick={() => {
-									handleDemoLogin();
-									dispatch(
-										userLogin({
-											email: 'valentine11.dev@gmail.com',
-											password: 'Young2sis',
-										})
-									);
-								}}
+								onClick={handleDemoLogin}
 							>
 								Demo Login
 							</button>
