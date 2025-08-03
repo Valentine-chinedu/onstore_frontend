@@ -23,13 +23,13 @@ root.render(
 	</BrowserRouter>
 );
 
-declare global {
-	interface Window {
-		Cypress?: Cypress.Cypress;
-		store?: any;
-	}
-}
+// declare global {
+// 	interface Window {
+// 		Cypress?: Cypress.Cypress;
+// 		store?: any;
+// 	}
+// }
 
-if (window.Cypress) {
-	window.store = store;
-}
+// if (window.Cypress) {
+// 	window.store = store;
+// }
