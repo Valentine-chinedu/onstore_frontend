@@ -55,7 +55,10 @@ A full-stack e-commerce web application for clothing retail, featuring a respons
 3. Create a `.env` file in the root directory and add necessary environment variables:
 
    ```
-   REACT_APP_BASEURL=your_backend_api_url
+   REACT_APP_BASEURL
+   REACT_APP_BASEURL
+   REACT_APP_FIREBASE_KEY
+   REACT_APP_STRIPE_KEY
    ```
 
 4. Start the development server:
