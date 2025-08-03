@@ -87,23 +87,30 @@ const Login = () => {
 								Login
 							</button>
 							<button
-								type='submit'
+								type='button'
 								className='inline-block rounded bg-blue-600 px-7 py-3 text-sm font-medium uppercase leading-snug text-white shadow-md transition duration-150 ease-in-out hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg'
-								onClick={() => handleDemoLogin()}
-								data-testid='demo-login-button'
+								onClick={() => {
+									handleDemoLogin();
+									dispatch(
+										userLogin({
+											email: 'valentine11.dev@gmail.com',
+											password: 'Young2sis',
+										})
+									);
+								}}
 							>
 								Demo Login
 							</button>
 						</div>
-						<p className='mt-2 mb-0 pt-1 text-sm font-semibold'>
-							Don't have an account?
+						<div className='mt-2 mb-0 flex gap-2 pt-1 text-sm font-semibold'>
+							<p>Don't have an account?</p>
 							<Link
 								to='/register'
 								className='text-red-600 transition duration-200 ease-in-out hover:text-red-700 focus:text-red-700'
 							>
 								Register
 							</Link>
-						</p>
+						</div>
 					</div>
 				</form>
 			</div>
