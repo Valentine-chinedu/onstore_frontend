@@ -31,7 +31,7 @@ A full-stack e-commerce web application for clothing retail, featuring a respons
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v18 or higher)
 - npm or yarn
 - Git
 
